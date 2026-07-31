@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>markets // course (mobile)</title>
+<style>
+  :root{
+    --bg:#1a1d23; --panel:#20242c; --panel2:#252a33; --line:#2e333d;
+    --text:#d6dae0; --bright:#f2f4f8; --dim:#6b7280; --dim2:#878e9a;
+    --cyan:#56b6c2; --green:#98c379; --amber:#e5c07b; --code:#2a2f38;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    font-size:16px; line-height:1.65; -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:20px 16px 80px}
+  h1.site{font-size:14px; letter-spacing:.12em; text-transform:uppercase; color:var(--cyan); margin:0 0 2px}
+  .sub{font-size:12px; color:var(--dim); margin-bottom:18px}
+  /* table of contents */
+  .toc{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:28px}
+  .toc-mod{margin:8px 0}
+  .toc-h{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--dim2); margin:10px 0 4px}
+  .toc-i{display:block; font-size:14px; padding:3px 0; color:var(--text); text-decoration:none}
+  a.toc-i.done{color:var(--green)}
+  .toc-i.todo, .toc-i.gate{color:var(--dim)}
+  .toc-i.gate{color:var(--amber)}
+  /* lesson sections */
+  section{border-top:1px solid var(--line); padding-top:8px; margin-top:34px}
+  .kicker{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim2); margin-bottom:2px}
+  h1{font-size:23px; color:var(--bright); margin:.1em 0 .3em; line-height:1.25}
+  h2{font-size:18px; color:var(--bright); margin:1.4em 0 .3em; border-bottom:1px solid var(--line); padding-bottom:5px}
+  h3{font-size:15.5px; color:var(--cyan); margin:1.3em 0 .2em}
+  h4{font-size:14px; color:var(--amber); margin:1.1em 0 .2em}
+  p{margin:.7em 0}
+  strong{color:var(--bright); font-weight:600}
+  em{color:var(--amber); font-style:normal}
+  code{background:var(--code); padding:1px 6px; border-radius:4px; font-size:.92em; color:var(--cyan)}
+  ul{margin:.6em 0; padding-left:0; list-style:none}
+  li{margin:.35em 0; padding-left:1.4em; position:relative}
+  li:before{content:"▸"; color:var(--cyan); position:absolute; left:.2em}
+  hr{border:none; border-top:1px solid var(--line); margin:1.6em 0}
+  pre.diagram{
+    background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--cyan);
+    border-radius:8px; padding:12px; overflow-x:auto; line-height:1.4; font-size:11px;
+    color:var(--dim2); margin:1.2em 0; white-space:pre; -webkit-overflow-scrolling:touch;
+  }
+  blockquote{margin:1.2em 0; padding:12px 16px; background:var(--panel2); border-left:3px solid var(--green); border-radius:6px}
+  blockquote p{margin:.3em 0}
+  .source{margin:1.6em 0 0; padding:12px 16px; background:var(--panel); border:1px dashed var(--line); border-radius:8px; font-size:13.5px; color:var(--dim2)}
+  .source b{color:var(--amber)}
+  a.top{display:inline-block; margin-top:18px; font-size:12px; color:var(--cyan); text-decoration:none}
+  @media (max-width:430px){ pre.diagram{font-size:9.5px; padding:10px} body{font-size:15px} }
+</style>
+</head>
+<body>
+<a id="top"></a>
+<div class="wrap">
+  <h1 class="site">markets // course</h1>
+  <div class="sub">mobile reader · 6 lessons taught · static (no-JS) build</div>
+  <div class="toc"><div class="toc-mod"><div class="toc-h">M0 · How markets actually work</div><a class="toc-i done" href="#L_M0_1">✓ M0.1 — What a market is</a><a class="toc-i done" href="#L_M0_2">✓ M0.2 — The limit order book</a><a class="toc-i done" href="#L_M0_3">✓ M0.3 — Order types: market vs limit; click→settlement</a><a class="toc-i done" href="#L_M0_4">✓ M0.4 — The bid-ask spread</a><a class="toc-i done" href="#L_M0_5">✓ M0.5 — Asset classes</a><a class="toc-i done" href="#L_M0_6">✓ M0.6 — Venues & plumbing</a><div class="toc-i gate">▢ GATE M0 — Module test</div></div><div class="toc-mod"><div class="toc-h">M1 · Market microstructure</div><div class="toc-i todo">· M1.1 — The microstructure lens</div><div class="toc-i todo">· M1.2 — Adverse selection (Glosten–Milgrom)</div><div class="toc-i todo">· M1.3 — Inventory models & quote skewing</div><div class="toc-i todo">· M1.4 — The Kyle (1985) model</div><div class="toc-i gate">▢ CHECKPOINT M1 — Mid-module test</div><div class="toc-i todo">· M1.5 — Price impact & the square-root law</div><div class="toc-i todo">· M1.6 — Latency & the HFT layer</div><div class="toc-i todo">· M1.7 — Flow toxicity & maker-taker economics</div><div class="toc-i gate">▢ GATE M1 — Module test</div></div><div class="toc-mod"><div class="toc-h">M2 · Quant finance fundamentals</div></div><div class="toc-mod"><div class="toc-h">M3 · Statistics of returns</div></div><div class="toc-mod"><div class="toc-h">M4 · Macro & rates</div></div><div class="toc-mod"><div class="toc-h">M5 · The industry & the firms</div></div><div class="toc-mod"><div class="toc-h">M6 · Reading the news (habit)</div></div></div>
+  <section id="L_M0_1"><div class="kicker">M0 · M0.1</div><h1>What a market is</h1>
+<p>Strip away the screens and the jargon and a market is just <strong>a place where people who want to buy meet people who want to sell, and a price gets discovered in the process.</strong> Everything else — exchanges, order books, high-frequency trading — is machinery built on top of that one idea.</p>
+<h2>The two-sided problem</h2>
+<p>Imagine selling your used car. You don't actually know what it's worth, and you don't know who wants it. You could wait for the <em>perfect</em> buyer who values it exactly as you do — but they might not show up for months. Or you could drop your price until <em>someone</em> bites — fast, but you leave money on the table.</p>
+<p>That tension — <strong>price vs. immediacy</strong> — is the heartbeat of every market. Sellers want a high price <em>and</em> a fast sale, but usually can't have both. Buyers want a low price <em>and</em> to buy now. The market is the mechanism that resolves this, and it does so by splitting participants into two roles.</p>
+<h2>Makers vs. takers</h2>
+<p>This is the single most important distinction in market microstructure.</p>
+<ul><li>A <strong>maker</strong> (liquidity provider) posts a standing offer and <em>waits</em>: "I'll sell 100 shares at £50, to whoever wants them." They provide the <em>option to trade</em> to everyone else. They get a price they like, but they pay in <strong>patience and risk</strong> — they don't know when (or if) someone takes them up, and the world may move against them while they wait.</li><li>A <strong>taker</strong> (liquidity demander) shows up wanting to trade <em>right now</em> and accepts a price someone has already posted. They pay for <strong>immediacy</strong> — done instantly, but they cross the spread to do it.</li></ul>
+<pre class="diagram">        MAKERS                         TAKERS
+  (provide liquidity)            (consume liquidity)
+  post resting orders   ──────▶  hit existing orders
+        │                              │
+        │  paid in patience            │  pays for
+        │  + bears risk                │  immediacy
+        ▼                              ▼
+  ┌───────────────────────────────────────────┐
+  │              ORDER  BOOK                    │
+  │      price discovery happens here           │
+  └───────────────────────────────────────────┘</pre>
+<p>The key mental shift: <strong>liquidity is a service one side provides and the other consumes.</strong> The maker is <em>selling</em> immediacy; the taker is <em>buying</em> it. When we reach firms like Jane Street and Citadel Securities in M5, this is literally their business — industrial-scale makers, earning the spread for providing immediacy at enormous volume.</p>
+<p>A subtlety: maker and taker are <strong>roles in a given trade, not types of people.</strong> The same trader can post a resting order (maker) on one trade and aggressively hit someone's offer (taker) on the next. The role is the action, not the actor.</p>
+<h2>Price discovery</h2>
+<p>No central authority decrees what a stock is worth. The price <strong>emerges</strong> from the collision of buy and sell intentions. Every maker posting an offer casts a tiny vote about value; every taker who lifts that offer confirms or rejects it. The transaction price is the running output of that continuous negotiation.</p>
+<p>When news breaks — a company misses earnings — no referee resets the price. Makers yank old offers and repost lower; takers who believe the news sell aggressively; the price slides until buyers and sellers rebalance at the new level. The price <em>discovered</em> the new reality through behaviour.</p>
+<p>Two consequences that matter later:</p>
+<ul><li><strong>Prices carry information.</strong> A move often reflects someone knowing or believing something — which is why makers are nervous about <em>who</em> trades against them. That fear is <strong>adverse selection</strong>, the heart of M1.</li><li><strong>A market needs both sides present.</strong> If makers vanish, price discovery seizes up — that is exactly what a liquidity crisis or flash crash <em>is</em>.</li></ul>
+<blockquote><p><strong>Pub test:</strong> A market matches buyers and sellers and discovers a price. <strong>Makers</strong> post standing offers and provide liquidity, earning a better price in exchange for patience and risk; <strong>takers</strong> accept those offers for immediate execution, paying for that immediacy. The price isn't set by anyone — it <em>emerges</em> from their continuous interaction. That's <em>price discovery</em>.</p></blockquote><div class="source"><b>↳ go deeper:</b> Larry Harris, <em>Trading and Exchanges</em>, ch.1–2. Harris frames trading as a <em>search problem for counterparties</em> — his taxonomy of <strong>why</strong> people trade is the bit worth reading early.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M0_2"><div class="kicker">M0 · M0.2</div><h1>The limit order book</h1>
+<p>In M0.1 we said makers <em>post standing offers and wait</em>. The <strong>limit order book</strong> (LOB) is the thing they post into — the central data structure of a modern market. Understand the book and most of microstructure stops being mysterious.</p>
+<h2>A limit order is three things</h2>
+<p>When a maker posts, they specify a <strong>side</strong> (buy/sell), a <strong>price</strong> (the worst price they'll accept), and a <strong>quantity</strong>.</p>
+<p>"<strong>Buy 100 @ 49.98</strong>" means: <em>up to 100 shares, but I will not pay more than 49.98.</em> A resting promise — it sits in the book until someone trades against it or the maker cancels it (cancellation is constant; more in M1).</p>
+<p>Contrast a <strong>market order</strong>: no price limit — "buy 100, whatever it costs now." That's the taker from M0.1. Limit orders <em>build</em> the book; market orders <em>consume</em> it.</p>
+<h2>Two sides, sorted</h2>
+<p>The book has a <strong>bid side</strong> (resting buys) and an <strong>ask side</strong> (resting sells, aka <em>offers</em>), each sorted by aggressiveness.</p>
+<pre class="diagram">            THE LIMIT ORDER BOOK  (stock: ACME)
+
+       BIDS (buyers)            │            ASKS (sellers)
+   price    size   orders       │      price    size   orders
+   ───────────────────────      │      ───────────────────────
+   50.00  ◀ 1,200    3  best bid │ best ask 50.02 ▶   800    2
+   49.99    3,400    7           │          50.03     2,500    9
+   49.98      900    2           │          50.05     4,100   11
+   49.95    5,000    4           │          50.10     1,000    3
+
+   best bid 50.00 ──┐
+                    ├─ SPREAD = 0.02  (the gap)
+   best ask 50.02 ──┘</pre>
+<p><strong>Reading the columns:</strong> each row is one <em>price level</em>. <strong>size</strong> is the total shares resting there; <strong>orders</strong> is how many <em>separate</em> limit orders add up to that size. So <code>50.00 · 1,200 · 3</code> means <strong>three different buyers</strong> posted orders totalling 1,200 shares at 50.00. The split matters: price-time priority queues those orders <em>individually</em>, and a level held up by one big 1,200-share order behaves very differently from the same size split across many small orders that can each cancel independently — a "wall" that can evaporate in milliseconds.</p>
+<ul><li><strong>Best bid</strong> — the <em>highest</em> price any buyer will pay (50.00).</li><li><strong>Best ask</strong> — the <em>lowest</em> price any seller will accept (50.02).</li></ul>
+<p>Together they're the <strong>top of book</strong> (BBO). The gap, 0.02, is the <strong>bid-ask spread</strong> (its own lesson, M0.4). The book is "inside out": best bid is the <em>highest</em> buy, best ask the <em>lowest</em> sell — those are the orders most likely to trade. Further down each list, prices get less aggressive and less likely to execute.</p>
+<h2>Price-time priority</h2>
+<p>Who trades first? The standard rule is <strong>price-time priority</strong>:</p>
+<ul><li><strong>Price first</strong> — a more aggressive price always wins (a buy at 50.01 jumps ahead of every buy at 50.00).</li><li><strong>Time second</strong> — at the <em>same</em> price, earliest arrival trades first.</li></ul>
+<p>This is why <strong>latency matters</strong> (a big M1 theme): at a busy price level, queue position decides whether you fill at all. A microsecond can put you ahead of thousands of shares.</p>
+<h2>Depth, and "walking the book"</h2>
+<p><strong>Depth</strong> is how much size rests at each level. It tells you how much you can trade <em>without moving the price much</em>. Send a <strong>market buy for 2,000</strong> into the book above:</p>
+<pre class="diagram">   incoming: MARKET BUY 2,000      fills against asks, cheapest first:
+
+   ▸   800 @ 50.02   (clears the best ask)
+   ▸ 1,200 @ 50.03   (eats into the next level)
+       ─────────────────────────────
+       2,000 shares, avg price ≈ 50.026
+
+   AFTER: best ask is now 50.03 (1,300 left) — the price moved UP.</pre>
+<p>This is <strong>walking the book</strong>: a large order exhausts the best level and fills at successively worse prices. Two crucial ideas:</p>
+<ul><li><strong>Market impact / slippage</strong> — a big order pushes the price against itself. The average fill (≈50.026) is worse than the 50.02 you saw. Bigger order vs. available depth → worse slippage. <em>This</em> is why large traders slice orders, and why "the price on the screen" is a polite fiction for size.</li><li><strong>A trade removes liquidity and moves the top of book.</strong> Every interaction reprices the book — M0.1's price discovery, now in mechanical detail.</li></ul>
+<h2>Marketable limit orders &amp; partial fills</h2>
+<p>A limit order isn't always passive. Post "<strong>buy 100 @ 50.05</strong>" while the best ask is 50.02 and your order is <strong>marketable</strong> — it crosses and executes immediately against the resting asks (at 50.02, not 50.05 — you set a <em>ceiling</em>, not the price). So the same order is maker or taker depending on where you price it: <strong>rest inside/away from the spread → maker; price across the book → taker.</strong></p>
+<p>Orders can also <strong>partially fill</strong>: take 2,000 but only 1,500 available at acceptable prices → you get 1,500; the rest rests (limit) or cancels. Real fills are often a messy sequence of partials.</p>
+<blockquote><p><strong>Pub test:</strong> A limit order book is the sorted list of resting buys (<strong>bids</strong>) and sells (<strong>asks</strong>). The <strong>best bid/ask</strong> form the top of book; the gap is the <strong>spread</strong>. Orders trade by <strong>price-time priority</strong> — best price first, then earliest. A market order <strong>walks the book</strong>, filling against the cheapest liquidity and <strong>moving the price</strong> as it consumes depth — which is why large orders suffer <strong>slippage</strong>.</p></blockquote><div class="source"><b>↳ go deeper:</b> Larry Harris, <em>Trading and Exchanges</em>, ch.5–6 (order types, the book, precedence rules). For a live feel, the SEC market-structure primers on order types are short and concrete.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M0_3"><div class="kicker">M0 · M0.3</div><h1>Order types, and a market order from click to settlement</h1>
+<p>Two halves: the small <strong>order-type zoo</strong> (you need only a handful), then the thing the M0 gate asks you to do — <strong>trace a market order from the click to truly owning the shares.</strong> That journey is longer and stranger than most lifelong traders realise.</p>
+<h2>The order-type zoo (the ones that matter)</h2>
+<p>You've met the two primitives:</p>
+<ul><li><strong>Market order</strong> — "execute now, any price." Guarantees you <em>trade</em>; not the <em>price</em>. Exposed to slippage (M0.2 — it walks the book).</li><li><strong>Limit order</strong> — "this price or better." Guarantees the <em>price</em>; not that you <em>trade</em> (may rest forever or fill partially).</li></ul>
+<p>That trade-off — <strong>certainty of execution vs. certainty of price</strong> — is the axis the whole zoo lives on. The rest are combinations and conditions:</p>
+<ul><li><strong>Stop order</strong> (stop-loss) — dormant until price crosses a <strong>trigger</strong>, then fires as a <em>market</em> order. "If it drops to 48, get me out." Not resting visibly in the book — an instruction held until triggered. Classic risk tool, and a classic crash accelerant (cascading stops fire into a falling market).</li><li><strong>Stop-limit</strong> — same trigger, fires a <em>limit</em> order. Avoids a terrible fill, at the risk of no fill.</li><li><strong>Time-in-force</strong> — how long an order lives: <strong>Day</strong> (dies at close), <strong>GTC</strong> (good-til-cancelled, persists), <strong>IOC</strong> (immediate-or-cancel — fill what you can now, cancel the rest), <strong>FOK</strong> (fill-or-kill — all now or nothing).</li><li><strong>Hidden / iceberg</strong> — size not fully displayed (an iceberg shows a small "tip" that replenishes). How big players avoid telegraphing — relevant to adverse selection in M1.</li></ul>
+<p>Don't memorise these like flashcards. The model is: <strong>every order is a position on the execution-vs-price trade-off, plus optional triggers and lifetimes.</strong> Reason from that axis rather than reciting.</p>
+<h2>What actually happens when you click "Buy"</h2>
+<p>You tap "buy 100 ACME." It looks instant. Underneath, the order crosses <strong>several institutions</strong> and splits into two very different phases — <strong>execution</strong> (fast, seconds) and <strong>settlement</strong> (slow, a day+).</p>
+<pre class="diagram">  YOU                                                    you own
+  click ──┐                                              the shares
+  "buy"   │                                                  ▲
+          ▼                                                  │
+   ┌─────────────┐   ┌──────────────┐   ┌──────────────┐    │
+   │  1. BROKER   │──▶│  2. ROUTING   │──▶│  3. VENUE     │   │
+   │  receives;   │   │  where to send │   │  matches vs   │   │
+   │  best-exec   │   │  the order?    │   │  the book     │   │
+   │  duty        │   │                │   │  (M0.2)       │   │
+   └─────────────┘   └──────────────┘   └──────┬───────┘    │
+                                                │  FILL       │
+        ┌───────────────────────────────────────┘ (seconds)  │
+        ▼                                                     │
+   ┌──────────────┐      ┌───────────────────────────────┐   │
+   │ 4. CLEARING   │─────▶│ 5. SETTLEMENT  (T+1)           │───┘
+   │ CCP steps in  │      │ cash ⇄ shares actually swap    │
+   │ novation +    │      │ via custodians / CSD           │
+   │ netting       │      │ (DTCC, Euroclear ...)          │
+   └──────────────┘      └───────────────────────────────┘
+
+   ◀─── EXECUTION: seconds ───▶◀──── SETTLEMENT: ~1 day ────▶</pre>
+<p><strong>1. The broker receives it.</strong> Your broker isn't the market — they're your agent, with a legal <strong>best-execution</strong> duty to get you a reasonably good outcome. Retail brokers usually don't send your order straight to an exchange.</p>
+<p><strong>2. Routing — the interesting decision.</strong> The broker chooses where to send it:</p>
+<ul><li>to a <strong>public exchange</strong> (NYSE, Nasdaq, LSE) to hit the lit book;</li><li>to a <strong>wholesaler / market maker</strong> (Citadel Securities, Virtu) who <em>pays the broker</em> for the right to fill it — <strong>payment for order flow (PFOF)</strong>, the reason "free" apps are free. The wholesaler internalises the trade, fills you at or just better than the public best price, and keeps the spread;</li><li>to a <strong>dark pool</strong> — a private venue with no visible book — to trade large size without showing it.</li></ul>
+<p>Where your order goes shapes the price you get. This routing layer is a big part of how Citadel Securities earns — keep it in mind for M5.</p>
+<p><strong>3. The venue matches it.</strong> Wherever it lands, your buy meets resting sells and executes by price-time priority, walking the book if large (M0.2). You get a <strong>fill</strong> in <strong>milliseconds to seconds</strong>. You've "bought" — <em>but you don't own the shares yet.</em></p>
+<p><strong>4. Clearing.</strong> Between trade and ownership sits risk: what if the other side defaults before paying? A <strong>central counterparty (CCP)</strong> — the clearing house — becomes buyer to every seller and seller to every buyer (<strong>novation</strong>). You now depend on the CCP (which manages risk via margin + a default fund), not an anonymous stranger. It also <strong>nets</strong>: buy 100 and sell 60 of the same stock that day → only 40 needs to settle. That's why firms trading millions of shares settle only a fraction.</p>
+<p><strong>5. Settlement.</strong> The real swap: <strong>cash one way, share ownership the other</strong>, recorded at a central securities depository (DTCC in the US, Euroclear/Crest in Europe/UK) and your custodian. On a delay — <strong>T+1</strong> (trade date + 1 business day) for US equities since May 2024; the UK and EU move to T+1 in late 2027 (from T+2 today). Only <em>after</em> settlement are the shares irrevocably yours.</p>
+<p><strong>The big idea:</strong> a "trade" and "owning the thing" are <strong>separate events</strong> with a real gap between them. Execution is a fast price-discovery event; settlement is slow back-office plumbing; and <strong>clearing</strong> exists to manage the counterparty risk in the gap. Buying a stock isn't one instantaneous act — it's a relay race across at least four institutions.</p>
+<blockquote><p><strong>Pub test (gate item):</strong> A <strong>market order</strong> trades immediately at whatever the book offers; a <strong>limit order</strong> trades only at your price or better, and may not fill. When you click buy: your <strong>broker</strong> receives it and (best-execution) <strong>routes</strong> it — exchange, a wholesaler that paid for the flow (PFOF), or a dark pool; the <strong>venue matches</strong> it and returns a <strong>fill</strong> in seconds; a <strong>clearing house (CCP)</strong> novates and nets; and on <strong>T+1</strong>, <strong>settlement</strong> swaps cash for ownership via the CSD. Execution is seconds, settlement ~a day, clearing manages the risk between.</p></blockquote><div class="source"><b>↳ go deeper:</b> Larry Harris, <em>Trading and Exchanges</em>, ch.4–6 (order types) and the chapters on clearing &amp; settlement. The SEC market-structure primers cover order routing &amp; PFOF; for settlement mechanics, DTCC's own explainers on T+1 are short and clear.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M0_4"><div class="kicker">M0 · M0.4</div><h1>The bid-ask spread: why it exists, who earns it</h1>
+<p>This is the conceptual heart of M0. The spread (best ask − best bid) is the <strong>price of immediacy</strong>, and the market maker earns it by round-tripping: <strong>buy at the bid, sell at the ask, pocket the difference.</strong> But it is <em>not</em> free money — it's compensation for three distinct things. This decomposition is the whole game.</p>
+<pre class="diagram">                buy at BID 50.00        sell at ASK 50.02
+   market maker ───────────────▶  +0.02 per round trip  ◀───────────────
+                (to a seller)                              (to a buyer)
+
+   the 0.02 is NOT profit — it pays for:
+     1. order-processing costs   (small)
+     2. inventory risk           (holding the position)
+     3. adverse selection        (trading against the informed)  ← the big one</pre>
+<h2>A worked example</h2>
+<p>Stock <strong>ACME</strong>, agreed to be worth about £100.00. The maker posts a two-sided quote:</p>
+<pre class="diagram">   bid  99.98   ◀── MM will BUY from you here
+   ask 100.02   ◀── MM will SELL to you here
+   spread = 0.04 (4p)      midpoint = 100.00</pre>
+<p><strong>Case 1 — the happy round trip.</strong> Two ordinary people trade for their own reasons; <em>neither knows anything special</em>:</p>
+<ul><li>A <strong>seller</strong> hits the bid → MM <strong>buys</strong> 1 share at <strong>99.98</strong> (now <em>long</em> 1).</li><li>Minutes later a <strong>buyer</strong> lifts the ask → MM <strong>sells</strong> it at <strong>100.02</strong> (now <em>flat</em>).</li></ul>
+<p>MM profit = 100.02 − 99.98 = <strong>4p</strong>. The maker provided immediacy to both sides and got paid for it. Do this thousands of times a day and it adds up.</p>
+<p><strong>Case 2 — the painful trade (adverse selection).</strong> Someone lifts the ask at <strong>100.02</strong> — but <em>they know</em> a broker upgrade is coming and ACME is really worth <strong>100.50</strong>:</p>
+<ul><li>Informed trader <strong>buys</strong> from MM at <strong>100.02</strong> (MM now <em>short</em> 1 share).</li><li>News breaks, price jumps to <strong>100.50</strong>; the MM must buy a share back to get flat — at <strong>100.50</strong>.</li></ul>
+<p>MM loss = 100.50 − 100.02 = <strong>48p</strong> — wiping out <strong>12</strong> happy round trips (48 ÷ 4). The cruelty: at the moment of the trade the MM <em>can't tell</em> the clueless buyer from the informed one — the orders look identical. They only find out afterwards, when the price moves against them.</p>
+<p><strong>Why the spread is exactly this wide.</strong> Suppose 1 taker in 13 is informed:</p>
+<pre class="diagram">   flow                     count   P&amp;L each     subtotal
+   ─────────────────────────────────────────────────────
+   uninformed round trips     12      +4p          +48p
+   informed trade              1     −48p          −48p
+   ─────────────────────────────────────────────────────
+                                     net           ≈ 0p</pre>
+<p>At a 4p spread the maker roughly <strong>breaks even</strong> when 1-in-13 is informed. The spread isn't arbitrary — it's set so the <strong>steady winnings from the uninformed cover the occasional beatings from the informed.</strong> More informed flow → the maker <em>widens</em> the spread (say to 6p) or bleeds money. That is the adverse-selection component, made of arithmetic — and the formal version (how quotes update trade-by-trade) is M1.2.</p>
+<h2>The three components</h2>
+<p><strong>1. Order-processing costs.</strong> The boring fixed cost of doing business — technology, exchange fees, clearing. Once dominant, now tiny for liquid names.</p>
+<p><strong>2. Inventory risk.</strong> The instant a maker buys at the bid, they're <em>holding</em> stock, exposed to the price moving against them before they can offload it. To be coaxed into bearing that risk they demand a wider spread — and they <strong>skew</strong> their quotes to manage it (long too much inventory? quote a lower ask to sell it off). Inventory is <em>why</em> a maker cares about getting flat, not just about the spread.</p>
+<p><strong>3. Adverse selection — the big one.</strong> A maker quotes to <em>everyone</em>, but some takers <strong>know something the maker doesn't</strong> (informed traders — they've done the work, or they have an edge). When an informed trader lifts the maker's offer, the maker systematically loses: they <em>sold</em> just before the price rose. So the maker can't win against the informed. To survive, it charges everyone the spread — and profits from the <strong>uninformed</strong> ("noise" / liquidity traders) enough to cover what it bleeds to the informed.</p>
+<blockquote><p>The spread is the maker's <strong>levy on the uninformed to cover its losses to the informed.</strong> This is the Glosten–Milgrom insight, and the direct bridge to M1's adverse selection and the Kyle model.</p></blockquote>
+<h2>Who earns it, who pays it</h2>
+<p><strong>Makers earn the spread; takers pay it.</strong> But makers don't always win — they profit <em>on average</em>, winning on uninformed flow and losing on informed flow. That asymmetry is the entire risk of the market-making business (and the entire business of firms like Citadel Securities / Jane Street — M5).</p>
+<p>It also explains <strong>PFOF</strong>: wholesalers fill <em>retail</em> orders <em>inside</em> the quoted spread (price improvement) precisely because retail flow is presumed <strong>uninformed</strong> — cheap and safe to trade against. They'd never offer that to a hedge fund.</p>
+<h2>What moves the spread</h2>
+<ul><li><strong>Wider</strong> with volatility, illiquidity, and information asymmetry (around earnings, news — makers pull back exactly when you most want to trade).</li><li><strong>Tighter</strong> with competition among makers, high volume, and small <strong>tick size</strong>.</li></ul>
+<p>The spread you <em>see</em> (quoted) often isn't what you <em>pay</em> (effective) — price improvement and walking the book both drive a wedge between them.</p>
+<blockquote><p><strong>Pub test (gate item):</strong> The spread is the <strong>price of immediacy</strong>, earned by makers round-tripping bid→ask. It compensates for order-processing costs, <strong>inventory risk</strong>, and above all <strong>adverse selection</strong> — the maker's charge to uninformed traders to cover losses to informed ones. It widens with volatility/illiquidity/information asymmetry and tightens with competition.</p></blockquote><div class="source"><b>↳ go deeper:</b> Larry Harris, <em>Trading and Exchanges</em>, ch.13–19 (liquidity, the spread, dealers). The classic papers: Glosten–Milgrom (1985) on adverse selection, and Ho–Stoll on inventory — both foreshadow M1.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M0_5"><div class="kicker">M0 · M0.5</div><h1>Asset classes: equities, bonds, FX, derivatives</h1>
+<p>The order-book mental model from M0.2 is really an <strong>equities/futures</strong> thing. The big lesson of this item: <em>other asset classes trade completely differently</em>, and knowing which model applies where is basic literacy an interviewer will assume.</p>
+<pre class="diagram">                equities        bonds            FX               derivatives
+   ───────────────────────────────────────────────────────────────────────────
+   where        exchange        OTC / dealer     OTC interbank    futures: exch
+                (lit book)      (RFQ)            + ECNs           swaps:   OTC
+   driven by    orders          quotes           quotes           mixed
+   transparency high            low              medium-low       varies
+   standardized fungible        bespoke          currency pairs   futures: yes
+                shares          (many ISINs)                      swaps:   bespoke
+   liquidity    deep per name   thin per issue   enormous         deep in the
+                                                 (top pairs)      front month
+   settlement   T+1             T+1 / T+2        T+2 (spot)       daily margin</pre>
+<h2>The four</h2>
+<p><strong>Equities</strong> — shares of ownership. <strong>Exchange-traded, lit order book, order-driven</strong>, standardized and fungible (one Apple share = any other), T+1. The model everything else gets compared against.</p>
+<p><strong>Bonds (fixed income)</strong> — debt (you lend; they pay coupons + principal). Mostly <strong>OTC dealer markets</strong>: you ask a bank for a quote (<strong>RFQ</strong> — request for quote), it's <strong>quote-driven</strong> and <strong>opaque</strong>, no central lit book. The kicker: one issuer floats <em>many</em> bonds (each its own ISIN, maturity, coupon), so any single bond trades <strong>thinly</strong>. Government bonds (gilts, Treasuries) are very liquid; corporate bonds much less. Priced in <strong>yield</strong>, not just price.</p>
+<p><strong>FX (foreign exchange)</strong> — currencies, traded in <strong>pairs</strong> (EUR/USD). The <strong>largest market on earth</strong> (~$7.5 trillion/day), <strong>decentralized, OTC, 24/5</strong>, with <em>no central exchange</em> — a network of banks (the interbank market) plus electronic venues (ECNs). Spot, forwards, swaps.</p>
+<p><strong>Derivatives</strong> — contracts whose value <em>derives</em> from an underlying. Two cultures: <strong>futures</strong> (exchange-traded, standardized, centrally cleared, <strong>margined</strong> daily) and <strong>swaps</strong> (mostly <strong>OTC, bespoke</strong>). Both deliver <strong>leverage</strong> and are used to <strong>hedge</strong> or <strong>speculate</strong>.</p>
+<h2>The axes that separate them</h2>
+<p><strong>Exchange vs OTC/dealer · order-driven vs quote-driven · transparent vs opaque · standardized vs bespoke · concentrated vs fragmented liquidity.</strong> Master those five axes and you can place any instrument you meet — and you'll understand why a firm's microstructure expertise in equities doesn't automatically transfer to rates or credit.</p>
+<blockquote><p><strong>Pub test (gate item):</strong> Equities trade on <strong>exchanges via a lit, order-driven book</strong>; bonds trade <strong>OTC through dealers (quote-driven, opaque)</strong>, fragmented across many issues per borrower; FX is a <strong>decentralized, 24/5 interbank market</strong>, the largest by volume; derivatives split into <strong>exchange-traded futures</strong> (standardized, cleared, margined) and <strong>OTC swaps</strong> (bespoke). The order-book model is an equities/futures thing — not universal.</p></blockquote><div class="source"><b>↳ go deeper:</b> Harris ch.2–3 for the survey; for feel, skim an FX primer (BIS Triennial Survey summary) and any explainer on how corporate bonds trade OTC vs equities on-exchange.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M0_6"><div class="kicker">M0 · M0.6</div><h1>Venues &amp; plumbing: exchanges, brokers, clearing, settlement</h1>
+<p>This item ties together the institutions you met in M0.3 and shows the whole ecosystem. The headline: <strong>the market isn't one place.</strong> In the US it's deeply <strong>fragmented</strong> — ~16 exchanges plus dozens of dark pools and wholesalers — stitched together by regulation.</p>
+<pre class="diagram">   ┌──────────┐   order   ┌──────────┐  routes  ┌──────────────────────┐
+   │ INVESTOR │ ────────▶ │  BROKER  │ ───────▶ │  VENUES               │
+   └──────────┘           └──────────┘          │  • exchanges (lit)     │
+        ▲                                        │  • dark pools / ATS    │
+        │ holds shares                           │  • wholesalers (PFOF)  │
+        │ (custody)                              └──────────┬───────────┘
+        │                                                   │ trade
+   ┌──────────┐   settle T+1   ┌──────────┐   clear  ┌──────▼──────┐
+   │ CUSTODIAN│ ◀───────────── │   CSD     │ ◀─────── │    CCP       │
+   │           │                │ book-entry│          │ novate + net │
+   └──────────┘                └──────────┘           │ + margin     │
+                                                       └─────────────┘
+   all wrapped in regulation:
+     SEC / FINRA (US) · FCA (UK) · ESMA (EU) · Reg NMS · MiFID II</pre>
+<h2>Venues — where trades happen</h2>
+<ul><li><strong>Exchanges (lit)</strong> — NYSE, Nasdaq, LSE, CME. Public, regulated, displayed order book.</li><li><strong>Dark pools / ATSs</strong> — private matching venues with <strong>no pre-trade transparency</strong>; used to trade size without showing it.</li><li><strong>Wholesalers / internalizers</strong> — fill <strong>retail</strong> flow off-exchange (the PFOF destination from M0.3).</li></ul>
+<p>Fragmentation raises an obvious problem: if a stock trades in 40 places, how do you not get a worse price than is available elsewhere? <strong>Reg NMS</strong> answers it with the <strong>NBBO</strong> (national best bid/offer) and an <strong>order-protection rule</strong> that forbids "trading through" a better displayed price on another venue. Europe's analogue is <strong>MiFID II</strong>.</p>
+<h2>Intermediaries</h2>
+<ul><li><strong>Broker</strong> — your agent; best-execution duty; routes your order (M0.3).</li><li><strong>Market maker / dealer</strong> — provides the liquidity (M0.4).</li><li><strong>Custodian</strong> — holds your assets safely on your behalf.</li></ul>
+<h2>Clearing &amp; settlement (the back office)</h2>
+<ul><li><strong>CCP / clearing house</strong> — NSCC (US equities), LCH, ICE Clear. <strong>Novation</strong> (becomes counterparty to both sides), <strong>netting</strong> (only net positions settle), and <strong>margin</strong> (collateral against the risk in the gap).</li><li><strong>CSD (central securities depository)</strong> — DTC (US), Euroclear, Crest (UK). Securities live here in <strong>book-entry</strong> form (no paper certificates).</li><li><strong>Settlement</strong> — cash ⇄ ownership, <strong>T+1</strong> for US equities (M0.3).</li></ul>
+<h2>Why it matters: the plumbing is invisible until it breaks</h2>
+<p>The <strong>Feb 2021 GameStop/Robinhood</strong> episode was exactly a <strong>clearing-margin</strong> event: as the stock went vertical, the CCP demanded a huge collateral deposit against Robinhood's volatile, one-directional retail buying. Robinhood couldn't post it fast enough, so it <strong>restricted buying</strong>. Not a conspiracy — the plumbing doing precisely what M0.6 says it does. That's the whole module made concrete.</p>
+<blockquote><p><strong>Pub test:</strong> Trading is <strong>fragmented</strong> across exchanges, dark pools and wholesalers, linked by <strong>Reg NMS / the NBBO</strong> (no trading through a better price). Your <strong>broker</strong> routes; a <strong>venue</strong> matches; a <strong>CCP</strong> clears (novation + netting + margin); a <strong>CSD</strong> records ownership and <strong>settles</strong> at T+1; <strong>custodians</strong> hold the assets — all under SEC/FINRA/FCA oversight.</p></blockquote><div class="source"><b>↳ go deeper:</b> Harris on market structure &amp; fragmentation; the SEC market-structure primers (sec.gov/marketstructure) on Reg NMS and the NBBO. For a vivid case, read any post-mortem of the Feb 2021 GameStop clearing-margin episode.</div><a class="top" href="#top">↑ contents</a></section>
+</div>
+</body>
+</html>
