@@ -10,6 +10,12 @@ The lessons are written as a single, self-contained, offline HTML reader with a
 terminal-style dark theme. No build step, no dependencies, no network: just open
 the file.
 
+## Read it on the web
+
+The course now lives at **<https://samwhiskers.com/reading/markets/>** —
+a phone-friendly reader with progress tracking. The files below remain
+the offline edition.
+
 ## Contents
 
 | File | What it is |
