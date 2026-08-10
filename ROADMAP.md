@@ -30,8 +30,8 @@ else.
 
 | Module | Title | Status |
 |--------|-------|--------|
-| M0 | How markets actually work | ✅ written (6/6) |
-| M1 | Market microstructure | ▢ designed (7 items) |
+| M0 | How markets actually work | ✅ written (8/8) |
+| M1 | Market microstructure | ✅ written (7/7) |
 | M2 | Quant finance fundamentals | ▢ planned |
 | M3 | Statistics of returns | ▢ planned |
 | M4 | Macro & rates | ▢ planned |
@@ -53,6 +53,8 @@ Lessons (all written, in `course.html`):
 - **M0.4 — The bid-ask spread:** why it exists, who earns it, its three-part decomposition (order-processing, inventory, adverse selection), with a worked numeric example.
 - **M0.5 — Asset classes:** equities, bonds, FX, derivatives, and how each trades differently across five axes (exchange vs. OTC, order- vs. quote-driven, transparent vs. opaque, standardized vs. bespoke, concentrated vs. fragmented liquidity).
 - **M0.6 — Venues & plumbing:** exchanges, brokers, clearing, settlement, Reg NMS/NBBO.
+- **M0.7 — Derivatives:** forwards, futures, swaps; a forward built from the farmer/miller risk pair, then standardization, novation to a CCP, margin and daily mark-to-market as fixes for its two flaws; leverage as arithmetic.
+- **M0.8 — Options:** right vs. obligation, why the asymmetry is what the premium buys, breakeven at strike ± premium, the four positions, and volatility as a price input (pricing deferred to M2–M3).
 
 **Materials:** Larry Harris, *Trading and Exchanges* (ch. 1–7); NYU Stern market
 microstructure lectures (Yakov Amihud, YouTube); SEC market-structure primers
@@ -67,12 +69,12 @@ shape the game.
 
 ---
 
-## M1 — Market microstructure · designed, not yet written
+## M1 — Market microstructure · written
 
 **Goal:** understand *why* markets behave as they do at the order-book level.
 This is the layer most HFT firms actually live in.
 
-Planned lessons:
+Lessons (all written, in `course.html`):
 
 - **M1.1 — The microstructure lens:** order- vs. quote-driven recap, informed vs. uninformed flow, what "the book is a belief" means.
 - **M1.2 — Adverse selection, formally (Glosten–Milgrom):** quotes as conditional expectations; how the book *learns* from order flow.

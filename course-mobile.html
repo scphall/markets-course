@@ -59,8 +59,8 @@
 <a id="top"></a>
 <div class="wrap">
   <h1 class="site">markets // course</h1>
-  <div class="sub">mobile reader · 6 lessons taught · static (no-JS) build</div>
-  <div class="toc"><div class="toc-mod"><div class="toc-h">M0 · How markets actually work</div><a class="toc-i done" href="#L_M0_1">✓ M0.1 — What a market is</a><a class="toc-i done" href="#L_M0_2">✓ M0.2 — The limit order book</a><a class="toc-i done" href="#L_M0_3">✓ M0.3 — Order types: market vs limit; click→settlement</a><a class="toc-i done" href="#L_M0_4">✓ M0.4 — The bid-ask spread</a><a class="toc-i done" href="#L_M0_5">✓ M0.5 — Asset classes</a><a class="toc-i done" href="#L_M0_6">✓ M0.6 — Venues & plumbing</a><div class="toc-i gate">▢ GATE M0 — Module test</div></div><div class="toc-mod"><div class="toc-h">M1 · Market microstructure</div><div class="toc-i todo">· M1.1 — The microstructure lens</div><div class="toc-i todo">· M1.2 — Adverse selection (Glosten–Milgrom)</div><div class="toc-i todo">· M1.3 — Inventory models & quote skewing</div><div class="toc-i todo">· M1.4 — The Kyle (1985) model</div><div class="toc-i gate">▢ CHECKPOINT M1 — Mid-module test</div><div class="toc-i todo">· M1.5 — Price impact & the square-root law</div><div class="toc-i todo">· M1.6 — Latency & the HFT layer</div><div class="toc-i todo">· M1.7 — Flow toxicity & maker-taker economics</div><div class="toc-i gate">▢ GATE M1 — Module test</div></div><div class="toc-mod"><div class="toc-h">M2 · Quant finance fundamentals</div></div><div class="toc-mod"><div class="toc-h">M3 · Statistics of returns</div></div><div class="toc-mod"><div class="toc-h">M4 · Macro & rates</div></div><div class="toc-mod"><div class="toc-h">M5 · The industry & the firms</div></div><div class="toc-mod"><div class="toc-h">M6 · Reading the news (habit)</div></div></div>
+  <div class="sub">mobile reader · 15 lessons taught · static (no-JS) build</div>
+  <div class="toc"><div class="toc-mod"><div class="toc-h">M0 · How markets actually work</div><a class="toc-i done" href="#L_M0_1">✓ M0.1 — What a market is</a><a class="toc-i done" href="#L_M0_2">✓ M0.2 — The limit order book</a><a class="toc-i done" href="#L_M0_3">✓ M0.3 — Order types: market vs limit; click→settlement</a><a class="toc-i done" href="#L_M0_4">✓ M0.4 — The bid-ask spread</a><a class="toc-i done" href="#L_M0_5">✓ M0.5 — Asset classes</a><a class="toc-i done" href="#L_M0_6">✓ M0.6 — Venues & plumbing</a><div class="toc-i gate">▢ GATE M0 — Module test</div></div><div class="toc-mod"><div class="toc-h">M1 · Market microstructure</div><a class="toc-i done" href="#L_M1_1">✓ M1.1 — The microstructure lens</a><a class="toc-i done" href="#L_M1_2">✓ M1.2 — Adverse selection (Glosten–Milgrom)</a><a class="toc-i done" href="#L_M1_3">✓ M1.3 — Inventory models & quote skewing</a><a class="toc-i done" href="#L_M1_4">✓ M1.4 — The Kyle (1985) model</a><div class="toc-i gate">▢ CHECKPOINT M1 — Mid-module test</div><a class="toc-i done" href="#L_M1_5">✓ M1.5 — Price impact & the square-root law</a><a class="toc-i done" href="#L_M1_6">✓ M1.6 — Latency & the HFT layer</a><a class="toc-i done" href="#L_M1_7">✓ M1.7 — Flow toxicity & maker-taker economics</a><div class="toc-i gate">▢ GATE M1 — Module test</div></div><div class="toc-mod"><div class="toc-h">M2 · Quant finance fundamentals</div></div><div class="toc-mod"><div class="toc-h">M3 · Statistics of returns</div></div><div class="toc-mod"><div class="toc-h">M4 · Macro & rates</div></div><div class="toc-mod"><div class="toc-h">M5 · The industry & the firms</div></div><div class="toc-mod"><div class="toc-h">M6 · Reading the news (habit)</div></div></div>
   <section id="L_M0_1"><div class="kicker">M0 · M0.1</div><h1>What a market is</h1>
 <p>Strip away the screens and the jargon and a market is just <strong>a place where people who want to buy meet people who want to sell, and a price gets discovered in the process.</strong> Everything else — exchanges, order books, high-frequency trading — is machinery built on top of that one idea.</p>
 <h2>The two-sided problem</h2>
@@ -254,7 +254,567 @@
 <ul><li><strong>CCP / clearing house</strong> — NSCC (US equities), LCH, ICE Clear. <strong>Novation</strong> (becomes counterparty to both sides), <strong>netting</strong> (only net positions settle), and <strong>margin</strong> (collateral against the risk in the gap).</li><li><strong>CSD (central securities depository)</strong> — DTC (US), Euroclear, Crest (UK). Securities live here in <strong>book-entry</strong> form (no paper certificates).</li><li><strong>Settlement</strong> — cash ⇄ ownership, <strong>T+1</strong> for US equities (M0.3).</li></ul>
 <h2>Why it matters: the plumbing is invisible until it breaks</h2>
 <p>The <strong>Feb 2021 GameStop/Robinhood</strong> episode was exactly a <strong>clearing-margin</strong> event: as the stock went vertical, the CCP demanded a huge collateral deposit against Robinhood's volatile, one-directional retail buying. Robinhood couldn't post it fast enough, so it <strong>restricted buying</strong>. Not a conspiracy — the plumbing doing precisely what M0.6 says it does. That's the whole module made concrete.</p>
-<blockquote><p><strong>Pub test:</strong> Trading is <strong>fragmented</strong> across exchanges, dark pools and wholesalers, linked by <strong>Reg NMS / the NBBO</strong> (no trading through a better price). Your <strong>broker</strong> routes; a <strong>venue</strong> matches; a <strong>CCP</strong> clears (novation + netting + margin); a <strong>CSD</strong> records ownership and <strong>settles</strong> at T+1; <strong>custodians</strong> hold the assets — all under SEC/FINRA/FCA oversight.</p></blockquote><div class="source"><b>↳ go deeper:</b> Harris on market structure &amp; fragmentation; the SEC market-structure primers (sec.gov/marketstructure) on Reg NMS and the NBBO. For a vivid case, read any post-mortem of the Feb 2021 GameStop clearing-margin episode.</div><a class="top" href="#top">↑ contents</a></section>
+<blockquote><p><strong>Pub test:</strong> Trading is <strong>fragmented</strong> across exchanges, dark pools and wholesalers, linked by <strong>Reg NMS / the NBBO</strong> (no trading through a better price). Your <strong>broker</strong> routes; a <strong>venue</strong> matches; a <strong>CCP</strong> clears (novation + netting + margin); a <strong>CSD</strong> records ownership and <strong>settles</strong> at T+1; <strong>custodians</strong> hold the assets — all under SEC/FINRA/FCA oversight.</p></blockquote><div class="source"><b>↳ go deeper:</b> Harris on market structure &amp; fragmentation; the SEC market-structure primers (sec.gov/marketstructure) on Reg NMS and the NBBO. For a vivid case, read any post-mortem of the Feb 2021 GameStop clearing-margin episode.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M0_7"><div class="kicker">M0 · M0.7</div><h1>Derivatives: contracts about future transactions</h1>
+<p>M0.5 gave you the textbook line: <em>a derivative is a contract whose value derives from an underlying.</em> True, and almost useless — it tells you what a derivative is named after, not what it <strong>is</strong>.</p>
+<p>Here’s the version that actually helps: <strong>a derivative is an agreement, made now, about a transaction that happens later.</strong> The thing being traded is the <em>agreement itself</em>. Almost nobody who trades an oil future wants the barrels.</p>
+<p>Everything else — margin, clearing, expiry, leverage — falls out of that one idea plus the practical problems of making such an agreement stick. So let’s build one from scratch rather than memorise the vocabulary.</p>
+<h2>Start with the problem, not the product</h2>
+<p>A <strong>farmer</strong> will harvest 100 tonnes of wheat in September. He doesn’t know what it’ll fetch. If the price collapses he may not cover his costs.</p>
+<p>A <strong>miller</strong> will need 100 tonnes of wheat in September. She doesn’t know what she’ll pay. If the price spikes her margins vanish.</p>
+<p>They have <strong>exactly opposite</strong> risks. Neither of them wants a gamble — they each want <em>to know their number</em> so they can plan. So in March they agree: <strong>in September, the farmer delivers 100 tonnes and the miller pays £200 a tonne.</strong> No money changes hands today. That agreement is a <strong>forward contract</strong>, and it’s the atom of the entire derivatives world.</p>
+<pre class="diagram">   September spot     farmer      miller       who’d rather have
+   price of wheat     receives    pays         had no contract?
+   ──────────────────────────────────────────────────────────────
+      £150/t            £200        £200        the miller (−£50/t)
+      £200/t            £200        £200        neither
+      £250/t            £200        £200        the farmer (−£50/t)</pre>
+<p>Read that table carefully, because it contains the point most explanations skip. <strong>Neither of them “won”.</strong> One of them will always look, in hindsight, like they’d have done better without it — and that is <em>not</em> a flaw, it’s the cost of the thing they actually bought, which was <strong>certainty</strong>.</p>
+<p>Notice too what happened to the risk: it didn’t disappear. It <strong>moved</strong>. Price risk left two people who didn’t want it and landed on… each other, cancelled out. That’s the whole purpose of derivatives, and it’s worth holding onto when the machinery gets complicated.</p>
+<p>And notice the contract itself now has a <strong>value</strong> that moves. In September with wheat at £250, the miller’s right to buy at £200 is worth £50 a tonne to her. The contract started life worth nothing to either side and is now worth something — an amount <em>derived</em> from the wheat price. Hence the name.</p>
+<h2>Two things wrong with a handshake</h2>
+<p>The forward works. It’s also fragile in two specific ways, and every piece of futures machinery exists to fix one of them.</p>
+<p><strong>1. Counterparty risk.</strong> September arrives, wheat is £250, and the farmer can sell to anyone for £250. Does he honour a £200 deal? If he refuses, or goes bust, the miller’s hedge evaporates <strong>precisely in the state of the world where she needed it</strong>. A hedge that fails in the bad state is not a hedge.</p>
+<p><strong>2. No exit.</strong> In June the miller’s plant burns down. She doesn’t need wheat any more, but she’s still contractually obliged to buy it. Her only ways out are to persuade the farmer to tear it up, or find someone to take her place — which needs the farmer’s agreement, because he’s relying on <em>her</em> creditworthiness, not a stranger’s.</p>
+<p>Both flaws come from the same root: it’s a <strong>bilateral, bespoke</strong> contract between two named people.</p>
+<h2>The future: an exchange fixing both</h2>
+<p>A <strong>future</strong> is a forward with three modifications, each one solving something above.</p>
+<p><strong>1. Standardize it.</strong> The exchange, not the counterparties, defines the contract: 100 tonnes, this grade of wheat, this delivery month, this warehouse. <strong>Only the price is negotiable.</strong> Now every September wheat contract is identical to every other — <em>fungible</em>, exactly like shares in M0.5 — so it can trade in an order book with all the M0.2 machinery.</p>
+<p>That solves the exit problem in an elegant way: you don’t unwind your contract, you take <strong>the opposite position</strong>. Long one September contract and short one September contract cancel to nothing, and the clearing house nets them out of existence. This is <strong>offsetting</strong>, and it’s how the overwhelming majority of futures end — closed out before expiry, no wheat ever moved.</p>
+<p><strong>2. Put a clearing house in the middle.</strong> Once the trade is agreed, the <strong>CCP</strong> from M0.6 steps between the two sides by <strong>novation</strong>: it becomes the buyer to every seller and the seller to every buyer.</p>
+<pre class="diagram">   BILATERAL FORWARD                    CLEARED FUTURE
+
+   farmer ◀──────────────▶ miller       farmer ◀──▶ CCP ◀──▶ miller
+
+   each relies on the other             each relies only on the CCP
+   the other defaults → hedge dies      CCP guarantees both sides
+   exit needs the other’s consent       exit = trade the opposite</pre>
+<p>Counterparty risk solved — or rather, <em>concentrated</em> into one institution built to survive it, which is a different thing and the reason CCPs are so heavily regulated.</p>
+<p><strong>3. Margin and daily mark-to-market.</strong> The clearing house has now volunteered to absorb everybody’s default risk. It is not going to do that unsecured. So it demands two things:</p>
+<ul><li><strong>Initial margin</strong> — a good-faith deposit, typically a few percent of the contract’s value, posted <em>before</em> you trade.</li><li><strong>Variation margin</strong> — every evening the contract is repriced and the day’s profit or loss moves <strong>in actual cash</strong> between accounts. Winners are paid, losers pay. If your balance falls below the <strong>maintenance margin</strong>, you get a <strong>margin call</strong>: top it up by morning or be closed out.</li></ul>
+<p>Why settle daily instead of at expiry? Because it stops losses quietly accumulating into a number the loser can’t pay. <strong>The clearing house never lets anyone owe more than one day’s move.</strong> That single design decision is why futures markets survive events that destroy OTC counterparties.</p>
+<h2>What margin actually feels like</h2>
+<p>Concrete numbers, because this is where intuition usually fails.</p>
+<p>A wheat future covers 100 tonnes. Wheat is £200/t, so one contract represents <strong>£20,000</strong> of wheat — its <strong>notional</strong>. Initial margin is <strong>£1,200</strong> (6%), maintenance margin <strong>£900</strong>. You <strong>buy</strong> one contract: you are <strong>long</strong>, and you profit if wheat rises.</p>
+<pre class="diagram">         settle   move    P&amp;L on    margin
+   day   price    per t   100 t     balance   what happens
+   ─────────────────────────────────────────────────────────────────
+    0    200.00      —        —      1,200    you post initial margin
+    1    203.00   +3.00    +£300     1,500    £300 paid INTO your account
+    2    201.50   −1.50    −£150     1,350    £150 taken out
+    3    196.00   −5.50    −£550       800    below £900 → MARGIN CALL
+    3′      —        —        —      1,200    you wire £400 by morning
+    4    199.00   +3.00    +£300     1,500</pre>
+<p>Sit with row 3. Wheat fell <strong>2%</strong>, from £200 to £196 — an unremarkable day — and you had to find £400 in cash the next morning or have your position liquidated. That’s <strong>leverage</strong>, and it isn’t a figure of speech:</p>
+<pre class="diagram">   you control:   £20,000 of wheat
+   you posted:    £ 1,200
+   ratio:         ≈ 17×      → a 6% move against you wipes out the deposit</pre>
+<p>Two implications people routinely miss:</p>
+<ul><li>The £300 on day 1 is <strong>real cash in your account</strong>, not a paper gain. Futures P&amp;L is realised <em>daily</em>. That’s pleasant on the way up and unforgiving on the way down.</li><li>Your deposit is <strong>not</strong> your maximum loss. Buy a share and the worst case is −100%; hold a future through a violent move and you can owe more than you ever put in.</li></ul>
+<h2>The family in one table</h2>
+<pre class="diagram">                 who is obliged?     cash up front    traded      exit by
+   ──────────────────────────────────────────────────────────────────────────
+   forward      both sides, always      nothing       OTC         negotiate
+   future       both sides, always      margin        exchange    offsetting
+   swap         both sides, always      margin *      OTC/cleared offset/unwind
+   option       one side only           premium       both        offset/expire
+
+   * post-2008 reform pushed most standardized swaps into central clearing (M0.6)</pre>
+<p><strong>Swaps</strong> sound exotic and aren’t. A swap is an agreement to <strong>exchange two streams of payments</strong> over time. The workhorse is the <strong>interest rate swap</strong>: for five years, you pay a <em>fixed</em> rate and receive a <em>floating</em> rate on an agreed <strong>notional</strong> of, say, £10m. The notional itself never changes hands — only the difference in interest each quarter. A company with a floating-rate loan that wants certainty pays fixed on a swap; the two floating legs cancel and its borrowing is synthetically fixed.</p>
+<p>The clean way to hold it: <strong>a forward is one exchange in the future; a swap is a strip of forwards</strong>, the same logic repeated every quarter.</p>
+<p><strong>Options</strong> are the odd one out — the only member where one side holds a <em>right</em> rather than an obligation. That asymmetry changes everything about how they’re priced and used, which is why they get M0.8 to themselves.</p>
+<h2>Why anyone bothers</h2>
+<p><strong>1. Hedging — transferring risk you don’t want.</strong> The farmer and the miller. An airline fixing jet fuel costs. An exporter locking tomorrow’s FX rate. A pension fund with fixed liabilities using rate swaps. The aim isn’t profit; it’s converting an unknown into a known so the <em>real</em> business can be planned.</p>
+<p><strong>2. Speculation — taking risk you do want, cheaply.</strong> To bet £20,000 on wheat physically you need £20,000 and somewhere to store 100 tonnes. In futures you need £1,200 and a brokerage account. This is often framed as the disreputable half, but it isn’t optional: <strong>the farmer needs someone willing to take the other side</strong>, and there aren’t always enough millers. Speculators are the counterparties that make hedging possible, and their trading is what discovers the price (M0.1).</p>
+<p><strong>3. Access — the reason people forget.</strong> Derivatives let you take positions that are awkward or flatly impossible in the underlying: <strong>shorting</strong> without borrowing the asset, taking a view on an <em>interest rate</em> or on <em>volatility</em> (neither of which you can hold in a warehouse), getting index exposure without buying 500 separate shares, or trading oil without a tanker.</p>
+<h2>How they hurt people</h2>
+<p><strong>Leverage is symmetric.</strong> Seventeen times up is seventeen times down, and the margin call arrives on the worst possible morning — when the market has already moved against you and cash is hardest to raise.</p>
+<p><strong>Being right isn’t enough; you have to survive being right.</strong> A hedge that is entirely correct about September can still bankrupt you in June, because the derivative marks to market <strong>daily in cash</strong> while the offsetting gain in your physical business only shows up <strong>later</strong>, at delivery. That timing mismatch — right position, wrong cash flow — has killed real companies that were, technically, hedged.</p>
+<p><strong>The hedge only works if the underlying matches.</strong> Hedge jet fuel with crude futures, because there’s no liquid jet fuel contract, and you’ve swapped price risk for <strong>basis risk</strong> — the risk that the thing you hedged with and the thing you own stop moving together. Basis risk is the fine print on every practical hedge.</p>
+<blockquote><p><strong>Pub test:</strong> A derivative is a contract agreed <strong>now</strong> about a transaction <strong>later</strong>; its value <em>derives</em> from an underlying, and its job is to <strong>transfer risk</strong> from someone who doesn’t want it to someone who’ll take it. A <strong>forward</strong> is a bilateral handshake — flexible, but carrying <strong>counterparty risk</strong> and no way out. A <strong>future</strong> is the exchange’s fix — <strong>standardized</strong> (so it’s fungible and you exit by <strong>offsetting</strong>), <strong>novated to a clearing house</strong> (so nobody relies on a stranger), and therefore <strong>margined and marked-to-market daily</strong>. A <strong>swap</strong> is a strip of forwards on payment streams. Margin creates <strong>leverage</strong> — you control the full notional on a few percent deposit, so you can lose more than you put in.</p></blockquote><div class="source"><b>↳ go deeper:</b> John Hull, <em>Options, Futures, and Other Derivatives</em>, ch.1–2 (mechanics of futures markets) and ch.7 (swaps); Harris ch.2 for where derivatives sit among the asset classes. For the flavour of how specific these contracts are, open any exchange’s contract specification page (CME wheat, ICE Brent) — the obsessive detail is exactly the standardization this lesson describes.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M0_8"><div class="kicker">M0 · M0.8</div><h1>Options: the right, not the obligation</h1>
+<p>Every contract in M0.7 obliges <strong>both</strong> sides. The farmer must deliver, the miller must pay, and the future is just that arrangement industrialised. An option breaks that symmetry, and it’s the only member of the family that does. Get the asymmetry and the premium, the jargon and the odd hockey-stick payoff all follow from it.</p>
+<h2>The two words that define it</h2>
+<p>An option gives its <strong>buyer</strong> the <em>right, but not the obligation</em>, to trade the underlying at a fixed price (the <strong>strike</strong>) by a fixed date (the <strong>expiry</strong>). The <strong>seller</strong> — the <em>writer</em> — has no such luxury: if the buyer chooses to <strong>exercise</strong>, the writer must deliver.</p>
+<ul><li>A <strong>call</strong> is the right to <strong>buy</strong> at the strike.</li><li>A <strong>put</strong> is the right to <strong>sell</strong> at the strike.</li></ul>
+<p>If the memory hook helps: you <em>call</em> the asset away from the writer, or you <em>put</em> it to them.</p>
+<h2>Why the premium exists</h2>
+<p>A future costs nothing to enter. That’s not a promotional offer — it’s because the deal is <em>symmetric</em>: at the agreed price, both sides face the same shape of risk, so neither owes the other anything to get started.</p>
+<p>An option is not symmetric at all. The buyer keeps every bit of the upside and simply walks away from the downside. The seller has the mirror image: a capped gain and a large, sometimes unlimited, loss. <strong>Nobody takes that side for free.</strong> So the buyer pays a <strong>premium</strong> on day one.</p>
+<p>That’s the whole reason an option costs money up front, and it’s worth stating plainly because it’s often mistaken for a transaction fee. It isn’t a fee. <strong>The premium is the price of the asymmetry.</strong></p>
+<h2>What it looks like with numbers</h2>
+<p>ACME trades at <strong>£100</strong>. You buy a <strong>call</strong>: strike <strong>£100</strong>, three months to expiry, premium <strong>£5</strong> per share.</p>
+<pre class="diagram">   ACME at expiry    exercise?    payoff    premium     net P&amp;L
+   ─────────────────────────────────────────────────────────────
+      £ 80              no         £  0       −£5        −£5
+      £ 95              no         £  0       −£5        −£5
+      £100              no *       £  0       −£5        −£5
+      £105             yes         £  5       −£5         £0    ◀ breakeven
+      £120             yes         £ 20       −£5       +£15
+      £200             yes         £100       −£5       +£95
+
+   * at exactly the strike, exercising gains you nothing</pre>
+<p>Three things fall straight out of that table:</p>
+<ul><li><strong>Your loss is capped at the premium.</strong> ACME can go to zero; you lose £5 and no more, because you are never forced to buy.</li><li><strong>Your gain has no ceiling.</strong> That open-ended upside is precisely what the £5 bought.</li><li>*<em>Breakeven is the strike </em>plus the premium<em> — £105, not £100.</em><em> This catches almost everybody once: being </em>right* that ACME would rise, and watching it reach £103, still loses money.</li></ul>
+<p>Drawn out, it’s the shape every options textbook opens with:</p>
+<pre class="diagram">   LONG CALL — strike £100, premium £5
+
+      +15┤                            ╱  upside open
+         │                         ╱
+         │                      ╱
+        0┼───────────────────╱─────────────  breakeven £105
+       −5┤━━━━━━━━━━━━━━━━╱
+         └────┬─────┬─────┬─────┬─────┬───▶  ACME at expiry
+             80    90    100   110   120
+
+   flat line on the left = loss floored at the premium, forever</pre>
+<p>The <strong>put</strong> is the mirror. Buy a put at strike £100 for £5 and you break even at <strong>£95</strong>, your loss is again capped at the £5, and you gain as ACME falls — up to a maximum of £95 if the company goes to zero. Not unlimited, because a share price can’t go below nothing.</p>
+<h2>Four positions, not two</h2>
+<p>Every option has two sides, so the basic vocabulary is four positions. This table repays memorising:</p>
+<pre class="diagram">                          you want         max gain          max loss
+   ────────────────────────────────────────────────────────────────────
+   long  call  (buy)    price up, a lot    unlimited          premium
+   long  put   (buy)    price down, a lot  strike − premium   premium
+   short call  (sell)   price flat/down    premium            UNLIMITED
+   short put   (sell)   price flat/up      premium            strike − premium</pre>
+<p>The rows pair off exactly: the buyer’s loss is the seller’s gain, penny for penny. Between the two parties an option is strictly <strong>zero-sum</strong>.</p>
+<p>Look hard at the short rows, because they explain why selling options is so seductive and so dangerous. <strong>Max gain = the premium.</strong> You collect a small sum very often, and pay out a large one rarely. Sold with discipline that’s a real business — it’s the same payoff shape as market making in M0.4, where steady winnings from uninformed flow cover occasional beatings from the informed. Sold <em>without</em> discipline, it looks like free money right up until the day it isn’t.</p>
+<h2>The vocabulary, briefly</h2>
+<ul><li><strong>In the money (ITM)</strong> — exercising right now would pay: a call with spot above the strike, a put with spot below it.</li><li><strong>Out of the money (OTM)</strong> — it wouldn’t. If nothing changes, the option expires worthless.</li><li><strong>At the money (ATM)</strong> — spot is roughly at the strike.</li><li><strong>European</strong> vs <strong>American</strong> — exercisable <em>only at expiry</em>, or <em>any time before it</em>. Nothing to do with geography.</li><li><strong>Intrinsic value</strong> — what the option would pay if exercised this instant (never less than zero). <strong>Time value</strong> — everything else in the premium: the chance things improve before expiry.</li></ul>
+<p><strong>Premium = intrinsic + time value</strong>, and time value grinds down to exactly zero at expiry. An option is a wasting asset; the buyer is fighting the clock and the seller is being paid by it.</p>
+<h2>What moves the premium</h2>
+<p>You don’t need the pricing formula to reason about direction. Five things move the price of a call:</p>
+<pre class="diagram">   more time to expiry     ▲    more chances to end up in the money
+   more volatility         ▲    bigger swings — see below
+   spot rises vs strike    ▲    more likely, and more deeply, ITM
+   higher interest rates   ▲    mild: paying the strike later is worth more
+   dividends coming        ▼    the option holder doesn’t receive them</pre>
+<p>The one genuinely worth internalising is *<em>volatility raises the price of calls </em>and<em> puts alike</em>*, which sounds wrong the first time you hear it. It follows from the asymmetry: the downside is already floored at the premium, so widening the range of possible outcomes only fattens the tail you actually get paid on. A more volatile stock is a more valuable thing to hold an option on, whichever way the option points.</p>
+<p>Which means an option is, in a real sense, <strong>a position on volatility itself</strong> rather than only on direction — you can be right about where ACME ends up and still lose, or wrong about direction and win, depending on what happened to volatility in between.</p>
+<p>That is the doorway to the rest of the course, and it’s where M0 deliberately stops. Turning that intuition into an actual number is <strong>Black–Scholes</strong>; running it backwards — taking the market price and asking what volatility would justify it — gives <strong>implied volatility</strong>; and measuring how the price responds to each input gives <strong>the greeks</strong>. All three need machinery M0 hasn’t built, so they wait for M2 and M3.</p>
+<blockquote><p><strong>Pub test:</strong> An option is the <strong>right, but not the obligation</strong>, to buy (<strong>call</strong>) or sell (<strong>put</strong>) an underlying at a fixed <strong>strike</strong> by a fixed <strong>expiry</strong> — the only derivative where one side gets to choose. Because the buyer’s payoff is <strong>asymmetric</strong> (loss capped at the <strong>premium</strong>, upside open) nobody sells that for free, so the buyer pays up front — which makes <strong>breakeven the strike ± the premium</strong>, not the strike. Four positions — long call/put (pay premium, limited loss) and short call/put (collect premium, large loss). Premium = <strong>intrinsic + time value</strong>, and it rises with <strong>time</strong> and <strong>volatility</strong> — so an option is partly a bet on volatility, not just direction.</p></blockquote><div class="source"><b>↳ go deeper:</b> John Hull, <em>Options, Futures, and Other Derivatives</em>, ch.10–12 (mechanics and properties of options). Read the payoff diagrams closely and skip the mathematics on a first pass — the asymmetry does more work than the algebra. Pricing is deliberately deferred to M2–M3.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M1_1"><div class="kicker">M1 · M1.1</div><h1>The microstructure lens</h1>
+<p>M0 taught you the machinery: the book, the spread, the path from click to settlement. M1 asks a different question — <strong>why does that machinery behave the way it does?</strong> — and it requires one shift in how you look at the book.</p>
+<p>In M0, the order book was <strong>plumbing</strong>: a data structure that sorts orders and matches them. In M1, the order book is an <strong>inference engine</strong>: a public, continuously revised estimate of what the asset is worth, updated by what people do.</p>
+<p>That sentence is the whole module. Everything below is machinery for taking it seriously.</p>
+<h2>Three questions M0 couldn’t answer</h2>
+<p>Market microstructure is the study of how the <em>mechanism</em> of trading affects the prices that come out of it. Three questions define the field:</p>
+<p>1. <strong>Why does the price you transact at differ from the value?</strong> M0.4 answered “the spread,” and decomposed it. M1 derives it. 2. <strong>Why does trading itself move the price?</strong> Not the news — the <em>trade</em>. A large buy pushes the price up even when nothing about the company has changed. Why should the market care that <em>you</em> bought? 3. <strong>Why does liquidity evaporate precisely when it’s wanted?</strong> Spreads widen and depth vanishes in exactly the moments — earnings, shocks, crises — when people most need to trade.</p>
+<p>Notice all three are about the <em>gap</em> between value and price. Classical finance assumes that gap away. Microstructure is the study of the gap.</p>
+<h2>The organising split: informed vs uninformed</h2>
+<p>Everything in M1 rests on dividing order flow in two.</p>
+<pre class="diagram">   INFORMED FLOW                     UNINFORMED FLOW
+   ─────────────────────────────────────────────────────────────
+   knows something the maker         trades for reasons
+   doesn’t — earnings, a model,      unrelated to value —
+   a client order, faster data       rebalancing, a house
+                                     deposit, an index change
+   trades in ONE direction,          direction is essentially
+   correlated with the truth         a coin flip
+   the maker LOSES to them           the maker WINS from them
+   also called: “toxic” flow         also called: noise, or
+                                     liquidity traders</pre>
+<p>Two things about this split are easy to say and hard to keep hold of:</p>
+<p><strong>Neither wears a badge.</strong> At the instant a buy order arrives, it is a buy order. The maker sees identical bytes whether it came from a hedge fund with a signal or a dentist with a bonus. This is the fact that generates almost every result in M1 — if makers could tell them apart, they would simply quote a tight market to one and refuse the other, and there would be no spread to speak of.</p>
+<p><strong>“Informed” doesn’t mean insider.</strong> It means <em>anything the maker doesn’t know yet</em> — a better model, a faster feed, a view on where a big parent order is heading. Most informed flow is entirely legal and quite mundane.</p>
+<p>The maker’s whole problem reduces to one line: <strong>quote to everyone, and learn from who takes you up.</strong></p>
+<h2>What “the book is a belief” means</h2>
+<p>Take that seriously and the numbers on the screen change meaning.</p>
+<pre class="diagram">   what you see            what it actually is
+   ─────────────────────────────────────────────────────────────
+   the midpoint      ≈  the market’s expected value of the asset,
+                        CONDITIONAL on everything it has seen —
+                        including the order flow so far
+   the spread        ≈  the price of being wrong about that estimate
+   the depth         ≈  how confident the market is / how much
+                        noise there is to hide in  (this is M1.4’s λ)
+   a trade           ≈  EVIDENCE. Not just an event.</pre>
+<p>That last row is the hinge of the module. A buy order is weak evidence the asset is worth more than the maker thought — because informed traders buy when it is, and uninformed traders buy at random. So a rational maker, seeing a buy, must <em>raise its estimate</em>, even having learned nothing about the company.</p>
+<p>This is why trading moves prices even with no news, and it is not a market failure. It’s Bayes’ theorem running in public, one order at a time. M1.2 writes the update down.</p>
+<h2>Three forces, three models</h2>
+<p>A real spread is set by several pressures at once. The literature’s strategy — and this module’s — is to isolate them one at a time by building a model that switches the others off.</p>
+<pre class="diagram">   model            isolates          switched off        result
+   ────────────────────────────────────────────────────────────────────
+   Glosten–Milgrom  information       maker is risk-      spread = μ × the
+   (M1.2)           / learning        neutral, holds      range of value;
+                                      no inventory        quotes are
+                                                          conditional
+                                                          expectations
+
+   Ho–Stoll         inventory risk    nobody is           quotes SKEW with
+   (M1.3)                             informed            the maker’s
+                                                          position
+
+   Kyle (1985)      a STRATEGIC       one informed        depth λ; price
+   (M1.4)           informed trader   trader, who         impact is LINEAR
+                                      chooses his size    in order flow</pre>
+<p>Hold on to what each one throws away, because that’s what makes each tractable — and it’s the honest answer to “which model is right?” None of them. Each is a clean statement of one force. Real quotes carry all three, which is exactly the three-part decomposition you already met in M0.4: order-processing, inventory, adverse selection.</p>
+<p>M1.5 then asks what survives contact with data, and M1.6–M1.7 ask what the firms who live in this layer actually optimise.</p>
+<h2>Order-driven and quote-driven, revisited</h2>
+<p>One recap worth making explicit, because M1 slides between them. In an <strong>order-driven</strong> market (M0.2’s book) there is no designated maker — liquidity is whatever limit orders happen to be resting, posted by anyone. In a <strong>quote-driven</strong> market (M0.5’s bond dealers) a designated dealer is obliged to show a two-sided price.</p>
+<p>The models in M1 are written in the language of a single <strong>representative market maker</strong> setting a bid and an ask. That is literally true in a quote-driven market and a useful fiction in an order-driven one, where “the maker” stands in for the competing crowd of limit-order posters at the top of the book. The economics carry over; the institution doesn’t.</p>
+<blockquote><p><strong>Pub test:</strong> Microstructure asks why the price you get differs from the value, why trading itself moves prices, and why liquidity vanishes when you most need it. The organising split is <strong>informed vs uninformed flow</strong> — and the maker can’t tell them apart at the moment of the trade. So the book stops being plumbing and becomes a <strong>belief</strong> — the midpoint is roughly the market’s expectation of value <em>conditional on the order flow so far</em>, and every trade is evidence that updates it. Three models isolate three forces — <strong>Glosten–Milgrom</strong> (learning), <strong>Ho–Stoll</strong> (inventory), <strong>Kyle</strong> (a strategic informed trader) — and a real spread is all three at once.</p></blockquote><div class="source"><b>↳ go deeper:</b> Maureen O’Hara, <em>Market Microstructure Theory</em>, ch.1 for the framing — or stay in Larry Harris and go deeper into ch.10–14. If you read one thing before M1.2, make it Harris’s treatment of informed traders; his taxonomy of <em>why</em> people trade is what makes the informed/uninformed split feel like a description of real people rather than a modelling convenience.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M1_2"><div class="kicker">M1 · M1.2</div><h1>Adverse selection, formally (Glosten–Milgrom)</h1>
+<p>M0.4 gave you adverse selection as arithmetic: if 1 taker in 13 is informed, a 4p spread roughly breaks even. That was a <em>consistency check</em> on a number pulled from the air. Glosten and Milgrom (1985) turn it round and <strong>derive</strong> the number, and the result is clean enough to remember for life.</p>
+<p>The trick is a single change of question. Don’t ask “what spread breaks even on average?” Ask:</p>
+<blockquote><p><strong>What price would break even given that someone just chose to buy?</strong></p></blockquote>
+<p>That conditioning is everything. The maker who ignores it goes broke.</p>
+<h2>The setup</h2>
+<p>Strip the world down as far as it goes:</p>
+<ul><li>The asset is worth either <strong>V_H</strong> (high) or <strong>V_L</strong> (low). Nobody knows which yet; the prior is <strong>π</strong> on V_H. Start with <strong>π = ½</strong>.</li><li>A fraction <strong>μ</strong> of traders are <strong>informed</strong> — they know V exactly. They buy if V = V_H, sell if V = V_L. Always.</li><li>The remaining <strong>1 − μ</strong> are <strong>uninformed</strong>. They buy or sell with probability ½ each, for reasons unrelated to V.</li><li>The maker is <strong>risk-neutral</strong>, holds no inventory, has no costs, and faces <strong>perfect competition</strong> — so it earns exactly zero expected profit.</li><li>Trades arrive one at a time, size fixed at one unit.</li></ul>
+<p>Everything M1.3 cares about is switched off here: no risk aversion, no inventory. This model is <em>only</em> about information.</p>
+<h2>Zero profit, conditionally</h2>
+<p>Competition drives expected profit to zero. But zero profit <strong>on each side separately, conditional on that side being hit</strong> — because the maker learns something from being hit:</p>
+<pre class="diagram">   ask = E[V | the next trade is a BUY]
+   bid = E[V | the next trade is a SELL]</pre>
+<p>If the maker set both to the unconditional E[V], it would sell to informed buyers whenever V = V_H and buy from informed sellers whenever V = V_L, losing on every informed trade and never recovering it. <strong>The spread exists because a buy and a sell carry different information.</strong></p>
+<h2>The Bayes update</h2>
+<p>Two conditional probabilities do all the work. Given the true value is high, who buys?</p>
+<pre class="diagram">   P(buy | V_H)  =  μ·1  +  (1−μ)·½   =  (1 + μ) / 2
+                    ▲         ▲
+                    │         └─ the uninformed, flipping a coin
+                    └─ every informed trader buys
+
+   P(buy | V_L)  =  μ·0  +  (1−μ)·½   =  (1 − μ) / 2</pre>
+<p>Now Bayes, with prior π = ½ so the halves cancel:</p>
+<pre class="diagram">                        P(buy | V_H)·π
+   P(V_H | buy)  =  ─────────────────────────────────────
+                    P(buy | V_H)·π + P(buy | V_L)·(1−π)
+
+                        ½·(1+μ)/2                 1 + μ
+                 =  ─────────────────────────  =  ─────
+                    ½·(1+μ)/2 + ½·(1−μ)/2           2</pre>
+<p>A pleasantly tidy result: <strong>after a buy, the probability the asset is worth V_H is (1 + μ)/2.</strong> By symmetry, after a sell it is (1 − μ)/2.</p>
+<h2>The spread falls out</h2>
+<p>Quotes are expectations under those posteriors:</p>
+<pre class="diagram">   ask = E[V | buy]   =  (1+μ)/2 · V_H  +  (1−μ)/2 · V_L
+   bid = E[V | sell]  =  (1−μ)/2 · V_H  +  (1+μ)/2 · V_L
+   ────────────────────────────────────────────────────────
+   spread = ask − bid =  μ · (V_H − V_L)</pre>
+<p><strong>The spread is the fraction of informed flow times the range of possible value.</strong> Two limits are worth saying out loud:</p>
+<ul><li><strong>μ → 0</strong> (nobody informed) → <strong>spread → 0.</strong> With no adverse selection, competitive makers quote a zero spread. Every penny of a real spread is paid for by <em>someone’s</em> information (or by inventory risk and costs, which this model deleted).</li><li><strong>μ → 1</strong> (everybody informed) → <strong>spread → the whole range.</strong> The quotes reach V_H and V_L, no uninformed trader will touch them, and the market effectively <strong>shuts</strong>. Markets need noise traders to exist. That is not a cynical remark — it is a theorem.</li></ul>
+<h2>The same numbers as M0.4</h2>
+<p>Put V_H = 110, V_L = 90 and μ = 0.2 into the machine:</p>
+<pre class="diagram">   P(V_H | buy)  = (1 + 0.2)/2 = 0.60
+   ask           = 0.60 × 110 + 0.40 × 90  = 102
+   bid           = 0.40 × 110 + 0.60 × 90  =  98
+   spread        = 4  =  0.2 × 20   ✓</pre>
+<p>A £4 spread on a £100 asset, and it isn’t a convention or a fee — it is what 20% informed flow costs, given the asset might be worth 90 or 110.</p>
+<h2>The book learns</h2>
+<p>Here is the part that makes this more than a spread formula. The posterior after a trade becomes the <strong>prior for the next one</strong>, so quotes walk. Continue the example — same μ = 0.2, same V_H/V_L — and feed it a buy, a buy, then a sell:</p>
+<pre class="diagram">   trade      prior π    P(V_H|·)    new mid    bid      ask
+   ─────────────────────────────────────────────────────────────
+   (start)     0.500        —         100.00    98.00   102.00
+   BUY         0.500      0.600       102.00   100.00   103.85
+   BUY         0.600      0.692       103.85   102.00   105.43
+   SELL        0.692      0.600       102.00   100.00   103.85</pre>
+<p>Read the third row: two buys in a row and the <em>bid</em> is now 102.00 — exactly the <strong>ask</strong> you could have lifted at the start. The maker will now happily buy from you at the price it was selling at two trades ago. Nobody announced anything. No news broke. The market revised its belief because <strong>buying is evidence</strong>, and the mechanism is nothing more than repeated Bayes.</p>
+<p>Two consequences to carry forward:</p>
+<ul><li><strong>This is price discovery, mechanised.</strong> M0.1 said price “emerges from the collision of buy and sell intentions.” This is that sentence with the arithmetic filled in.</li><li>*<em>This is where </em>permanent<em> price impact comes from.</em><em> The move after a buy does not revert, because the belief genuinely changed. M1.3’s inventory effects </em>do* revert. Telling those two apart is the whole subject of M1.5.</li></ul>
+<p>(One honest caveat: the clean <code>spread = μ·(V_H − V_L)</code> holds at π = ½. Away from a 50/50 prior the spread is (V_H − V_L)·[P(V_H|buy) − P(V_H|sell)], which is what generated the rows above — it narrows as the market becomes confident. The intuition survives; the tidy formula is a special case.)</p>
+<h2>What the model buys you</h2>
+<p><strong>Spreads widen before earnings</strong> because μ rises — more people plausibly know something. Makers aren’t being opportunistic; they are being solvent.</p>
+<p><strong>Retail flow is cheap to trade against</strong> because it is close to μ = 0. This is the entire economic basis of PFOF from M0.3: wholesalers pay for flow whose informedness is low and predictable, and can therefore quote inside the public spread.</p>
+<p><strong>Illiquid names have wide spreads</strong> partly because (V_H − V_L) is large — the range of defensible values for a thinly-covered small cap is simply wider.</p>
+<p><strong>A market can fail entirely.</strong> As μ → 1 there is no price at which a maker will trade. Every liquidity crisis has this shape: not an absence of buyers, but an inability to quote to a pool of counterparties who might all know something.</p>
+<p>What the model <em>doesn’t</em> give you: any role for trade <strong>size</strong>. Every trade here is one unit, and the informed trader has no choice to make — he buys, or he sells. Let him choose <em>how much</em>, and you get Kyle (M1.4).</p>
+<blockquote><p><strong>Pub test:</strong> A competitive risk-neutral maker must break even <strong>conditional on the direction of the trade</strong>, so its quotes are conditional expectations — ask = E[V | a buy arrives], bid = E[V | a sell arrives]. Work the Bayes update through and with a 50/50 prior the spread collapses to <strong>μ × (V_H − V_L)</strong> — the fraction of informed flow times the range of possible value. No informed traders, no spread. All informed traders, and the market shuts. Because each quote is a posterior, the book <strong>learns</strong> — every buy ratchets both quotes up, which is price discovery as Bayesian updating and the origin of <em>permanent</em> price impact.</p></blockquote><div class="source"><b>↳ go deeper:</b> Glosten &amp; Milgrom (1985), “Bid, Ask and Transaction Prices in a Specialist Market with Heterogeneously Informed Traders” — the original is readable and the two-state version above is its first section. O’Hara, <em>Market Microstructure Theory</em>, ch.3 works it more slowly. Worth doing once by hand: redo the Bayes step with π ≠ ½ and watch the tidy formula turn into the general one.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M1_3"><div class="kicker">M1 · M1.3</div><h1>Inventory models: the maker as a risk manager</h1>
+<p>Glosten–Milgrom explained spreads with information. Now switch information off completely — <strong>nobody is informed</strong>, every trader is noise, no order tells the maker anything about value.</p>
+<p>Spreads still exist. Something else is going on, and M0.4 already named it: <strong>inventory risk</strong>. This lesson is that component, done properly.</p>
+<p>The reason it deserves its own model is that it produces price behaviour that looks identical to information on a chart and is economically its opposite. Telling them apart is a live problem, and M1.5 is entirely about it.</p>
+<h2>The maker’s real problem</h2>
+<p>A maker who buys at the bid is not sitting on a profit. It is sitting on <strong>a position it did not want</strong>, exposed to the price moving before it can get flat. Do that a few hundred times in one direction and the accumulated position, not the spread, dominates the P&amp;L.</p>
+<p>So the maker is not neutral about which side it trades. It is <em>actively steering</em>. Ho and Stoll (1981) formalise this by making the maker <strong>risk-averse</strong> and asking what quotes it should post given the position it already has.</p>
+<h2>Deriving the skew</h2>
+<p>Take a maker with constant absolute risk aversion, <code>U(x) = −exp(−γx)</code>, currently holding <strong>q</strong> units of an asset whose price is a random walk with variance rate <strong>σ²</strong>, over a horizon <strong>τ</strong> until it expects to be flat.</p>
+<p>Under CARA with normal outcomes, the certainty equivalent is mean minus half gamma times variance:</p>
+<pre class="diagram">   holding q units to the horizon:
+
+     E[terminal wealth]   =  q·S
+     Var[terminal wealth] =  q²σ²τ
+
+     CE(q)  =  q·S  −  ½ γ q² σ² τ
+                        ─────────────
+                        the risk penalty — QUADRATIC in position</pre>
+<p>The maker’s <strong>reservation price</strong> for one more unit is the price at which it is indifferent between holding q and holding q + 1 — the most it would pay, or the least it would accept:</p>
+<pre class="diagram">   r  =  CE(q+1) − CE(q)
+      =  S  −  ½γσ²τ·[(q+1)² − q²]
+      =  S  −  ½γσ²τ·(2q + 1)
+      ≈  S  −  γ q σ² τ            (for one unit against a large q)
+   ────────────────────────────────────────────────────────────────
+                  r  =  S  −  γ q σ² τ</pre>
+<p>That single term <code>γqσ²τ</code> is the whole lesson. Read it slowly:</p>
+<ul><li><strong>Linear in inventory q</strong>, and <em>signed</em>. Long → reservation price below mid → the maker shades its quotes <strong>down</strong> so its ask gets hit and it sheds risk. Short → shades up. Flat → quotes symmetric about the mid.</li><li><strong>Linear in variance σ²</strong>, so <em>quadratic</em> in volatility. Double the volatility and the skew quadruples. This is why makers pull in hard when things get noisy.</li><li><strong>Linear in horizon τ.</strong> Risk you must carry longer costs more, which is exactly why makers flatten into the close — as τ → 0 the penalty vanishes, and a position held overnight has a much larger τ.</li><li><strong>γ is the maker’s own risk aversion</strong>, not a property of the market. Two makers facing identical books will quote differently, which is <em>why</em> there is competition to model.</li></ul>
+<h2>What it feels like in numbers</h2>
+<p>Stock at <strong>£100</strong>, daily volatility <strong>2%</strong> so σ = £2 and σ² = 4, horizon <strong>τ = 1 day</strong>, risk aversion <strong>γ = 10⁻⁵</strong>.</p>
+<pre class="diagram">   inventory q     σ (daily)    skew = γqσ²τ    maker quotes centred on
+   ──────────────────────────────────────────────────────────────────────
+        0            £2            0            100.00   (symmetric)
+   +5,000 long       £2          −£0.20          99.80   (leaning to SELL)
+  +10,000 long       £2          −£0.40          99.60
+   −5,000 short      £2          +£0.20         100.20   (leaning to BUY)
+   +5,000 long       £4          −£0.80          99.20   ◀ vol doubled,
+                                                             skew ×4</pre>
+<p>The mid is still 100.00 in every row. <strong>The market’s belief about value has not moved at all.</strong> What moved is one maker’s willingness to hold more of it.</p>
+<h2>The distinction that matters most in M1</h2>
+<pre class="diagram">   ADVERSE SELECTION (M1.2)          INVENTORY (M1.3)
+   ─────────────────────────────────────────────────────────────────
+   the maker LEARNED something       the maker learned NOTHING
+   the MID moves                     the mid stays; QUOTES skew
+                                     around it
+   driven by the market’s belief     driven by one participant’s
+   about value                       position and risk appetite
+   the move is PERMANENT             the move MEAN-REVERTS once
+                                     the maker is flat again
+   compensation for being picked     compensation for warehousing
+   off by the informed               risk nobody else wanted</pre>
+<p>That third pair of rows is the one to keep. <strong>Information changes the price. Inventory changes who wants to trade at it.</strong> On a chart both look like “price went down”; only one of them stays down.</p>
+<p>This is also the honest reason a real spread can’t be read off either model. M0.4’s three components are: order-processing (small, boring), inventory (this lesson), and adverse selection (M1.2). A live quote carries all three at once, and decomposing an observed spread into them is an empirical problem, not an algebraic one.</p>
+<h2>Amihud–Mendelson: illiquidity has a price</h2>
+<p>Ho–Stoll is about one maker on one day. Amihud and Mendelson (1986) ask the cross-sectional question: <strong>if trading costs money, what does that do to asset prices?</strong></p>
+<p>The argument is short. If you must pay half the spread to get in and half to get out, your net return is the gross return minus the round trip. Rational investors will only hold a wide-spread asset if its <strong>gross</strong> return is high enough to compensate. So:</p>
+<blockquote><p><strong>Illiquidity is priced.</strong> In equilibrium, assets with wider spreads must offer higher expected gross returns — an <em>illiquidity premium</em>.</p></blockquote>
+<p>With a genuinely useful corollary, the <strong>clientele effect</strong>: the cost is paid per round trip, so it is amortised over your holding period. A trader turning over daily cannot afford a wide spread; a pension fund holding for a decade barely notices it. Illiquid assets therefore migrate to long-horizon holders, and each asset ends up with the clientele whose horizon matches its spread.</p>
+<p>This is where microstructure stops being a story about plumbing and starts affecting <strong>what things are worth</strong> — a wider spread doesn’t just cost you on the way in, it permanently lowers the price everyone will pay.</p>
+<blockquote><p><strong>Pub test:</strong> Switch information off entirely and spreads still exist, because a <strong>risk-averse</strong> maker holding a position wants out. For CARA utility and normal returns the certainty equivalent of holding q units is qS − ½γq²σ²τ, so the maker’s <strong>reservation price</strong> is r = S − <strong>γqσ²τ</strong> — it shades its whole quote away from its position, linearly in inventory and in <em>variance</em>. Crucially this is <strong>not</strong> a belief about value, so inventory-driven moves <strong>mean-revert</strong> once the maker gets flat, while Glosten–Milgrom’s information-driven moves are <strong>permanent</strong>. Amihud–Mendelson takes it cross-sectional — illiquidity is priced, so wide-spread assets must offer higher gross returns, and long-horizon investors hold them.</p></blockquote><div class="source"><b>↳ go deeper:</b> Ho &amp; Stoll (1981) for the original; the modern, implementable statement is Avellaneda &amp; Stoikov (2008), “High-frequency trading in a limit order book”, whose reservation price is exactly the r above and which is short and unusually clear. Amihud &amp; Mendelson (1986), “Asset pricing and the bid-ask spread”, for the illiquidity premium. O’Hara ch.2 covers the inventory literature.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M1_4"><div class="kicker">M1 · M1.4</div><h1>The Kyle (1985) model</h1>
+<p>Glosten–Milgrom’s informed trader has no decisions to make. He knows the value, so he buys or he sells, one unit, and the model is about what the maker infers. But a real informed trader faces the interesting question: <strong>how much should I trade?</strong></p>
+<p>Trade too little and you leave money on the table. Trade too much and you move the price against yourself — and worse, you <em>reveal</em> yourself, because the maker is watching the flow. Kyle (1985) is that trade-off solved exactly, and it produces the single most-used object in microstructure: <strong>λ</strong>, the price-impact coefficient.</p>
+<h2>The setup</h2>
+<p>One round of trading. Three players:</p>
+<pre class="diagram">   the INFORMED TRADER   knows the true value v, drawn v ~ N(p₀, Σ₀).
+                         Chooses a quantity x. Risk-neutral.
+
+   the NOISE TRADERS     submit a random net quantity u ~ N(0, σ²ᵤ),
+                         independent of v. They are not optimising;
+                         they are the camouflage.
+
+   the MARKET MAKER      sees ONLY the total order flow y = x + u —
+                         never the split — and, being competitive
+                         and risk-neutral, sets p = E[v | y].</pre>
+<p>The single most important line there is that the maker sees only <strong>y</strong>. It cannot tell a large informed buy from a run of lucky noise. That is the informed trader’s entire opportunity, and the reason he is willing to trade at all.</p>
+<p>Note what’s switched off relative to M1.3: the maker is risk-neutral again and holds no inventory. Kyle is a pure-information model like Glosten–Milgrom — the new ingredient is <em>strategy</em>.</p>
+<h2>Conjecture, optimise, close the loop</h2>
+<p>The standard method: guess that both sides play <strong>linear</strong> strategies, solve each side’s problem taking the other as given, then demand the guesses be mutually consistent.</p>
+<pre class="diagram">   informed trader:   x  =  β·(v − p₀)      trade proportional to your edge
+   market maker:      p  =  p₀ + λ·y        price linear in total flow</pre>
+<p><strong>Step 1 — the informed trader’s optimum.</strong> His profit is the edge he captures on the quantity he trades, at the price his own trading creates:</p>
+<pre class="diagram">   π  =  (v − p)·x  =  (v − p₀ − λ(x + u))·x
+
+   E[π | v]  =  (v − p₀)·x  −  λx²          (E[u] = 0)
+
+   dE[π]/dx  =  (v − p₀) − 2λx  =  0
+
+   ⟹   x*  =  (v − p₀) / (2λ)      so      β = 1/(2λ)</pre>
+<p>Already worth pausing on. The informed trader does <strong>not</strong> trade until the price reaches v — that would be x = (v − p₀)/λ. He trades exactly <strong>half</strong> that. The λx² term is his own market impact biting him, and the optimum splits the difference between edge and impact.</p>
+<p><strong>Step 2 — the maker’s zero-profit condition.</strong> Setting p = E[v | y] with everything jointly normal makes this a linear regression of v on y:</p>
+<pre class="diagram">   λ  =  Cov(v, y) / Var(y)
+
+   y = β(v − p₀) + u   ⟹   Cov(v,y) = βΣ₀ ,  Var(y) = β²Σ₀ + σ²ᵤ
+
+   λ  =  βΣ₀ / (β²Σ₀ + σ²ᵤ)</pre>
+<p><strong>Step 3 — the fixed point.</strong> Substitute β = 1/(2λ) and solve for λ:</p>
+<pre class="diagram">   λ  =  (Σ₀/2λ) / (Σ₀/4λ² + σ²ᵤ)
+
+   λ·(Σ₀/4λ² + σ²ᵤ)  =  Σ₀/2λ
+
+   Σ₀/4λ + λσ²ᵤ      =  Σ₀/2λ
+
+   λσ²ᵤ              =  Σ₀/4λ
+
+   λ²                =  Σ₀ / (4σ²ᵤ)
+   ─────────────────────────────────────────────────
+        λ  =  ½·√(Σ₀ / σ²ᵤ)        β  =  √(σ²ᵤ / Σ₀)</pre>
+<h2>Reading the result</h2>
+<p><strong>Price impact is linear.</strong> p moves by λ per unit of net order flow, regardless of size. Not concave, not stepped — linear. Kyle’s λ is what people mean by “market impact” in a thousand execution papers, and it is why a single number can stand in for a market’s resilience.</p>
+<p><strong>Depth is 1/λ = 2·√(σ²ᵤ/Σ₀), a ratio of noise to uncertainty.</strong></p>
+<pre class="diagram">   more noise-trader volume σ²ᵤ   →   λ falls   →   DEEPER market
+   more uncertainty about v Σ₀    →   λ rises   →   THINNER market</pre>
+<p>Both directions are intuitive once said aloud. Noise is <strong>camouflage</strong>: the more of it there is, the more the informed trader can hide, so the less any given order tells the maker, so the less the maker must move. Uncertainty is the opposite: when nobody knows what the asset is worth, every order is informative and the maker flinches.</p>
+<p>That is the sentence to keep. <strong>Depth is not “how much money is resting in the book.” Depth is how hard it is to tell information from noise.</strong></p>
+<p><strong>Exactly half the information reaches the price.</strong> Compute the maker’s residual uncertainty after seeing the flow:</p>
+<pre class="diagram">   β² = σ²ᵤ/Σ₀   ⟹   β²Σ₀ = σ²ᵤ   ⟹   Var(y) = 2σ²ᵤ
+   Cov(v,y) = βΣ₀ = √(σ²ᵤΣ₀)
+
+   Var(v | y)  =  Σ₀ − Cov²/Var(y)  =  Σ₀ − σ²ᵤΣ₀/(2σ²ᵤ)  =  Σ₀/2</pre>
+<p>The informed trader trades precisely enough to halve the market’s variance about the true value, and keeps the other half. It isn’t a coincidence or a tuned parameter — it drops out of the optimisation. Information enters prices <em>because</em> someone profits by putting it there, and only ever partially, because full revelation would destroy the profit that motivated it.</p>
+<h2>A worked feel for λ</h2>
+<p>Suppose the market is unsure about a £100 stock to the tune of Σ₀ = 4 (so a standard deviation of £2), and noise flow has σ²ᵤ = 10⁶ (σᵤ = 1,000 shares).</p>
+<pre class="diagram">   λ  =  ½·√(4 / 10⁶)  =  ½ × 0.002  =  0.001 £/share
+
+   ⟹  a net 1,000-share buy moves the price  £1.00
+   ⟹  depth 1/λ = 1,000 shares per £1 of price move
+   ⟹  informed trader with v = £103 trades β(v−p₀)
+        = √(10⁶/4) × 3 = 500 × 3 = 1,500 shares
+        ...pushing the price to about £101.50, halfway to the truth</pre>
+<p>Now quadruple the noise, σᵤ = 2,000: λ halves to 0.0005, and the same informed trader doubles his size to 3,000 shares. <strong>More liquidity invites more informed trading</strong> — the two grow together, which is why deep markets are not naive markets.</p>
+<h2>What Kyle gives you, and what it doesn’t</h2>
+<p>It gives you the vocabulary that execution desks actually use: λ, market depth, linear impact, hiding in volume. It explains why big orders are <strong>sliced</strong> — impact is paid on each unit of <em>net flow</em>, so spreading a parent order across time (and across the noise arriving in that time) is worth real money. The multi-period version of the model makes this precise: the informed trader releases his information at a constant rate, trading so as to keep the market permanently unable to distinguish him.</p>
+<p>What it doesn’t give you is <strong>the square-root law</strong>. Kyle says impact is linear in size; four decades of data say it goes roughly as √size. That gap between the cleanest model in the field and the most robust empirical regularity in the field is not a footnote — it is the subject of M1.5.</p>
+<blockquote><p><strong>Pub test:</strong> Kyle lets the informed trader choose <em>how much</em> to trade, and hide inside noise-trader flow the maker can’t separate. Conjecture linear strategies — x = β(v − p₀) and p = p₀ + λy on total flow y = x + u — solve the informed trader’s optimum against the maker’s zero-profit condition, and the fixed point gives <strong>λ = ½·√(Σ₀/σ²ᵤ)</strong> with β = √(σ²ᵤ/Σ₀). So <strong>price impact is linear</strong> in order flow, and <strong>depth 1/λ is the ratio of how much noise there is to hide in against how much is unknown about value</strong>. The informed trader trades exactly enough to leave Var(v|y) = Σ₀/2 — <strong>half his information reaches the price</strong>, and he keeps the rest by trading smaller.</p></blockquote><div class="source"><b>↳ go deeper:</b> Kyle (1985), “Continuous Auctions and Insider Trading”, Econometrica — §1 is the single-period model above and is about two pages of algebra; it repays doing by hand. O’Hara ch.4 for a slower walk-through, including the multi-period version where the informed trader’s optimal rate of information release is derived.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M1_5"><div class="kicker">M1 · M1.5</div><h1>Price impact in practice</h1>
+<p>Kyle gave us a clean, derivable answer: impact is <strong>linear</strong> in order flow, at rate λ. It is the most-cited result in the field, and it is empirically <strong>wrong</strong> — in an interesting way.</p>
+<p>This lesson is the collision between the two cleanest things in microstructure: the best model and the most robust measurement. Neither survives intact.</p>
+<h2>First, split the impact in two</h2>
+<p>Before measuring anything, separate two effects that a price chart hopelessly conflates. You buy a large parent order over an hour. The price rises. You stop. Some of the rise stays; some of it drains away.</p>
+<pre class="diagram">   price
+     │                    ╭─────╮
+     │                ╭───╯      ╰────╮
+     │            ╭───╯                ╰──────────────  ← permanent
+     │        ╭───╯                                        component
+     │  ──────╯
+     │
+     └──────┬──────────────────┬─────────────────────▶ time
+         you start          you stop
+
+     the hump you push up while trading  =  TEMPORARY impact
+     the level it settles at afterwards  =  PERMANENT impact</pre>
+<p>The two have completely different causes, and you already have both models:</p>
+<pre class="diagram">   PERMANENT  ← Glosten–Milgrom (M1.2).  The market inferred information
+                from your flow and genuinely revised its belief. It does
+                not revert, because nobody thinks they were wrong.
+
+   TEMPORARY  ← Ho–Stoll (M1.3).  You consumed resting liquidity and left
+                makers holding inventory they didn’t want, so they skewed
+                their quotes. As they work back to flat, it decays.</pre>
+<p>This is why M1.3 insisted on the distinction. <strong>Permanent impact is the price of being informative; temporary impact is the price of being in a hurry.</strong> You can reduce the second by trading patiently. You cannot reduce the first at all — if your trading genuinely predicts the future, the market is right to move against you, and that cost is inseparable from having alpha in the first place.</p>
+<h2>The square-root law</h2>
+<p>Now measure it. Across equities, futures, FX, options, across decades, across venues, one relationship keeps showing up:</p>
+<pre class="diagram">              ΔP  ≈  Y · σ · √( Q / V )
+
+     ΔP  price move caused by the order (in the same units as σ)
+     σ   the asset’s daily volatility
+     Q   the size of your parent order
+     V   the asset’s average daily volume
+     Y   a constant of order ½ to 1, mildly venue- and asset-dependent</pre>
+<p>Note what it does <em>not</em> contain: any parameter fitted per stock beyond the two you already know (σ and V), and any hint of Kyle’s linearity. The dependence on size is <strong>concave</strong> — the marginal cost of the next share falls as your order grows.</p>
+<p>Some numbers, for a stock with 2% daily volatility, taking Y = 1:</p>
+<pre class="diagram">   you trade… (% of ADV)     √(Q/V)      price move    cost as % of ADV traded
+   ──────────────────────────────────────────────────────────────────────────
+        0.1%                  0.032         0.06%             tiny
+        1%                    0.100         0.20%             noticeable
+        10%                   0.316         0.63%             expensive
+        50%                   0.707         1.41%             you are the market
+       100%                   1.000         2.00%             a full day’s σ</pre>
+<p>The concavity is the whole story. Going from 1% to 10% of volume — <strong>ten times the size</strong> — only triples the price move. That is very good news if you are large, and it is the reason large funds exist at all.</p>
+<h2>But the cost scales as Q^1.5</h2>
+<p>Here is the trap, and it catches people who have just learned the square-root law and drawn the wrong conclusion from its concavity.</p>
+<p>You pay the impact <strong>on every share you trade</strong>, so:</p>
+<pre class="diagram">   cost  ≈  ΔP × Q  ∝  √Q × Q  =  Q^1.5</pre>
+<p>Ten times the size is only three times the <em>price move</em>, but <strong>thirty times the total cost</strong>. Impact per share is concave; the bill is convex. Two things follow immediately:</p>
+<p><strong>Every strategy has a capacity.</strong> Your expected alpha scales like Q — twice the position, twice the profit. Your cost scales like Q^1.5. There is therefore a size at which the two cross and the strategy stops making money, no matter how good the signal. This is not a failure of execution; it is arithmetic, and it is why a strategy that prints money on £10m can be worthless at £1bn.</p>
+<p><strong>Slicing is worth real money.</strong> If impact depends on your participation rate rather than your absolute size, then splitting a parent order into child orders spread over time — and letting fresh liquidity and fresh noise traders arrive between them — genuinely reduces the bill. That is what the entire execution-algorithm industry sells: VWAP, TWAP, implementation-shortfall and participation-rate algos are all variations on <em>how slowly dare I go</em>.</p>
+<p>And there’s the trade-off that makes execution a real problem rather than a solved one: <strong>trade fast and pay impact; trade slow and bear risk</strong> that the price moves for unrelated reasons before you’re done. The optimal schedule balances the two — that’s the Almgren–Chriss framework, and it is the direct commercial descendant of everything in M1.</p>
+<h2>Why the square root? (honestly: unsettled)</h2>
+<p>There is no consensus derivation. Three serious families of explanation:</p>
+<ul><li><strong>Latent liquidity.</strong> The visible book is a tiny fraction of real trading intent; most liquidity is latent, in the minds of traders who reveal it only as the price approaches. Under plausible assumptions about how that latent density is shaped near the current price, √ falls out.</li><li><strong>Fair pricing / no-arbitrage in impact.</strong> If impact were linear, a trader could in some setups profitably round-trip against their own footprint; requiring that this be impossible pins the exponent near ½.</li><li><strong>Propagator models.</strong> Model impact as a decaying kernel applied to each child order. Order flow is famously long-memory (it autocorrelates for hours), and the decay must exactly offset that persistence or prices would be predictable — which forces a concave aggregate.</li></ul>
+<p>They are not mutually exclusive and none is airtight. Be comfortable saying the law is an extremely robust empirical regularity with contested foundations — that is the honest state of the field, and pretending otherwise is a tell.</p>
+<h2>Reconciling with Kyle</h2>
+<p>Kyle isn’t refuted so much as <strong>local</strong>. Its linear λ describes a single auction with a fixed information set and Gaussian noise; the square-root law describes a parent order worked over hours against a market whose liquidity replenishes and whose participants adapt. Kyle is the right object for “what does one unit of surprise flow do right now”; the square-root law is the right object for “what will this £50m cost me by close.”</p>
+<p>Both survive because they answer different questions. Reaching for the wrong one is the actual error.</p>
+<blockquote><p><strong>Pub test:</strong> Impact splits into <strong>permanent</strong> (the market learned something — Glosten–Milgrom) and <strong>temporary</strong> (you consumed liquidity and makers are skewed — Ho–Stoll), and only the permanent part stays after you stop. Empirically impact is <strong>not</strong> Kyle-linear but follows the <strong>square-root law</strong>, ΔP ≈ Y·σ·√(Q/V) with Y of order ½ to 1 — trade 1% of a day’s volume in a 2%-vol name and you move it about 0.2%. Because cost is impact <strong>times</strong> size, total cost scales like <strong>Q^1.5</strong>, which is why parent orders are sliced, why trading slowly is worth real money, and why every strategy has a <strong>capacity</strong> beyond which its alpha is eaten by its own footprint.</p></blockquote><div class="source"><b>↳ go deeper:</b> Bouchaud, Bonart, Donier &amp; Gould, <em>Trades, Quotes and Prices</em> (2018) — the definitive modern treatment, and ch.11–12 cover impact properly. For the original empirics, Almgren et al. (2005); for the execution-scheduling problem, Almgren &amp; Chriss (2000), “Optimal execution of portfolio transactions”. Bouchaud’s “Why is the order flow so persistent?” is the readable way into propagators.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M1_6"><div class="kicker">M1 · M1.6</div><h1>Latency &amp; the HFT layer</h1>
+<p>This is the lesson most likely to be distorted by things you’ve already read, so it’s worth being precise. Speed is not a general-purpose advantage. It buys <strong>two specific things</strong>, and outside those two it buys nothing at all.</p>
+<h2>What speed actually buys</h2>
+<p><strong>1. Queue position.</strong> M0.2’s price-time priority means that at a given price level, orders fill in arrival order. If 40,000 shares rest at 50.00 and you are behind 30,000 of them, you fill only if the level trades more than 30,000 before it is cancelled or the price moves away.</p>
+<pre class="diagram">   the bid at 50.00, in arrival order
+
+   ┌────────┬────────┬─────────┬─────────┬──────────────┐
+   │ 12,000 │ 8,000  │ 10,000  │  YOU    │  later ...   │
+   └────────┴────────┴─────────┴─────────┴──────────────┘
+     ◀── fills first                       fills last ──▶
+     30,000 shares ahead of you
+
+   a 25,000-share market sell arrives  →  you get NOTHING
+   a 45,000-share market sell arrives  →  you get 15,000</pre>
+<p>Being a microsecond earlier moves you up the queue, and queue position is close to binary in its consequences. This is why the top of the book is not a “price” so much as a <strong>race result</strong>.</p>
+<p><strong>2. Picking off stale quotes.</strong> A maker’s quote reflects its estimate of value. When something that determines that value moves — the futures contract, an ETF’s underlying basket, the same stock on another venue — the quote is briefly <em>wrong</em>, and stays wrong until the maker can cancel it.</p>
+<pre class="diagram">   t = 0 μs    ES futures tick up. SPY is now worth more.
+   t = ?       fast TAKER hits every stale SPY offer still resting
+   t = ?       slower MAKER cancels — too late
+
+   whoever’s message arrives first, wins. Same information,
+   available to both. The entire contest is transmission time.</pre>
+<p>Look carefully at what that is: <strong>adverse selection where the private information is nothing but speed</strong>. The maker loses exactly as it loses to a fundamental informed trader in M1.2 — it sold just before the price rose. Glosten–Milgrom’s μ, at microsecond resolution, is partly just <em>how many people are faster than me</em>.</p>
+<p>This is why the arms race is symmetric and why it doesn’t end. Makers invest in speed <strong>defensively</strong>, to cancel before being picked off; takers invest <strong>offensively</strong>, to arrive before the cancel. Both are buying the same microseconds from the same suppliers.</p>
+<h2>The physical layer</h2>
+<p>The constraints are embarrassingly concrete for a financial market.</p>
+<pre class="diagram">   Chicago ⇄ New Jersey, ~1,200 km each way
+
+   light in vacuum          299,792 km/s   →  8.0 ms round trip
+   light in optical fibre   ~200,000 km/s  →  12.0 ms  (glass is slow,
+                                                and routes aren’t straight)
+   Spread Networks fibre (2010)            →  ~13 ms — a $300m tunnel
+                                                through the Alleghenies
+   microwave through air (2012→)           →  ~8.5 ms — air beats glass,
+                                                weather permitting</pre>
+<p>Microwave beat a $300m fibre build within about two years, largely because the refractive index of air is closer to 1 than glass. Latency is now measured in <strong>nanoseconds</strong> inside a matching engine’s colocation hall, where the binding constraint can be the length of your cross-connect cable — which is why exchanges sell every customer the <em>same</em> cable length regardless of rack position.</p>
+<h2>Where speed does not matter</h2>
+<p>This is the part usually omitted, and it matters more to most readers than everything above.</p>
+<p><strong>If your holding period is longer than seconds, latency is not your cost.</strong> A fund buying £50m of a stock to hold for six months is not losing to microseconds. It is paying <strong>spread</strong> (M0.4) and <strong>impact</strong> (M1.5) — costs measured in tens of basis points, orders of magnitude larger than anything latency does to it. Optimising the wrong one is a common and expensive mistake.</p>
+<p><strong>Retail is not the victim of latency.</strong> Retail orders are mostly internalised by wholesalers (M0.3) at or inside the NBBO, and never touch the race. The genuine questions about retail execution are about PFOF, segmentation and price improvement — not speed.</p>
+<p><strong>The measured spread has fallen.</strong> Whatever else HFT did, spreads and explicit costs are dramatically lower than in the quarter-fraction era. The serious critique isn’t “spreads got worse”; it’s about <em>who</em> captures the remaining spread, and whether the resources burned racing for it are socially wasted.</p>
+<h2>The mechanism-design critique</h2>
+<p>The sharpest academic argument (Budish, Cramton &amp; Shim, 2015) isn’t that fast traders are villains. It’s that <strong>the continuous limit order book is a badly designed mechanism</strong>: by processing messages in continuous time and serially, it turns every public information event into a race, and races are won by speed rather than by price. The rents are then competed into infrastructure spending rather than into tighter spreads.</p>
+<p>Their proposed fix is elegant: <strong>frequent batch auctions</strong>. Discretise time into (say) 100ms intervals and clear all orders in each interval at a single uniform price. Arriving 5 μs earlier within a batch is worth exactly nothing, so the race collapses and competition returns to price. Related, live experiments: <strong>IEX’s 350 μs speed bump</strong> (a physical coil of fibre) and various asymmetric delays that slow takers but not maker cancellations.</p>
+<p>None of this is settled policy, and batching has real costs of its own. But it reframes the debate usefully — from “are HFT firms good or bad people” to “what behaviour is this mechanism paying for?”</p>
+<h2>And Flash Boys</h2>
+<p>Read it, but read it <strong>after</strong> the above, which is the roadmap’s advice and worth following. It is a genuinely good piece of narrative journalism, and it is also a book with protagonists — the IEX founders — whose venue it is effectively arguing for. Held up against the material in this module, you can see clearly which parts are accurate (the races are real, the stale-quote picking is real, the infrastructure spending is real) and which are overdrawn (that this constitutes systematic theft from ordinary investors, whose actual costs are spread and impact).</p>
+<p>Being able to make that separation is roughly what M1 was for.</p>
+<blockquote><p><strong>Pub test:</strong> Speed buys two specific things and nothing else — <strong>queue position</strong> under price-time priority (M0.2), and the race to <strong>pick off stale quotes</strong> when a correlated price moves before the maker can cancel. The second is just adverse selection where the private information is <em>being fast</em>, which is why makers spend to defend as hard as takers spend to attack, and why Budish–Cramton–Shim call continuous trading a mechanism that manufactures an <strong>arms race</strong>. Where speed does <strong>not</strong> matter is anything held longer than seconds — a fund holding for a day pays <strong>spread and impact</strong> (M1.5), not latency, so most retail-facing “HFT is robbing you” claims point at the wrong cost.</p></blockquote><div class="source"><b>↳ go deeper:</b> Budish, Cramton &amp; Shim (2015), “The High-Frequency Trading Arms Race” — the central paper, and readable. Irene Aldridge, <em>High-Frequency Trading</em> (2nd ed.) for practitioner mechanics. Michael Lewis, <em>Flash Boys</em>, last and with the above in mind.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M1_7"><div class="kicker">M1 · M1.7</div><h1>Flow toxicity &amp; maker-taker economics</h1>
+<p>M1 has been building one thing without stating it. Here it is, and every term is a lesson you have already done:</p>
+<pre class="diagram">   MAKER’S EDGE PER UNIT TRADED
+
+     +  spread captured        earn the half-spread            M0.4
+     +  rebate                 exchange pays you to post       this lesson
+     −  adverse selection      you traded with the informed    M1.2
+     −  inventory cost         you’re holding risk (γqσ²τ)     M1.3
+     −  fees &amp; tech            colocation, feeds, clearing     M0.6 / M1.6
+   ────────────────────────────────────────────────────────────────────
+     =  what a market-making business actually optimises</pre>
+<p>Read that as a job description and the industry stops being mysterious. Nobody at these firms is trying to be fast, or to be tight, or to have volume. They are trying to make that expression positive, at scale, and every apparent quirk of their behaviour is one of those terms being managed.</p>
+<h2>Toxicity: adverse selection you can measure</h2>
+<p><strong>Toxic flow</strong> is order flow that systematically loses money for the maker who fills it — the adverse-selection term, made operational. It’s the practitioner’s word for μ in Glosten–Milgrom.</p>
+<p>The maker cannot see μ. But it can see something suggestive: <strong>order-flow imbalance</strong>. Informed flow is directional by construction; noise flow is roughly balanced. So sustained one-sidedness is evidence of information.</p>
+<p><strong>VPIN</strong> (volume-synchronised probability of informed trading) formalises that. Rather than clock time, bucket the tape into equal-<strong>volume</strong> buckets — so busy periods generate more observations, which is the point:</p>
+<pre class="diagram">   for each bucket of V shares, classify volume as buy- or sell-initiated:
+
+                  Σ over buckets  | V_buy − V_sell |
+        VPIN  =  ───────────────────────────────────
+                        n · V
+
+   balanced flow  (V_buy ≈ V_sell)  →  VPIN → 0   → benign
+   one-sided flow (all one way)     →  VPIN → 1   → toxic</pre>
+<p>Used live, a rising VPIN says <em>widen, or stop quoting</em>. Easley, López de Prado and O’Hara showed it climbing sharply before the <strong>May 2010 Flash Crash</strong>, and argued it works as an early-warning signal for liquidity withdrawal.</p>
+<p><strong>It is contested, and you should know that.</strong> Andersen and Bondarenko argued the result is largely an artefact — that VPIN is substantially a repackaging of volatility and volume, that its bulk volume classification is noisy, and that its predictive claims don’t survive careful testing. The honest position: the <em>concept</em> of toxicity is indispensable and every real maker estimates something like it; <strong>VPIN specifically</strong> is one contested estimator, not a settled measurement. Say that in an interview and you’ll sound like someone who read past the abstract.</p>
+<h2>Maker-taker: exchanges paying for liquidity</h2>
+<p>Venues compete for order flow, and liquidity is self-reinforcing — a book with depth attracts more depth. So exchanges pay for it.</p>
+<pre class="diagram">   MAKER-TAKER  (the common model)
+     post a resting order that gets filled  →  you RECEIVE a rebate
+     take liquidity with a marketable order →  you PAY a fee
+     typical US equities: −0.20 ¢ / +0.30 ¢ per 100 shares
+     the exchange keeps the difference
+
+   TAKER-MAKER / “inverted”  (some venues)
+     exactly reversed — pays takers, charges makers.
+     Exists to attract takers to a thin book, and because some
+     flow is worth paying for (see segmentation, below).</pre>
+<p>Two consequences that matter more than the arithmetic:</p>
+<p><strong>The economically real spread is net of rebates.</strong> A quoted spread of one cent, with a rebate of 0.2 cents per side, is not a one-cent spread to the participants. It can be rational to post at a price that looks like it loses money on the spread alone, because the rebate makes it profitable — which is precisely how markets stay quoted at the minimum tick.</p>
+<p><strong>Routing incentives and client interests come apart.</strong> The rebate accrues to whoever posts the order — the <strong>broker</strong> — while best execution is owed to the <strong>client</strong>. A broker choosing between venues offering identical prices but different rebates has an interest that is not the client’s. This is a live regulatory question, it is why Reg NMS’s protection of <em>displayed prices</em> doesn’t settle the matter, and it is the sharpest structural criticism of maker-taker.</p>
+<h2>Segmentation: the punchline of M0 and M1 together</h2>
+<p>Now put PFOF (M0.3), adverse selection (M1.2) and toxicity together, because the combination explains the shape of the modern US equity market.</p>
+<pre class="diagram">   ALL ORDER FLOW
+        │
+        ├──▶ RETAIL ──▶ wholesaler / internaliser
+        │              low μ, predictable, benign
+        │              → filled off-exchange, INSIDE the quoted spread
+        │              → wholesaler pays the broker for it (PFOF)
+        │
+        └──▶ EVERYTHING ELSE ──▶ the lit book
+                       institutions, funds, other makers
+                       → higher average μ  →  MORE TOXIC
+                       → lit spreads must be WIDER to survive it</pre>
+<p>Wholesalers aren’t being generous when they price-improve retail orders. They are paying for the <em>right kind</em> of counterparty — and every benign order they remove raises the average toxicity of what’s left on the lit book, which must widen accordingly.</p>
+<p>That gives you the genuinely hard policy question, which has no clean answer: retail investors demonstrably get <strong>better</strong> prices than the displayed quote, while the displayed quote itself is <strong>worse</strong> than it would be if their flow were in it. Whether that is good depends on who you weigh, and anyone confident in either direction is skipping a step.</p>
+<h2>What this module was for</h2>
+<p>You can now read a real market as a system of forces rather than a set of terms:</p>
+<ul><li>A <strong>spread</strong> is order-processing plus inventory plus adverse selection (M0.4), and you can derive the last two (M1.2, M1.3).</li><li>A <strong>price move</strong> is permanent or temporary, and which one it is tells you whether it was information or inventory (M1.5).</li><li><strong>Depth</strong> is not resting size — it is how hard it is to distinguish information from noise (M1.4).</li><li><strong>Speed</strong> buys queue position and stale quotes, and nothing else (M1.6).</li><li>A <strong>market-making business</strong> is the equation at the top of this page (M1.7).</li></ul>
+<p>M2 changes the subject to pricing and strategy, and M5 returns to these same firms to ask how they’re actually organised and paid. But the layer in this module is the one most of them live in.</p>
+<blockquote><p><strong>Pub test:</strong> A maker’s edge is one equation — <strong>spread captured + rebate − adverse selection − inventory cost − fees</strong>, and every term is a lesson in this module. <strong>Toxicity</strong> is the adverse-selection term measured on live flow; <strong>VPIN</strong> estimates it from order-flow imbalance in volume buckets, and is genuinely contested. <strong>Maker-taker</strong> pricing pays the maker a rebate and charges the taker, so the economically relevant spread is the quoted spread <em>net of rebates</em> — and because the rebate accrues to the <strong>broker</strong> while best execution is owed to the client, routing incentives and client interests come apart. <strong>Segmentation</strong> is the punchline — wholesalers cream off uninformed retail, so what reaches the lit book is more toxic than average, and lit spreads must be wider to survive it.</p></blockquote><div class="source"><b>↳ go deeper:</b> Easley, López de Prado &amp; O’Hara (2012), “Flow Toxicity and Liquidity in a High-Frequency World” for VPIN — then Andersen &amp; Bondarenko (2014), “VPIN and the Flash Crash”, for the rebuttal; reading them in that order is the point. On fee structures, the SEC’s Transaction Fee Pilot materials are the most concrete public source. O’Hara, “High-frequency market microstructure” (2015) is a good survey of the whole modern layer.</div><a class="top" href="#top">↑ contents</a></section>
 </div>
 </body>
 </html>
