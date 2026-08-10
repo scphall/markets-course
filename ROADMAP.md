@@ -32,7 +32,7 @@ else.
 |--------|-------|--------|
 | M0 | How markets actually work | ✅ written (8/8) |
 | M1 | Market microstructure | ✅ written (7/7) |
-| M2 | Quant finance fundamentals | ▢ planned |
+| M2 | Quant finance fundamentals | ✅ written (7/7) |
 | M3 | Statistics of returns | ▢ planned |
 | M4 | Macro & rates | ▢ planned |
 | M5 | The industry & the firms | ▢ planned |
@@ -101,10 +101,20 @@ you can see what's overdrawn and what's accurate.
 
 ---
 
-## M2 — Quantitative finance fundamentals · planned
+## M2 — Quantitative finance fundamentals · written
 
 **Goal:** build the basic toolkit. Much of the math is straightforward for a
 quantitative reader; the value is the *vocabulary* and the *culture*.
+
+Lessons (all written, in `course.html`):
+
+- **M2.1 — The quant pipeline:** signal → sizing → execution → risk; alpha vs. beta; the Sharpe ratio and the standard error (≈√(252/n)) that makes short backtests uninformative.
+- **M2.2 — Black-Scholes as replication:** the one-period binomial, delta as the hedge ratio, why the real probability cancels, and the risk-neutral measure as a computational device.
+- **M2.3 — The greeks, operationally:** delta/gamma/theta/vega, and the delta-hedged P&L ≈ ½ΓS²(σ_realized² − σ_implied²)dt that makes an option a bet on volatility rather than direction.
+- **M2.4 — Implied volatility & the surface:** inverting the formula, why Black-Scholes is a quoting language, and reading skew and smile as a map of the model's errors.
+- **M2.5 — Correlation vs. cointegration:** the spurious-regression trap, stationarity, Engle-Granger and Johansen, and the half-life that sets the holding period.
+- **M2.6 — A pairs trade, end to end:** the full pipeline on one strategy, with a runnable dependency-free backtest — Sharpe 1.39 gross, 0.17 after costs.
+- **M2.7 — Why backtests lie:** lookahead, survivorship, multiple testing (best-of-1000 on zero edge scores ~1.4), capacity, and regime change.
 
 **Materials:** Ernie Chan, *Quantitative Trading* (start here); Mark Joshi,
 *The Concepts and Practice of Mathematical Finance* (pick chapters that aren't

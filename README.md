@@ -36,13 +36,14 @@ every lesson into static markup.
 
 ## Status
 
-Modules **M0 — How markets actually work** (8 lessons) and **M1 — Market
-microstructure** (7 lessons) are complete. Modules M2–M6 are designed and
-sequenced in [`ROADMAP.md`](ROADMAP.md) but not yet written.
+Three modules are written: **M0 — How markets actually work** (8 lessons),
+**M1 — Market microstructure** (7) and **M2 — Quantitative finance
+fundamentals** (7). Modules M3–M6 are designed and sequenced in
+[`ROADMAP.md`](ROADMAP.md) but not yet written.
 
-M0 favours intuition first; M1 goes further and derives its central results
-(Glosten–Milgrom's spread, the inventory skew, Kyle's λ) rather than only
-describing them.
+M0 favours intuition first; M1 and M2 go further and derive their central
+results (Glosten–Milgrom's spread, Kyle's λ, Black–Scholes by replication,
+the delta-hedged volatility P&L) rather than only describing them.
 
 ## Regenerating the mobile build
 

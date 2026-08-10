@@ -59,7 +59,7 @@
 <a id="top"></a>
 <div class="wrap">
   <h1 class="site">markets // course</h1>
-  <div class="sub">mobile reader · 15 lessons taught · static (no-JS) build</div>
+  <div class="sub">mobile reader · 22 lessons taught · static (no-JS) build</div>
   <div class="toc"><div class="toc-mod"><div class="toc-h">M0 · How markets actually work</div><a class="toc-i done" href="#L_M0_1">✓ M0.1 — What a market is</a><a class="toc-i done" href="#L_M0_2">✓ M0.2 — The limit order book</a><a class="toc-i done" href="#L_M0_3">✓ M0.3 — Order types: market vs limit; click→settlement</a><a class="toc-i done" href="#L_M0_4">✓ M0.4 — The bid-ask spread</a><a class="toc-i done" href="#L_M0_5">✓ M0.5 — Asset classes</a><a class="toc-i done" href="#L_M0_6">✓ M0.6 — Venues & plumbing</a><div class="toc-i gate">▢ GATE M0 — Module test</div></div><div class="toc-mod"><div class="toc-h">M1 · Market microstructure</div><a class="toc-i done" href="#L_M1_1">✓ M1.1 — The microstructure lens</a><a class="toc-i done" href="#L_M1_2">✓ M1.2 — Adverse selection (Glosten–Milgrom)</a><a class="toc-i done" href="#L_M1_3">✓ M1.3 — Inventory models & quote skewing</a><a class="toc-i done" href="#L_M1_4">✓ M1.4 — The Kyle (1985) model</a><div class="toc-i gate">▢ CHECKPOINT M1 — Mid-module test</div><a class="toc-i done" href="#L_M1_5">✓ M1.5 — Price impact & the square-root law</a><a class="toc-i done" href="#L_M1_6">✓ M1.6 — Latency & the HFT layer</a><a class="toc-i done" href="#L_M1_7">✓ M1.7 — Flow toxicity & maker-taker economics</a><div class="toc-i gate">▢ GATE M1 — Module test</div></div><div class="toc-mod"><div class="toc-h">M2 · Quant finance fundamentals</div></div><div class="toc-mod"><div class="toc-h">M3 · Statistics of returns</div></div><div class="toc-mod"><div class="toc-h">M4 · Macro & rates</div></div><div class="toc-mod"><div class="toc-h">M5 · The industry & the firms</div></div><div class="toc-mod"><div class="toc-h">M6 · Reading the news (habit)</div></div></div>
   <section id="L_M0_1"><div class="kicker">M0 · M0.1</div><h1>What a market is</h1>
 <p>Strip away the screens and the jargon and a market is just <strong>a place where people who want to buy meet people who want to sell, and a price gets discovered in the process.</strong> Everything else — exchanges, order books, high-frequency trading — is machinery built on top of that one idea.</p>
@@ -814,7 +814,515 @@
 <p>You can now read a real market as a system of forces rather than a set of terms:</p>
 <ul><li>A <strong>spread</strong> is order-processing plus inventory plus adverse selection (M0.4), and you can derive the last two (M1.2, M1.3).</li><li>A <strong>price move</strong> is permanent or temporary, and which one it is tells you whether it was information or inventory (M1.5).</li><li><strong>Depth</strong> is not resting size — it is how hard it is to distinguish information from noise (M1.4).</li><li><strong>Speed</strong> buys queue position and stale quotes, and nothing else (M1.6).</li><li>A <strong>market-making business</strong> is the equation at the top of this page (M1.7).</li></ul>
 <p>M2 changes the subject to pricing and strategy, and M5 returns to these same firms to ask how they’re actually organised and paid. But the layer in this module is the one most of them live in.</p>
-<blockquote><p><strong>Pub test:</strong> A maker’s edge is one equation — <strong>spread captured + rebate − adverse selection − inventory cost − fees</strong>, and every term is a lesson in this module. <strong>Toxicity</strong> is the adverse-selection term measured on live flow; <strong>VPIN</strong> estimates it from order-flow imbalance in volume buckets, and is genuinely contested. <strong>Maker-taker</strong> pricing pays the maker a rebate and charges the taker, so the economically relevant spread is the quoted spread <em>net of rebates</em> — and because the rebate accrues to the <strong>broker</strong> while best execution is owed to the client, routing incentives and client interests come apart. <strong>Segmentation</strong> is the punchline — wholesalers cream off uninformed retail, so what reaches the lit book is more toxic than average, and lit spreads must be wider to survive it.</p></blockquote><div class="source"><b>↳ go deeper:</b> Easley, López de Prado &amp; O’Hara (2012), “Flow Toxicity and Liquidity in a High-Frequency World” for VPIN — then Andersen &amp; Bondarenko (2014), “VPIN and the Flash Crash”, for the rebuttal; reading them in that order is the point. On fee structures, the SEC’s Transaction Fee Pilot materials are the most concrete public source. O’Hara, “High-frequency market microstructure” (2015) is a good survey of the whole modern layer.</div><a class="top" href="#top">↑ contents</a></section>
+<blockquote><p><strong>Pub test:</strong> A maker’s edge is one equation — <strong>spread captured + rebate − adverse selection − inventory cost − fees</strong>, and every term is a lesson in this module. <strong>Toxicity</strong> is the adverse-selection term measured on live flow; <strong>VPIN</strong> estimates it from order-flow imbalance in volume buckets, and is genuinely contested. <strong>Maker-taker</strong> pricing pays the maker a rebate and charges the taker, so the economically relevant spread is the quoted spread <em>net of rebates</em> — and because the rebate accrues to the <strong>broker</strong> while best execution is owed to the client, routing incentives and client interests come apart. <strong>Segmentation</strong> is the punchline — wholesalers cream off uninformed retail, so what reaches the lit book is more toxic than average, and lit spreads must be wider to survive it.</p></blockquote><div class="source"><b>↳ go deeper:</b> Easley, López de Prado &amp; O’Hara (2012), “Flow Toxicity and Liquidity in a High-Frequency World” for VPIN — then Andersen &amp; Bondarenko (2014), “VPIN and the Flash Crash”, for the rebuttal; reading them in that order is the point. On fee structures, the SEC’s Transaction Fee Pilot materials are the most concrete public source. O’Hara, “High-frequency market microstructure” (2015) is a good survey of the whole modern layer.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M2_1"><div class="kicker">M2 · M2.1</div><h1>The quant pipeline</h1>
+<p>M0 and M1 were about how markets work. M2 is about trying to make money in one, and it opens with the least glamorous and most important observation in the field:</p>
+<blockquote><p><strong>A quant strategy is a pipeline, not a formula.</strong></p></blockquote>
+<p>Newcomers picture the whole enterprise as <em>finding the signal</em> — the equation that predicts returns. In practice the signal is one of four stages, it is rarely the hardest, and a good signal wired into bad execution is simply a losing business with extra steps.</p>
+<pre class="diagram">   ┌──────────┐   ┌──────────┐   ┌───────────┐   ┌──────────┐
+   │  SIGNAL  │──▶│  SIZING  │──▶│ EXECUTION │──▶│   RISK   │
+   └──────────┘   └──────────┘   └───────────┘   └──────────┘
+    what do you    how much do     how do you      what kills
+    believe?       you bet?        get filled?     you?
+
+    fails by:      fails by:       fails by:       fails by:
+    overfitting    over-betting    impact &amp; fees   correlation
+    (M2.7)         a real edge     (M1.5)          you didn’t
+                   into ruin                       model</pre>
+<p>Each stage has its own literature and its own way of destroying you, and they are not interchangeable — an improvement in execution cannot rescue a signal that was never there, and a genuine signal can be entirely consumed by the costs of harvesting it. M2.6 runs one strategy through all four; M2.7 explains why the backtest of it lied.</p>
+<h2>Alpha and beta</h2>
+<p>The first question asked of any return stream is <em>where did this come from?</em> The standard decomposition:</p>
+<pre class="diagram">   r_p  =  α  +  β·r_m  +  ε
+
+     β·r_m   the part explained by exposure to a known factor
+     α       the part that isn’t
+     ε       noise</pre>
+<p><strong>Beta is cheap.</strong> Exposure to the market is available in an index fund for a few basis points a year. So if your strategy’s returns are mostly market exposure in a costume, you are charging for something the client can buy at Vanguard.</p>
+<p><strong>Alpha is what survives the explanation.</strong> And the uncomfortable historical pattern is that alpha keeps turning into beta: value, size, momentum, carry, quality, low-volatility, and now trend — each was someone’s alpha until it was identified, named, and packaged into an ETF. <em>Factor</em> is just the industry’s word for “alpha we have caught and domesticated.”</p>
+<p>The practical form of the question is therefore: <strong>against what benchmark, and controlling for which known factors, is this return actually unexplained?</strong> A strategy that hasn’t been regressed against the obvious factors hasn’t been evaluated.</p>
+<h2>The Sharpe ratio, and why its estimate lies</h2>
+<p>The standard scorecard is return per unit of risk:</p>
+<pre class="diagram">   S  =  (mean excess return) / (standard deviation of return)
+
+   annualised from daily data:   S_annual  =  S_daily × √252</pre>
+<p>Rough calibration, so the numbers mean something:</p>
+<pre class="diagram">   Sharpe    what it is
+   ────────────────────────────────────────────────────────────
+   ~0.4      the equity market, long-run. Buy-and-hold.
+   ~1        a good systematic strategy. Genuinely hard.
+   ~2        excellent. A real business.
+   3+        either a high-turnover market-making operation
+             (thousands of near-independent bets a day), or —
+             far more often — a bug, a lookahead, or a backtest
+   ────────────────────────────────────────────────────────────</pre>
+<p>Now the part that changes how you read every performance claim you will ever see. <strong>The Sharpe ratio is an estimate, and it is a noisy one.</strong> For roughly independent returns, its standard error is</p>
+<pre class="diagram">   SE(Ŝ)  ≈  √( (1 + S²/2) / n )   per period
+
+   ⟹  annualised, for n daily observations:   SE  ≈  √(252 / n)</pre>
+<p>Put actual numbers on that:</p>
+<pre class="diagram">   data          n       SE of the annualised Sharpe estimate
+   ────────────────────────────────────────────────────────────
+   1 year       252              1.00      ◀ useless
+   2 years      504              0.71
+   4 years    1,008              0.50
+   10 years   2,520              0.32</pre>
+<p><strong>One year of daily data gives a standard error of about 1.0.</strong> A strategy that backtests at Sharpe 1.0 over a year is, statistically, indistinguishable from a strategy with no edge whatsoever. Two years is not much better. You need something like <strong>four years</strong> before you can separate Sharpe 1 from zero at two standard errors — and that assumes the returns are independent and the world stayed still, neither of which is true.</p>
+<p>This single fact does more damage to more strategies than any other in quantitative finance. Hold on to it, because M2.7 makes it worse: those figures are for testing <strong>one</strong> strategy chosen in advance. Search over hundreds, keep the best, and the best will look wonderful by construction.</p>
+<h2>The culture, which is the real content</h2>
+<p>The roadmap is blunt that for a quantitative reader the mathematics here is mostly straightforward and the value is the <strong>vocabulary and the culture</strong>. That is right, and worth saying plainly:</p>
+<p>The hard part of this field is not deriving Black–Scholes. It is the discipline to hold out data you are desperate to look at, to size a position smaller than your conviction, to regress your beautiful signal against boring factors and watch it evaporate, and to subtract costs you would rather assume away. The maths is undergraduate. The temperament is not.</p>
+<blockquote><p><strong>Pub test:</strong> A quant strategy is a <strong>pipeline</strong>, not a formula — signal, sizing, execution, risk — and money leaks at every stage, so a good signal with bad execution is a losing business. Returns split into <strong>beta</strong> (exposure to known factors, rentable for a few basis points) and <strong>alpha</strong> (whatever survives), and most claimed alpha is unrecognised beta. Performance is measured by the <strong>Sharpe ratio</strong>, whose estimate is far noisier than people assume — the standard error is about <strong>√(252/n)</strong> for n daily observations, so one year of data gives SE ≈ 1.0 and cannot distinguish a Sharpe-1 strategy from pure noise. You need roughly four years to do it at two standard errors.</p></blockquote><div class="source"><b>↳ go deeper:</b> Ernie Chan, <em>Quantitative Trading</em> — start here; it is short, practical, and honest about costs in a way most of the genre isn’t. On the statistics of performance evaluation, Andrew Lo, “The Statistics of Sharpe Ratios” (2002) is the canonical reference for the standard error above and is worth reading properly.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M2_2"><div class="kicker">M2 · M2.2</div><h1>Black–Scholes as replication</h1>
+<p>M0.8 asserted that a three-month at-the-money call on a £100 stock costs about £5, and openly deferred the question of where that number comes from. Here it is — and the honest route to it does not start with the famous formula. It starts with a much better idea.</p>
+<h2>First, the intuition that fails</h2>
+<p>The natural guess is that an option should be worth its <strong>expected payoff, discounted</strong>. Take the M0.8 setup, simplified to one period and zero interest, and let the stock go to either 110 or 90:</p>
+<pre class="diagram">   S = 100.  In three months it is 110 or 90.
+   Call, strike 100:   pays 10 if up,  0 if down.
+
+   if the stock rises with probability p …
+
+      p = 0.5   →  E[payoff] = 5
+      p = 0.9   →  E[payoff] = 9      ← a bullish stock, dearer option?
+      p = 0.1   →  E[payoff] = 1</pre>
+<p>Reasonable, and wrong. <strong>The price is £5 in all three cases.</strong> A stock everyone is certain will rise does not carry a more expensive call, and understanding why is the whole lesson.</p>
+<h2>The idea that works: build the thing</h2>
+<p>Forget forecasting. Ask a construction question instead:</p>
+<blockquote><p>Can I build a portfolio out of the <strong>stock</strong> and <strong>cash</strong> that pays <em>exactly</em> what the option pays, in <em>every</em> state of the world?</p></blockquote>
+<p>If I can, then that portfolio and the option are the same object with different names, and no-arbitrage says they must cost the same. Otherwise buy the cheap one, sell the dear one, and collect the difference with no risk.</p>
+<p>Let the portfolio hold <strong>Δ</strong> shares and <strong>B</strong> in cash, and demand it match the option in both states:</p>
+<pre class="diagram">   up state:    Δ·110  +  B  =  10
+   down state:  Δ· 90  +  B  =   0        (r = 0, so cash doesn’t grow)
+   ───────────────────────────────────────────────────────────────
+   subtract:    Δ·(110 − 90)  =  10 − 0
+
+                        f_up − f_down          10 − 0
+                Δ  =  ─────────────────  =  ───────────  =  0.5
+                        S_up  − S_down        110 − 90
+
+   back-substitute:   0.5·90 + B = 0   ⟹   B = −45</pre>
+<p>So: <strong>hold half a share, borrow £45.</strong> That portfolio pays 10 if the stock rises and 0 if it falls — precisely the option. Its cost today is</p>
+<pre class="diagram">   price  =  Δ·S + B  =  0.5 × 100 − 45  =  £5</pre>
+<p>There is M0.8’s £5, and it isn’t a plausible-sounding number any more. It is the cost of manufacturing the option out of parts.</p>
+<p>Notice what <strong>Δ = 0.5</strong> is: the number of shares you must hold to track the option. It is the <strong>hedge ratio</strong> — and it is the same delta that becomes the first of the greeks in M2.3. Delta was never fundamentally a sensitivity or a probability; it is <em>how much stock the replication requires</em>.</p>
+<h2>Where the probability went</h2>
+<p>Now rearrange the same answer to expose what happened. Define</p>
+<pre class="diagram">        S − S_down        100 − 90
+   q = ──────────────  =  ─────────  =  0.5
+       S_up − S_down      110 − 90
+
+   price  =  q·f_up + (1−q)·f_down  =  0.5 × 10 + 0.5 × 0  =  £5   ✓</pre>
+<p>The price <em>looks</em> like a discounted expected payoff again — but under <strong>q</strong>, not under the real probability <strong>p</strong>. And p appears nowhere. It cancelled, exactly, and not by luck.</p>
+<p><strong>Why it must cancel:</strong> the replicating portfolio matches the option in <em>every</em> state. A hedged position has no exposure to which state occurs, so how likely each state is cannot enter its cost. What you are paying for is not a bet on direction — it is the <strong>cost of running the hedge</strong>, and that depends on how far apart the states are, not on their probabilities.</p>
+<p>This is the single most counter-intuitive true thing in derivatives pricing, and it is worth being able to say in one sentence: <em>the option price doesn’t depend on where you think the stock is going, because the seller doesn’t have to guess — they can hedge.</em></p>
+<h2>The risk-neutral measure, demystified</h2>
+<p>q is called the <strong>risk-neutral probability</strong>, which is an unhelpful name that has confused generations. Three clarifications:</p>
+<ul><li><strong>It is not a belief.</strong> Nobody thinks the stock rises with probability q. It is the weight that makes the arithmetic of replication come out right.</li><li><strong>It is a change of measure.</strong> Under q, the discounted price of every tradeable asset is a <strong>martingale</strong> — its expected future value equals its value now. Pricing by "expectation under q" is a computational device that packages the replication argument, nothing more.</li><li><strong>It is why the name says risk-neutral.</strong> In a world where investors genuinely didn't care about risk, prices <em>would</em> be discounted expected payoffs. Replication lets us borrow that world's easy arithmetic without believing we live in it.</li></ul>
+<p>The deep version of this is the Fundamental Theorem of Asset Pricing: <strong>no arbitrage ⟺ a risk-neutral measure exists</strong>, and <strong>completeness</strong> (every payoff replicable) ⟺ it is unique. That equivalence is what M2 is quietly built on.</p>
+<h2>From two states to Black–Scholes</h2>
+<p>The rest is limits, not new ideas. Chain the one-period tree into many periods, rebalancing Δ at each node; let the steps shrink and the number of them grow. The binomial price converges, and its limit is the Black–Scholes formula:</p>
+<pre class="diagram">   C  =  S·N(d₁)  −  K·e^(−rT)·N(d₂)
+
+              ln(S/K) + (r + σ²/2)T
+        d₁ = ─────────────────────── ,    d₂ = d₁ − σ√T
+                     σ√T</pre>
+<p>Two readings worth carrying:</p>
+<ul><li><strong>N(d₂)</strong> is the risk-neutral probability the option finishes in the money — the q of the two-state model, grown up.</li><li><strong>N(d₁)</strong> is <strong>delta</strong>, the hedge ratio. The formula's structure is exactly the binomial one — <em>hold N(d₁) shares, borrow the discounted strike times N(d₂)</em> — which is to say the whole thing is still "cost of the replicating portfolio."</li></ul>
+<p>Now look at the inputs:</p>
+<pre class="diagram">   S   spot ......................... observable
+   K   strike ....................... in the contract
+   T   time to expiry ............... a calendar
+   r   interest rate ................ observable
+   σ   volatility ................... ✗ NOT OBSERVABLE</pre>
+<p><strong>Exactly one input is unknown</strong>, and it is the one describing the future. That asymmetry is the reason options markets talk in volatility rather than price, and it is the entire subject of M2.4.</p>
+<h2>Which assumptions actually bite</h2>
+<p>Black–Scholes assumes continuous costless trading, a constant known σ, and lognormal prices. All false. But they fail with very different severity, and knowing which is which is the difference between using the model and believing it:</p>
+<pre class="diagram">   assumption            reality                          how bad
+   ──────────────────────────────────────────────────────────────────
+   no transaction costs  spread + impact (M0.4, M1.5)     bad — continuous
+                                                          rehedging is
+                                                          infinitely
+                                                          expensive
+   constant σ            volatility clusters and moves    bad — this is
+                                                          what the smile
+                                                          is telling you
+                                                          (M2.4)
+   lognormal returns     fat tails, jumps, crashes        WORST — the
+                                                          Gaussian core
+                                                          understates
+                                                          extremes (M3)
+   continuous trading    discrete, and gappy overnight    moderate</pre>
+<p>Which is why the standard line — that Black–Scholes is <em>the wrong model that everyone uses correctly</em> — is not a joke but a description of practice. What it is used for is not predicting the price. It is used as an invertible, universally agreed <strong>translation between price and volatility</strong>. M2.4 is about what people say once they have that language.</p>
+<blockquote><p><strong>Pub test:</strong> An option is priced by <strong>replication</strong>, not forecasting. Build a portfolio of Δ shares plus cash that pays exactly what the option pays in every state, and no-arbitrage forces the option to cost what that portfolio costs — so pricing is a construction problem. Solve the one-period binomial and Δ falls out as the <strong>hedge ratio</strong>, while the <strong>real probability of the stock rising vanishes from the answer</strong>, because hedging removes directional exposure and leaves only the cost of running the hedge. What replaces it is the <strong>risk-neutral measure</strong> q — a computational device that makes discounted prices martingales, not anybody’s belief. Black–Scholes is the continuous limit, and every input is observable <strong>except σ</strong>, which is the whole subject of M2.4.</p></blockquote><div class="source"><b>↳ go deeper:</b> Mark Joshi, <em>The Concepts and Practice of Mathematical Finance</em>, ch.3–5 — take the option-pricing intuition and martingale-measure chapters and skip what is already obvious to you. Hull ch.13–15 for the formula and its mechanics. If you do one thing by hand, extend the binomial above to three periods and watch the price converge.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M2_3"><div class="kicker">M2 · M2.3</div><h1>The greeks, operationally</h1>
+<p>The greeks are partial derivatives of the option price. That description is accurate and tells you nothing about why anyone computes them. Each one exists because it answers a question somebody has to answer before the end of the day.</p>
+<pre class="diagram">   greek   derivative     the operational question
+   ─────────────────────────────────────────────────────────────────────
+   Δ delta   ∂V/∂S        how many shares do I hold to be hedged?
+   Γ gamma   ∂²V/∂S²      how fast does that hedge go stale?
+   Θ theta   ∂V/∂t        what does holding this cost me per day?
+   ν vega    ∂V/∂σ        what happens if the market repriced volatility?
+   ρ rho     ∂V/∂r        (usually nothing. Long-dated options only.)</pre>
+<p>Only vega is not a Greek letter, which tells you something about who named these.</p>
+<h2>Delta — the hedge ratio you already derived</h2>
+<p>M2.2 built delta from scratch: it is the number of shares in the replicating portfolio, <code>N(d₁)</code> in Black–Scholes. Calls run from 0 (deep out) to 1 (deep in); puts from −1 to 0; at the money it sits near ±0.5.</p>
+<p>One correction worth internalising, because the sloppy version is everywhere: <strong>delta is not the probability of finishing in the money.</strong> That is <code>N(d₂)</code>. They are close for short-dated near-the-money options and diverge as maturity and moneyness grow. Using delta as a probability is a decent field approximation and a bad thing to say to someone who prices options.</p>
+<h2>Gamma — the curvature that makes options interesting</h2>
+<p>Gamma is the rate at which delta changes as the stock moves. A hedge set this morning is wrong by this afternoon, and gamma says how wrong.</p>
+<pre class="diagram">   long gamma                        short gamma
+   ──────────────────────────────────────────────────────────────
+   stock rises → delta rises →       stock rises → delta falls →
+   you must SELL to re-hedge         you must BUY to re-hedge
+   stock falls → delta falls →       stock falls → delta rises →
+   you must BUY to re-hedge          you must SELL to re-hedge
+   ──────────────────────────────────────────────────────────────
+   rehedging buys low, sells high    rehedging buys high, sells low
+   every move pays you a little      every move costs you a little</pre>
+<p>That table is the entire economics of the thing. <strong>Long gamma means your own hedging mechanically buys low and sells high.</strong> Nothing about the stock's direction is required — only that it <em>moves</em>. Short gamma is the mirror: you are forced to chase, and a violently moving market bleeds you.</p>
+<p>Gamma is largest for at-the-money options near expiry, which is exactly when delta is most unstable — a stock hovering at the strike on expiry day has a delta lurching between 0 and 1.</p>
+<h2>Theta — the rent</h2>
+<p>Nothing that good is free. Long gamma is <strong>always</strong> short theta: the option decays, every day, and the decay is what you pay for the privilege of being long curvature. The relationship is not a tendency, it is an identity in the Black–Scholes world, which the next section makes exact.</p>
+<p>M0.8 called an option a wasting asset. Theta is the waste, and gamma is what you bought with it.</p>
+<h2>The result that ties them together</h2>
+<p>Take a long option, delta-hedged, and Taylor-expand its value over a short interval:</p>
+<pre class="diagram">   dV  =  Δ·dS  +  ½Γ·(dS)²  +  Θ·dt   +  …
+
+   you are delta-hedged, so the Δ·dS term is cancelled by the hedge:
+
+   hedged P&amp;L  =  ½Γ·(dS)²  +  Θ·dt</pre>
+<p>Now substitute Black–Scholes theta. With r = 0,</p>
+<pre class="diagram">   Θ  =  −½ Γ S² σᵢ²        (σᵢ = the IMPLIED vol you paid)
+
+   hedged P&amp;L  =  ½Γ·(dS)²  −  ½ Γ S² σᵢ² dt
+               =  ½Γ [ (dS)²  −  S² σᵢ² dt ]
+
+   and over a short step the stock actually delivers  E[(dS)²] = S²σ_r² dt
+   ──────────────────────────────────────────────────────────────────────
+        hedged P&amp;L  ≈  ½ Γ S² ( σ_realized²  −  σ_implied² ) · dt</pre>
+<p>Read what has happened. <strong>The direction of the stock has vanished.</strong> What remains compares the volatility the stock <em>actually delivered</em> against the volatility you <em>paid for</em>. Gamma is the exchange rate between them.</p>
+<p>Which gives the sentence this lesson exists for:</p>
+<blockquote><p><strong>A delta-hedged option is not a bet on the stock. It is a bet that realized volatility will exceed implied volatility.</strong></p></blockquote>
+<h2>Checking it actually works</h2>
+<p>Worth verifying rather than believing. Buy a 3-month at-the-money call on a £100 stock at <strong>20% implied</strong>, delta-hedge it daily to expiry, and let the stock genuinely realize various volatilities:</p>
+<pre class="diagram">   at S = K = 100, T = 0.25, σᵢ = 20%:
+      price = £3.99      delta = 0.520      gamma = 0.0398
+      ½ΓS² = 199.2   ← the exchange rate between vol² and money
+
+   realized vol    simulated hedged P&amp;L    ½ΓS²(σr²−σi²)T
+   ────────────────────────────────────────────────────────
+       15%               −1.00                 −0.87
+       20%               +0.00                  0.00     ◀ breaks even
+       25%               +0.99                 +1.12
+       30%               +1.98                 +2.49</pre>
+<p>The middle row is the point: when realized equals implied, the hedged position earns <strong>nothing</strong> — the gamma you harvest exactly pays the theta you owe. You bought volatility at 20% and it delivered 20%, so you broke even, which is what a fairly priced asset should do.</p>
+<p>Note also that the closed form drifts high at 30%. That is honest and instructive: <code>½ΓS²</code> uses <em>today's</em> gamma, but gamma changes as the stock moves away from the strike and as time runs out. The formula is a local statement, excellent for a day and rough over a quarter.</p>
+<h2>Vega — the exposure that actually gets traded</h2>
+<p>Since the whole position is a view on volatility, the sensitivity to volatility is the one desks manage most closely. <strong>Vega</strong> is ∂V/∂σ — what you make if the market simply <em>reprices</em> volatility, with the stock unmoved.</p>
+<p>Distinguish the two ways a vol view pays, because they are different trades:</p>
+<ul><li><strong>Gamma</strong> pays off when volatility is <em>realized</em> — the stock actually moves, and you harvest it by rehedging.</li><li><strong>Vega</strong> pays off when volatility is <em>repriced</em> — the market's implied vol rises and your option is marked up, whether or not the stock ever moves.</li></ul>
+<p>Vega is largest for long-dated options (more time for vol to matter); gamma is largest for short-dated ones. So "long vol" is ambiguous until you say which — and a desk long gamma and short vega has a coherent, common, and quite specific view.</p>
+<p>All of which leaves one question: implied volatility is the price, so what does the market actually charge, and why isn't it one number? That is M2.4.</p>
+<blockquote><p><strong>Pub test:</strong> The greeks are partial derivatives, but each answers an operational question — <strong>delta</strong> is the hedge ratio, <strong>gamma</strong> is how fast that hedge goes stale, <strong>theta</strong> is what you pay per day, <strong>vega</strong> is exposure to volatility itself. The relation that matters is that Taylor-expanding a delta-hedged option and substituting Black–Scholes theta (Θ = −½ΓS²σᵢ² when r = 0) leaves <strong>P&amp;L ≈ ½ΓS²(σ_realized² − σ_implied²)·dt</strong> — the direction of the stock has cancelled. So <strong>long gamma is always short theta</strong>, and a delta-hedged option is a pure bet that realized volatility beats implied, breaking exactly even when they match. You do not trade options; you trade volatility.</p></blockquote><div class="source"><b>↳ go deeper:</b> Hull ch.19 for the greeks in full. For the gamma-theta relation as practitioners actually use it, Euan Sinclair, <em>Volatility Trading</em>, is the best plain-spoken treatment — it is written by someone who has hedged the positions rather than only differentiated them.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M2_4"><div class="kicker">M2 · M2.4</div><h1>Implied volatility &amp; the surface</h1>
+<p>M2.2 ended on an asymmetry. Of the five Black–Scholes inputs, four are observable — spot, strike, expiry, rate — and one, <strong>σ</strong>, describes the future and cannot be looked up anywhere.</p>
+<p>The market's response to this is the most pragmatic move in all of finance: <strong>stop trying to supply σ, and start solving for it instead.</strong></p>
+<h2>Running the formula backwards</h2>
+<p>Options trade at prices set by supply and demand, not by anybody's model. Take an observed price and ask the inverse question:</p>
+<pre class="diagram">   forward  (what the textbook does):
+        S, K, T, r,  σ = 20%    ──▶  Black–Scholes  ──▶  price = £3.99
+
+   backward (what the market does):
+        S, K, T, r,  price = £4.50  ──▶  solve  ──▶  σ = 22.6%
+                                                      ▲
+                                          IMPLIED VOLATILITY</pre>
+<p>Implied volatility is <em>the number you must feed Black–Scholes to reproduce the price the market is actually charging.</em> Nothing more. Because the price is strictly increasing in σ, the inversion is unique and well behaved, and any root-finder does it in microseconds.</p>
+<p>This reframes what the model is for. <strong>Black–Scholes is not being used to predict prices — it is being used as a translation layer.</strong> It converts a price, which depends on strike, spot, expiry and rates in ways that make two options hard to compare, into a single number that is roughly comparable across contracts. That is why traders quote in vol, negotiate in vol, and think in vol.</p>
+<blockquote><p>The famous line — <em>the wrong model everyone uses correctly</em> — means precisely this. Nobody needs the model's assumptions to be true. They need everyone to agree on the same invertible function, and Black–Scholes is the one everyone agreed on.</p></blockquote>
+<h2>The test the model fails</h2>
+<p>Here is the sharp consequence. Black–Scholes assumes σ is a property of <strong>the stock</strong> — one number, constant, describing how that asset moves. If that were true, then every option on the same underlying, at every strike and every expiry, would imply <strong>the same σ</strong>.</p>
+<p>Plot the implied vols and they are not the same. They are not close.</p>
+<pre class="diagram">   implied vol by strike, one expiry, an equity index
+
+     σᵢ
+   30%│●
+      │ ●                                    EQUITY SKEW
+   25%│   ●                                  downside puts imply
+      │     ●                                much higher vol than
+   20%│        ●                             upside calls
+      │            ●   ●
+   15%│                    ●   ●   ●
+      └────┬────┬────┬────┬────┬────┬────▶ strike
+          80   90   100  110  120  130
+                     ▲ spot</pre>
+<p>For equity indices the pattern is a <strong>skew</strong> (or smirk): implied vol falls monotonically as strike rises. In FX it is closer to a symmetric <strong>smile</strong>, both wings above the middle. Add the maturity dimension — implied vol also varies with time to expiry, in a <strong>term structure</strong> — and the whole object is a two-dimensional <strong>volatility surface</strong> over strike and maturity, which moves every day.</p>
+<p>The surface is not a curiosity or a market inefficiency. It has been there since 1987, in every liquid options market, and it has a clear meaning:</p>
+<blockquote><p><strong>The surface is a map of Black–Scholes' errors.</strong> Where the market pays more than the model says, it is pricing something the model left out.</p></blockquote>
+<h2>What the shape is telling you</h2>
+<p>Three omissions account for most of it.</p>
+<p><strong>Fat tails.</strong> Black–Scholes assumes lognormal prices, so a −20% day is essentially impossible. Reality disagrees — decisively, and this is the entire subject of M3. Out-of-the-money puts pay off precisely in those "impossible" states, so the market charges more for them than a Gaussian model thinks they are worth. Higher price, higher implied vol, and the wing lifts.</p>
+<p><strong>Crash asymmetry, and why equities skew rather than smile.</strong> Equity markets fall faster than they rise: volatility spikes in selloffs and subsides in rallies. Two standard explanations, both partly true — the <em>leverage effect</em> (a falling equity price raises a firm's debt-to-equity ratio, making the remaining equity genuinely riskier) and plain <em>demand</em> (portfolio insurance is bought by people who own stock and fear a crash, so downside protection is structurally bid). Either way the risk is one-sided, and so is the curve. The skew's steepening after the 1987 crash is one of the cleanest natural experiments in finance — before it, the surface was much flatter.</p>
+<p><strong>Volatility is itself random.</strong> Black–Scholes takes σ as constant. Actual volatility clusters, mean-reverts, and jumps. An option is convex in σ, so uncertainty <em>about</em> volatility raises value — most at the wings, which is smile-shaped.</p>
+<p>The serious models exist to fit exactly these: <strong>local volatility</strong> (Dupire — make σ a deterministic function of spot and time, fitting today's surface exactly), <strong>stochastic volatility</strong> (Heston, SABR — give σ its own random process, which produces smiles naturally), and <strong>jump-diffusion</strong> (Merton — add discrete jumps, which produce fat tails directly). All are in a real sense repairs to the assumption list at the end of M2.2.</p>
+<h2>Vol as the tradeable object</h2>
+<p>Once implied vol is the price, it becomes something to have a view on — and M2.3 already gave you the machinery. Buy an option, delta-hedge it, and you are long realized vol and short implied vol:</p>
+<pre class="diagram">   your view                          the trade
+   ────────────────────────────────────────────────────────────────
+   "the market will move MORE than    buy options, delta-hedge
+    22% implied"                       → long gamma, short theta
+                                       → wins if realized &gt; 22%
+
+   "implied vol itself will RISE"     buy options, hold
+                                       → long vega
+                                       → wins on repricing, no
+                                         movement required
+
+   "the skew is too steep"            sell puts, buy calls, hedge
+                                       → a view on the SHAPE, not
+                                         the level</pre>
+<p>That third row is where volatility trading stops being a bet on one number. Desks take positions on the level of the surface, its slope (skew), its curvature (smile), and its term structure — each a distinct exposure with its own drivers.</p>
+<p>One empirical regularity worth knowing, because it explains a whole industry: <strong>implied volatility usually exceeds subsequently realized volatility.</strong> The variance risk premium is persistently positive, meaning option <em>sellers</em> earn on average. This is not free money — you are being paid to hold exactly the risk that hurts most when everything else does, which is why the strategy's return profile looks like short gamma, because it is. M0.8 warned about this shape; here is where it gets a price.</p>
+<p>Everything above rests on the claim that returns are far from Gaussian. <strong>M3 is where that claim gets tested properly</strong> — and where the "impossible" days turn out to be routine.</p>
+<blockquote><p><strong>Pub test:</strong> σ is the one Black–Scholes input nobody can observe, so the market runs the formula <strong>backwards</strong> — take the traded price, solve for the σ that reproduces it, and call it <strong>implied volatility</strong>. That makes Black–Scholes a <strong>quoting language</strong> rather than a belief, an agreed bijection between price and vol. If the model were true, every strike and maturity on one underlying would imply the same σ. They don’t — equities show a <strong>skew</strong> (downside puts imply higher vol) and FX a <strong>smile</strong>, and the whole two-dimensional <strong>surface</strong> moves. The surface is the market pricing in exactly what the model omits — fat tails, jumps, and volatility that is itself random — so its shape is a <strong>map of the model’s errors</strong>.</p></blockquote><div class="source"><b>↳ go deeper:</b> Hull ch.20 on volatility smiles. For the surface as a practitioner object, Jim Gatheral, <em>The Volatility Surface</em>, is the standard — dense but the first two chapters repay the effort. Euan Sinclair, <em>Volatility Trading</em>, for the trading views. Dupire (1994) and Heston (1993) are the two papers behind most of what desks actually run.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M2_5"><div class="kicker">M2 · M2.5</div><h1>Correlation vs cointegration</h1>
+<p>Pairs trading rests on one claim: two assets have wandered apart, and they will come back together. Everything hangs on whether that second half is true — and the statistic most people reach for to check it cannot answer the question at all.</p>
+<h2>The trap, quantified</h2>
+<p>Take two random walks that are <strong>completely independent</strong>. No shared factor, no relationship of any kind — one is not informative about the other in any way. Simulate 500 steps, 2,000 times, and measure how correlated they look:</p>
+<pre class="diagram">   two INDEPENDENT random walks, 500 steps, 2,000 trials
+
+                        median |corr|    P(|corr| &gt; 0.5)   P(|corr| &gt; 0.8)
+   ───────────────────────────────────────────────────────────────────────
+   correlation of
+   LEVELS  (prices)         0.43              41%                7%
+   correlation of
+   RETURNS (changes)        0.03               0%                —</pre>
+<p>Two unrelated series show a level-correlation above 0.5 more than <strong>40% of the time</strong>, and above 0.8 in one case in fourteen. Screen a few thousand pairs on price correlation and you will find hundreds of beautiful, utterly meaningless relationships.</p>
+<p>This is the <strong>spurious regression</strong> problem (Granger &amp; Newbold, 1974). It happens because correlation assumes stationary data, and prices are not stationary — they wander. Two independent wanderers will, by chance, often wander in vaguely similar directions over any finite window, and the correlation statistic dutifully reports that as a relationship.</p>
+<p>Notice the second row is fine. <strong>Returns</strong> are roughly stationary, and their correlation behaves — 0.03, as it should for independent series. So the first rule is simply: <em>never compute a correlation on prices.</em> If you must use correlation, use it on returns.</p>
+<p>But even that doesn't get you what a pairs trade needs.</p>
+<h2>Two different claims</h2>
+<pre class="diagram">   CORRELATION (of returns)          COINTEGRATION (of levels)
+   ─────────────────────────────────────────────────────────────────────
+   "they move together day to day"   "they cannot drift apart forever"
+   short-run co-movement             long-run equilibrium
+   memoryless — says nothing         has memory — says the GAP is
+   about the accumulated gap         mean-reverting
+   ─────────────────────────────────────────────────────────────────────
+   supports:  hedging, risk models   supports:  mean-reversion trading</pre>
+<p>The two are genuinely independent properties, and both off-diagonal cases are real:</p>
+<p><strong>Highly correlated, not cointegrated.</strong> Two tech stocks whose daily returns correlate at 0.9, but one compounds at 15% a year and the other at 5%. They move together <em>and</em> separate permanently. Trade the spread and you are short a trend — you will fade a divergence that never closes, adding to the loser all the way down. This is the classic way pairs traders are destroyed, and correlation gave no warning.</p>
+<p><strong>Cointegrated, weakly correlated.</strong> A stock and its own convertible bond, or a commodity and a producer of it. Daily returns can be noisy and only loosely related, while the <em>levels</em> are bound by an arbitrage or an economic identity that reliably reasserts itself.</p>
+<p><strong>Only the second is tradeable as mean reversion.</strong> Correlation is the wrong instrument, measured on the wrong quantity, answering a different question.</p>
+<h2>Cointegration, stated properly</h2>
+<pre class="diagram">   x and y are each I(1)        — non-stationary; their DIFFERENCES are
+                                  stationary (i.e. random-walk-like prices)
+
+   they COINTEGRATE if there exists β such that
+
+            s  =  y − βx        is I(0)  — stationary
+
+   β is the HEDGE RATIO, s is the SPREAD</pre>
+<p>So cointegration says: the individual series wander without bound, but <em>this particular combination of them does not</em>. There is an equilibrium, and deviations from it are temporary. That is exactly the statement a mean-reversion trade needs, and it is a statement about levels, which is why correlation could never have supplied it.</p>
+<p>Two standard tests:</p>
+<ul><li><strong>Engle–Granger</strong>, two steps: regress y on x by OLS to get β̂, then run an <strong>ADF</strong> (augmented Dickey–Fuller) test for a unit root on the residual. Reject the unit root → the spread is stationary → cointegrated. One trap: because β was <em>estimated</em>, the usual ADF critical values are wrong and too generous — use the Engle–Granger critical values instead. Skipping this is a common way to find cointegration that isn't there.</li><li><strong>Johansen</strong>, for three or more series at once, which also handles the case of several independent cointegrating relationships. Necessary for baskets; overkill for a pair.</li></ul>
+<h2>Half-life — the number that decides the trade</h2>
+<p>Knowing the spread reverts is not enough. You need to know <strong>how fast</strong>, because that determines everything downstream. Model the spread as Ornstein–Uhlenbeck:</p>
+<pre class="diagram">   ds  =  θ(μ − s)dt  +  σ dW           θ = speed of reversion
+
+   estimate by regressing the CHANGE on the LEVEL:
+
+        Δsₜ  =  a  +  b·sₜ₋₁ + ε        with   θ = −b
+
+                             ln 2
+        half-life  =  ────────────────
+                            −b</pre>
+<p>If b is not significantly negative, there is no reversion to trade — the regression itself is a cointegration check.</p>
+<p>Half-life is the single most operationally useful number in the whole exercise:</p>
+<pre class="diagram">   half-life        what it implies
+   ──────────────────────────────────────────────────────────────────
+   minutes          you are in M1.6 territory. Latency and queue
+                    position decide whether you exist. Costs are
+                    paid hundreds of times a day.
+   days to weeks    tractable. Hold for roughly a half-life or two;
+                    costs are amortised over a meaningful move.
+   many months      the statistics are hopeless — a 6-month half-life
+                    gives you a handful of independent observations
+                    per decade, so you cannot tell the edge from zero
+                    (M2.1's standard error).</pre>
+<p>It also sets your <strong>cost budget</strong>, which is the link back to M1. A spread with a two-week half-life is crossed a few times a month; one with a two-hour half-life is crossed hundreds of times, and pays spread and impact on every crossing. The same statistical edge is a business at one speed and a donation at the other.</p>
+<h2>The risk nobody models</h2>
+<p>Cointegration is an <strong>empirical regularity, not a law of nature.</strong> The relationship exists because of something real — a shared input cost, a substitution effect, a corporate structure — and that something can change.</p>
+<pre class="diagram">   what breaks a cointegrating relationship
+   ─────────────────────────────────────────────────────────
+   a merger, spin-off, or capital restructuring
+   a regulatory change hitting one side only
+   a genuine divergence in business model or margins
+   the trade becoming crowded, then unwinding at once</pre>
+<p>The failure mode is cruel by construction. A structural break looks <em>identical</em> to an unusually good entry — the spread is further from its mean than it has ever been, so your z-score is screaming, so you size up. The signal is loudest exactly when it is wrong.</p>
+<p>Which is why a pairs trade needs a risk rule that does not come from the signal: a stop on the spread, a maximum holding period of a few half-lives, and a periodic re-test of the cointegration itself on recent data. M2.6 puts all of that together.</p>
+<blockquote><p><strong>Pub test:</strong> Correlation is about <strong>returns</strong> moving together in the short run; cointegration is about <strong>levels</strong> staying tethered in the long run, and only the second justifies a mean-reversion trade. Correlation computed on the <em>levels</em> of non-stationary series is close to meaningless — two completely <strong>independent</strong> random walks have a median absolute level-correlation of 0.43, exceeding 0.5 about 41% of the time, while their return correlation sits at 0.03. That is the <strong>spurious regression</strong> trap. Formally, two I(1) series cointegrate if some combination y − βx is stationary, tested by <strong>Engle–Granger</strong> or <strong>Johansen</strong>, and the <strong>half-life</strong> ln2/θ of that spread is the number that sets your holding period — and therefore how much cost you can survive.</p></blockquote><div class="source"><b>↳ go deeper:</b> Ernie Chan, <em>Algorithmic Trading</em>, ch.2–3 for the practical treatment including half-life. Granger &amp; Newbold (1974), “Spurious regressions in econometrics”, is short and worth reading for the simulation above. Engle &amp; Granger (1987) for the test; any decent time-series text for Johansen.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M2_6"><div class="kicker">M2 · M2.6</div><h1>A pairs trade, end to end</h1>
+<p>Time to run something through the whole pipeline. This lesson takes one strategy — the classic cointegration pairs trade — from signal to risk, and then charges it real money for trading.</p>
+<p>The code below is deliberately <strong>standard-library Python</strong>: no numpy, no pandas, nothing to install. Real work would use both, but every idea here fits in sixty lines and you can run it immediately. It generates its own cointegrated pair so it is reproducible; swap the first block for real price data and the rest is unchanged.</p>
+<h2>1 — Signal</h2>
+<p>The spread is <code>s = y − βx</code>, and the tradeable statement is that <code>s</code> reverts. Convert to a <strong>z-score</strong> so the entry rule is scale-free, and trade extremes:</p>
+<pre class="diagram">   z &gt; +2      spread is rich   →  SHORT the spread (sell y, buy βx)
+   z &lt; −2      spread is cheap  →  LONG  the spread (buy y, sell βx)
+   |z| &lt; 0.5   converged        →  flat</pre>
+<p>One detail that quietly decides whether the whole exercise is honest: the z-score uses a <strong>rolling</strong> mean and standard deviation over a trailing window, not the full sample. Using full-sample statistics would let the strategy standardise today's spread using tomorrow's data — lookahead bias, and worth about a Sharpe point of pure fiction. M2.7 has more on how easily this happens.</p>
+<h2>2 — Sizing</h2>
+<p>Hold <strong>1 unit of y against β units of x</strong>, β from the cointegrating regression. That is what makes the position a bet on the spread rather than on the market: if both legs rise together, the position is flat. It is <em>market-neutral by construction</em>, which is the point of the trade — you have isolated the relationship and discarded the direction.</p>
+<h2>3 — Execution</h2>
+<p>Here is where M1 comes back. The estimated <strong>half-life is 11 days</strong>, which tells you the trade is not a latency problem — you have hours to establish a position, not microseconds, so M1.6 is irrelevant and M1.5 is everything. Pace the entry over a day, keep participation low, and impact stays small. If the half-life had been eleven <em>minutes</em>, the same statistical edge would be an entirely different and much harder business.</p>
+<h2>4 — Risk</h2>
+<p>The signal cannot police itself, because a structural break looks exactly like a great entry (M2.5). So the risk rules must come from outside it:</p>
+<ul><li><strong>Stop</strong> if |z| exceeds ~4 — that is evidence the relationship broke, not that the opportunity improved.</li><li><strong>Time limit</strong> of a few half-lives. A spread that hasn't converged in a month probably isn't going to.</li><li><strong>Re-test cointegration</strong> periodically on recent data, and retire the pair when it fails.</li></ul>
+<h2>The code</h2>
+<pre class="diagram">import math, random
+
+# ── 1. Two cointegrated series (replace with real prices) ────────────
+random.seed(42)
+N, BETA, THETA, SIG_S = 1500, 1.5, 0.05, 1.0
+x, spread = [100.0], [0.0]
+for _ in range(N - 1):
+    x.append(x[-1] + random.gauss(0, 1.0))
+    spread.append(spread[-1] + THETA * (0.0 - spread[-1]) + random.gauss(0, SIG_S))
+y = [BETA * xi + s + 50.0 for xi, s in zip(x, spread)]
+
+# ── 2. Hedge ratio by OLS on levels ──────────────────────────────────
+def ols(xs, ys):
+    n = len(xs); mx = sum(xs)/n; my = sum(ys)/n
+    sxy = sum((a-mx)*(b-my) for a, b in zip(xs, ys))
+    sxx = sum((a-mx)**2 for a in xs)
+    b = sxy/sxx
+    return b, my - b*mx
+
+beta_hat, alpha_hat = ols(x, y)
+s = [yi - beta_hat*xi - alpha_hat for xi, yi in zip(x, y)]
+
+# ── 3. Half-life:  Δs = a + b·s(t-1),  half-life = ln2 / -b ──────────
+b_hl, _ = ols(s[:-1], [s[i+1]-s[i] for i in range(len(s)-1)])
+half_life = math.log(2) / (-b_hl)
+
+# ── 4. Rolling z-score — NOT full-sample (that would be lookahead) ───
+W = 60
+def zscore(i):
+    win = s[i-W:i]
+    m = sum(win)/W
+    sd = math.sqrt(sum((v-m)**2 for v in win)/(W-1))
+    return (s[i]-m)/sd if sd &gt; 0 else 0.0
+
+# ── 5. Backtest ──────────────────────────────────────────────────────
+ENTRY, EXIT = 2.0, 0.5
+def run(cost):
+    pos, pnl, trades = 0, [], 0
+    for i in range(W, N-1):
+        z = zscore(i); new = pos
+        if pos == 0:
+            if z &gt; ENTRY:    new = -1
+            elif z &lt; -ENTRY: new = +1
+        elif abs(z) &lt; EXIT:  new = 0
+        step = (s[i+1]-s[i]) * pos       # P&amp;L on yesterday's position
+        turn = abs(new - pos)
+        if turn: trades += 1
+        pnl.append(step - turn*cost)
+        pos = new
+    return pnl, trades
+
+def sharpe(p):
+    n = len(p); m = sum(p)/n
+    sd = math.sqrt(sum((v-m)**2 for v in p)/(n-1))
+    return m/sd*math.sqrt(252)
+
+print(f"true beta {BETA}   estimated {beta_hat:.3f}")
+print(f"half-life of the spread: {half_life:.1f} days\n")
+for c in (0.0, 0.25, 0.50, 1.00):
+    p, t = run(c)
+    print(f"cost {c:.2f}   P&amp;L {sum(p):7.1f}   Sharpe {sharpe(p):5.2f}   trades {t}")</pre>
+<h2>What it prints</h2>
+<pre class="diagram">   true beta 1.5   estimated 1.454
+   half-life of the spread: 11.1 days
+
+   cost/trade    total P&amp;L    Sharpe    trades
+   ──────────────────────────────────────────────
+      0.00           66.8      1.39        58
+      0.25           52.3      1.08        58
+      0.50           37.8      0.77        58
+      1.00            8.8      0.17        58</pre>
+<h2>Read the table, not the first row</h2>
+<p>The signal is <strong>identical</strong> in every row. Same entries, same exits, same 58 trades. The only thing that changes is what you are charged to trade — and the strategy goes from a genuinely good Sharpe of 1.39 to a rounding error at 0.17.</p>
+<p>That is the exercise the roadmap set, and it generalises well beyond pairs trading:</p>
+<blockquote><p><strong>The gross backtest tells you almost nothing. The cost assumption is usually the strategy.</strong></p></blockquote>
+<p>Three things follow, each pointing back at earlier modules:</p>
+<p><strong>Costs are not a haircut, they are the business.</strong> A cost of 0.5 spread units per trade — half of one standard deviation of daily spread movement, entirely plausible once you add the bid-ask spread of <em>two</em> legs (M0.4) plus impact (M1.5) — removes 45% of the P&amp;L. Anyone showing you a gross backtest is showing you the easy part.</p>
+<p><strong>Half-life sets how many times you pay.</strong> 58 trades over ~1,400 days is comfortable. Shorten the half-life to a day and you would trade perhaps 600 times for a similar gross edge, paying ten times the cost to earn the same gross — and the same table would show the strategy dead at 0.25. This is why M2.5 insisted half-life is the operationally decisive statistic.</p>
+<p><strong>Capacity is a hard ceiling.</strong> M1.5's square-root law says impact grows with the fraction of daily volume you take, so <code>cost</code> in that table is not a constant — it is a function of your size. Scale up and you slide down the rows of your own table until you reach the one where the strategy doesn't work. Every strategy has a size at which it stops existing.</p>
+<h2>Two honest caveats</h2>
+<p>The estimated half-life (11.1 days) is shorter than the value built into the simulation (ln2/0.05 ≈ 13.9 days). That is not a bug — the spread being tested is an <strong>OLS residual</strong>, and residuals are fitted to have zero mean, which biases them toward looking more mean-reverting than the truth. Estimated half-lives on estimated spreads run optimistically short, and by exactly the mechanism that ought to make you suspicious of your own backtest.</p>
+<p>And the data here is <strong>synthetic, generated from a model that guarantees the spread reverts.</strong> The strategy cannot fail for the reason real pairs trades fail — the relationship breaking. That is the deepest problem with this backtest, and it is not fixed by better code.</p>
+<p>Which is the subject of M2.7.</p>
+<blockquote><p><strong>Pub test:</strong> Running one strategy through the whole M2.1 pipeline — signal (spread z-score), sizing (β-weighted, market-neutral), execution (paced against the half-life), risk (stop, time limit, re-test) — shows where the money actually goes. The backtest here earns <strong>Sharpe 1.39 gross</strong> and, on identical signals, <strong>0.17</strong> once a realistic round-trip cost is charged. Nothing about the signal changed; only the cost assumption did. That is the lesson the roadmap set as the exercise — the gap between <em>looks profitable on paper</em> and <em>is profitable after costs</em> is usually the entire strategy — and it is why <strong>half-life</strong> matters, since it decides how many times you pay.</p></blockquote><div class="source"><b>↳ go deeper:</b> Ernie Chan, <em>Algorithmic Trading</em>, ch.3–4 for pairs trading as practised, including the Kalman-filter version where β is allowed to drift rather than being fixed by one OLS fit. Run the code, change the seed, and watch how much the Sharpe moves — that variation is M2.1's standard error, made tangible.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M2_7"><div class="kicker">M2 · M2.7</div><h1>Why backtests lie</h1>
+<p>M2.6 produced a strategy with a Sharpe of 1.39, and then charged it realistic costs and watched it die. That was the <em>honest</em> failure mode. This lesson is about the dishonest ones — the ways a backtest reports profit that was never available to anybody.</p>
+<p>The framing that matters: <strong>a backtest is not an experiment, it is a measurement whose bias you control.</strong> Every degree of freedom you hold — which data, which period, which parameters, which of your many attempts to report — pushes the result one way. Nobody accidentally overfits <em>downwards</em>.</p>
+<h2>The bugs you can actually fix</h2>
+<p><strong>Lookahead bias.</strong> Using information at time t that wasn't available until later. It is almost never as obvious as reading tomorrow's price:</p>
+<pre class="diagram">   full-sample z-scores        standardising with a mean and σ computed
+                               over the whole history — the M2.6 code
+                               used a ROLLING window precisely to avoid it
+   restated fundamentals       today's database has the corrected figures;
+                               the market traded the originals for months
+   point-in-time index members yesterday's index constituents as known
+                               TODAY, not as known then
+   a close-price signal        traded at the same close. You had it when?</pre>
+<p><strong>Survivorship bias.</strong> Backtesting today's index members over ten years tests a portfolio selected for having survived. The failures were deleted from the universe <em>and</em> from the record. This alone has been enough to manufacture entire published anomalies.</p>
+<p><strong>Costs assumed away.</strong> M2.6 showed a Sharpe going from 1.39 to 0.17 on the cost line alone. If a backtest reports gross returns, it has not reported anything.</p>
+<p>These are all <em>bugs</em>: fixable with discipline and point-in-time data. The next one is not a bug, and it is the one that gets serious people.</p>
+<h2>Multiple testing, quantified</h2>
+<p>M2.1 established that a Sharpe estimate is noisy — standard error ≈ √(252/n), so about <strong>0.45</strong> on five years of daily data. Now consider what happens when you don't test one strategy, but search.</p>
+<p>Simulate strategies with <strong>exactly zero edge</strong> — pure noise, no signal whatsoever — and report the best one found:</p>
+<pre class="diagram">   5 years of daily data.  TRUE Sharpe of every strategy = 0.
+   (standard error of a single Sharpe estimate = 0.45)
+
+   strategies tried    best in-sample Sharpe    SE·√(2 ln N)
+   ─────────────────────────────────────────────────────────
+              1               −0.03                 —
+             10                0.69                0.96
+            100                1.13                1.36
+          1,000                1.43                1.66
+         10,000                1.74                1.92</pre>
+<p>Read the 1,000 row. <strong>A best-of-1,000 search over worthless strategies produces a Sharpe of 1.43</strong> — the number M2.1 called "a good systematic strategy, genuinely hard." It is entirely an artefact of taking a maximum over many noisy estimates, and the growth is <code>√(2 ln N)</code>, so it is slow but relentless: you cannot outrun it by being clever, only by testing less.</p>
+<p>And note how easy it is to reach 1,000 without feeling like you searched:</p>
+<pre class="diagram">   2 entry thresholds × 3 exit rules × 4 lookback windows
+     × 5 universes × 3 holding periods × 3 date ranges  =  1,080</pre>
+<p>Nobody experiences that as running a thousand experiments. It feels like <em>tuning</em>. But the statistics only count how many results you looked at before choosing one, not how virtuous you felt while looking.</p>
+<p>This is why <strong>out-of-sample testing is not optional and is also easily faked</strong> — testing on your holdout, adjusting, and testing again converts the holdout into training data. A holdout survives exactly one look.</p>
+<p>The formal repair is to <strong>deflate the Sharpe</strong> by how many trials produced it — Bailey and López de Prado's deflated Sharpe ratio does precisely this, and it requires an input almost nobody records: the true number of variants tried. The practical repair is to <em>write that number down as you go</em>.</p>
+<h2>Capacity, and the profit that isn't there</h2>
+<p>Even a real edge may not be harvestable at your size. M1.5's square-root law says cost per share grows with participation, so total cost scales like <strong>Q^1.5</strong> while gross profit scales like Q. They cross:</p>
+<pre class="diagram">   gross alpha  ∝  Q            ────╮
+   cost         ∝  Q^1.5        ────┴──▶  net profit peaks, then falls
+
+   beyond the peak, trading MORE makes LESS</pre>
+<p>A backtest run on notional you will never deploy is measuring a strategy that doesn't exist at your size. This is also why genuinely good strategies get quietly closed to new money rather than scaled — a fact that looks like modesty and is arithmetic.</p>
+<h2>Regime, and the deepest problem</h2>
+<p>M2.6's final caveat was that its data came from a model <em>guaranteeing</em> the spread reverts, so the strategy could not fail the way real pairs trades fail. Real backtests have a subtler version of the same defect: the past is one sample path from a world whose rules were themselves changing.</p>
+<p>Decimalisation, Reg NMS, the rise of HFT, quantitative easing, the 2020 retail wave — each altered the microstructure the strategy trades in. A backtest spanning them assumes a stationarity that observably did not hold. No statistical technique repairs this; only awareness and shorter memory do.</p>
+<h2>What honest practice looks like</h2>
+<p>None of the defences are clever. They are all structural, which is why they are so widely skipped.</p>
+<pre class="diagram">   ✓  Hold out the last 20–30% of history and DO NOT LOOK until the end.
+      One look. If you adjust after looking, it is training data now.
+
+   ✓  Count every variant tried, including the ones you abandoned.
+      Report it. Deflate by it.
+
+   ✓  Subtract costs before you are allowed to be pleased. Use M1.5's
+      square-root law at your intended size, not a flat basis-point fee.
+
+   ✓  Prefer few parameters and economic reasoning. A strategy you can
+      explain in one sentence has fewer ways to be an artefact.
+
+   ✓  Paper trade, then trade small. Live results are the only sample
+      you did not fit to.
+
+   ✓  Expect roughly HALF the backtested Sharpe in live trading, and be
+      unsurprised when it is worse.</pre>
+<p>That last line is the industry's rule of thumb, and everything in this lesson explains why it is not pessimism. Between multiple testing, cost optimism, capacity, and regime drift, a 50% haircut is a reasonable prior, not a cynical one.</p>
+<h2>Where M2 leaves you</h2>
+<p>You can now take a claim of edge apart: what is the signal, is it alpha or repackaged beta, how noisy is the estimate, how many variants were tried, what does it cost to trade, and how much size does it hold? That is the whole of M2.1 through M2.7, and it is a more useful skill than any individual strategy.</p>
+<p>One assumption has been quietly load-bearing throughout, and it is wrong. Everything here — the Sharpe ratio, the standard errors, Black–Scholes, the risk calculations — assumes returns are approximately <strong>normally distributed</strong>. They are not, and the ways they fail are not small corrections. <strong>M3 is where that assumption gets taken apart.</strong></p>
+<blockquote><p><strong>Pub test:</strong> A backtest is a <strong>measurement with a bias you control</strong>, so it flatters by default. <strong>Lookahead</strong> and <strong>survivorship</strong> are bugs you can fix; <strong>multiple testing</strong> is the one that gets everybody — with five years of daily data and <em>no real edge at all</em>, searching 1,000 strategies yields a best in-sample Sharpe of about <strong>1.4</strong>, purely by chance, because the standard error of a Sharpe estimate is ~0.45 and you kept the maximum of many draws. Costs and <strong>capacity</strong> finish the job. The defences are structural rather than statistical — hold out data you never look at, <strong>count and report every variant tried</strong>, subtract costs before believing anything, and size the first live trade as an experiment.</p></blockquote><div class="source"><b>↳ go deeper:</b> Bailey, Borwein, López de Prado &amp; Zhu, “Pseudo-Mathematics and Financial Charlatanism” (2014) — the multiple-testing problem stated bluntly, and the source of the deflated Sharpe ratio. Campbell Harvey &amp; Yan Liu, “Backtesting” (2015) and their “…and the Cross-Section of Expected Returns” apply the same lens to the published factor literature, with uncomfortable results. Marcos López de Prado, <em>Advances in Financial Machine Learning</em>, ch.11–12 for the practitioner’s version.</div><a class="top" href="#top">↑ contents</a></section>
 </div>
 </body>
 </html>
