@@ -2355,6 +2355,798 @@ One assumption has been quietly load-bearing throughout, and it is wrong. Everyt
 
 > **Pub test:** A backtest is a **measurement with a bias you control**, so it flatters by default. **Lookahead** and **survivorship** are bugs you can fix; **multiple testing** is the one that gets everybody — with five years of daily data and *no real edge at all*, searching 1,000 strategies yields a best in-sample Sharpe of about **1.4**, purely by chance, because the standard error of a Sharpe estimate is ~0.45 and you kept the maximum of many draws. Costs and **capacity** finish the job. The defences are structural rather than statistical — hold out data you never look at, **count and report every variant tried**, subtract costs before believing anything, and size the first live trade as an experiment.
 `},
+  {id:"M3.1", module:"M3", title:"The stylised facts", done:true,
+   source:"Rama Cont, “Empirical properties of asset returns: stylized facts and statistical issues” (2001) — the canonical list, short, and the direct model for this lesson. Benoît Mandelbrot, *The (Mis)behavior of Markets*, is the roadmap’s required reading and the polemical version of the same argument. Do the exercise yourself: the FRED series \\`SP500\\` is a single CSV download and every number above is reproducible in a page of code.",
+   body:`
+# The stylised facts
+
+Everything in M2 rested on an assumption stated once and then quietly used everywhere: that returns are approximately normally distributed. The Sharpe ratio, its standard error, Black–Scholes, and every risk number all lean on it.
+
+It is false. Not "an approximation with minor corrections" false — **false in ways that dominate the behaviour that matters most.** This lesson does the roadmap's exercise and looks.
+
+All figures below are computed from **real S&P 500 daily closes, 2016-08-08 to 2026-08-07 — 2,513 trading days**, via FRED. The period contains the COVID crash and the April 2025 selloff, which is the point: any decade you pick contains something a Gaussian says cannot happen.
+
+## Fact 1 — the distribution has enormous tails
+
+\`\`\`
+   S&P 500 daily log returns, n = 2,513
+
+     mean            +0.0505% / day        annualised   +12.7%
+     std dev          1.142%  / day        annualised    18.1%
+     skewness        −0.68                 a normal says  0.00
+     kurtosis        19.71                 a normal says  3.00
+     ───────────────────────────────────────────────────────────
+     Jarque–Bera     29,436                5% critical value 5.99
+\`\`\`
+
+A Jarque–Bera statistic roughly **4,900 times** its critical value is not a marginal rejection of normality. It is the test running out of ways to say no.
+
+Kurtosis of 19.7 against 3 means the distribution is far more concentrated near the middle *and* far heavier in the extremes than a bell curve — most days are quieter than a normal predicts, and the exceptions are enormous.
+
+## Fact 2 — the extremes are not merely bigger, they are impossible
+
+Count days beyond each threshold and compare with what a Gaussian fitted to the same data expects:
+
+\`\`\`
+   threshold   observed   Gaussian expects   ratio
+   ──────────────────────────────────────────────────
+      ±3σ          36            6.78          5×
+      ±4σ          17            0.16        107×
+      ±5σ          11            0.0016    7,635×
+      ±6σ           6            0.000005  1,210,021×
+\`\`\`
+
+The rightmost column is the story. At three sigma the Gaussian is wrong by a factor of five, which you might call a rough approximation. By six sigma it is wrong by a factor of **a million**, and the error compounds precisely where the money is lost.
+
+The five worst days in the sample:
+
+\`\`\`
+   2020-03-16    −11.22σ    −11.98%
+   2020-03-12     −8.80σ     −9.51%
+   2020-03-09     −6.96σ     −7.60%
+   2025-04-04     −5.44σ     −5.97%
+   2020-06-11     −5.36σ     −5.89%
+\`\`\`
+
+Take the worst one seriously. Under a normal distribution, an 11.22σ daily move has probability about **1.6 × 10⁻²⁹**. At 252 trading days a year, you would wait roughly **2.5 × 10²⁶ years** to see one — around **10¹⁶ times the current age of the universe.**
+
+It happened on a Monday in March 2020. And the *third*-worst day in the same sample would also, individually, outlive the universe.
+
+This is the single most important fact in M3, so state it plainly: **when a model says an event is impossible and the event occurs three times in a decade, the model is not slightly miscalibrated. It is the wrong model.**
+
+## Fact 3 — the tails are asymmetric
+
+Skewness is **−0.68**: the left tail is heavier. Markets fall faster than they rise. Note the best days are large too — +9.52%, +9.38%, +9.29% — but look at *when* they happened: 2025-04-09 and March 2020, inside the same crashes as the worst days. Extreme up-days are not the good times; they are the violent rebounds within bad times.
+
+This asymmetry is the same one the equity **skew** in M2.4 prices, now visible in the underlying rather than inferred from options.
+
+## Fact 4 — returns are unforecastable, but volatility is not
+
+Now the autocorrelation, and the most useful result in the lesson. Compare the autocorrelation of returns with that of **absolute** returns and **squared** returns:
+
+\`\`\`
+   95% noise band = ±0.039
+
+    lag    returns    |returns|    returns²
+   ───────────────────────────────────────────
+      1     −0.145       0.373       0.453
+      2     +0.096       0.409       0.473
+      3     −0.029       0.378       0.333
+      5     +0.052       0.335       0.292
+     10     −0.047       0.288       0.218
+     20     −0.014       0.195       0.095
+     50     +0.007       0.063      −0.001
+\`\`\`
+
+**Returns** decay into the noise band almost immediately — direction is close to unforecastable from its own history, which is the weak-form efficiency you would expect from M1's price discovery.
+
+**Absolute returns** do nothing of the sort. They start at 0.37 and are *still* at 0.195 twenty days later, ten times the noise band. Volatility is strongly, persistently predictable.
+
+> **Direction is nearly unforecastable. Magnitude is highly forecastable.** A big move today means a big move tomorrow, without telling you which way.
+
+That is **volatility clustering**, it is the most robust regularity in the field, and it is why M3.3 exists.
+
+One honest caveat about that lag-1 figure of −0.145, which is well outside the noise band and looks like a tradeable reversal. It is almost entirely a crisis artefact: **exclude 2020 and it falls to −0.028**, inside the band. A handful of violent alternating days in March 2020 dominate the whole statistic. That is itself a lesson about fat tails — with kurtosis of 20, *any* sample statistic can be hostage to a few observations, including the ones you use to decide a strategy is real.
+
+## Fact 5 — non-normality fades with aggregation
+
+Compute the same returns over longer horizons:
+
+\`\`\`
+   horizon             n      kurtosis
+   ─────────────────────────────────────
+   daily           2,513        19.71
+   weekly            502        10.96
+   monthly           119         8.38
+   quarterly          39         3.60
+\`\`\`
+
+**Aggregational Gaussianity.** Sum enough returns and the Central Limit Theorem does eventually assert itself — quarterly returns look nearly normal. Two consequences pull in opposite directions, and both are true:
+
+- A long-horizon investor genuinely faces something closer to the textbook world.
+- A daily-horizon trader, or *anyone holding leverage that is marked daily* (M0.7), lives entirely in the regime where the textbook is worthless. You do not get to use the quarterly distribution if a −12% day triggers your margin call.
+
+## The list, and where it goes
+
+Those five are most of Cont's canonical set of stylised facts — the properties that show up in essentially every liquid market, across asset classes and decades, and which any serious model has to reproduce:
+
+\`\`\`
+   ✓ heavy tails                 M3.2 — how heavy, and how to measure it
+   ✓ negative skew               priced as the M2.4 smile
+   ✓ no autocorrelation
+     in returns                  market efficiency, M1
+   ✓ volatility clustering       M3.3 — GARCH and friends
+   ✓ aggregational Gaussianity   why horizon changes everything
+     leverage effect             vol rises more on down moves — M3.3
+     tail dependence             correlations rise in crashes — M3.5
+\`\`\`
+
+Nothing here is controversial or new; Mandelbrot was pointing at the tails in 1963 and was ignored for thirty years. What is remarkable is how much of finance is still taught, and practised, as though returns were Gaussian anyway.
+
+> **Pub test:** Real returns break the Gaussian assumption in specific, repeatable ways. Ten years of S&P 500 dailies show **kurtosis 19.7** against a normal’s 3.0, a Jarque–Bera statistic of ~29,000 against a critical value of 6, and **six days beyond ±6σ** where a Gaussian expects none in the age of the universe. Returns themselves are near-unforecastable (autocorrelation inside the noise band), but **|returns| stay correlated out past 20 lags** — that is **volatility clustering**, and it means volatility is predictable even when direction is not. Tails are also **asymmetric** (skew −0.68) and the non-normality **fades as you aggregate**, with kurtosis falling 19.7 → 3.6 from daily to quarterly.
+`},
+  {id:"M3.2", module:"M3", title:"Fat tails and the tail index", done:true,
+   source:"Rama Cont (2001) again for the tail-index evidence. For the power-law literature, Gabaix, Gopikrishnan, Plerou & Stanley, “A theory of power-law distributions in financial market fluctuations” (Nature, 2003). For EVT done properly, McNeil, Frey & Embrechts, *Quantitative Risk Management*, ch.7 — the standard reference and worth owning if you end up anywhere near risk.",
+   body:`
+# Fat tails and the tail index
+
+M3.1 established that the tails are enormous. This lesson asks the quantitative question — **how** heavy, measured how — and arrives at a result that undermines one of the numbers M3.1 leaned on.
+
+## Two ways for a tail to decay
+
+The distinction is between exponential and polynomial decay:
+
+\`\`\`
+   Gaussian      P(|r| > x)  ~  exp(−x²/2σ²)     dies faster than
+                                                  anything
+   exponential   P(|r| > x)  ~  exp(−λx)         "thin" tail
+
+   POWER LAW     P(|r| > x)  ~  x^(−α)           "fat" tail
+                                                  α is the TAIL INDEX
+\`\`\`
+
+The difference is not one of degree. Under a Gaussian each extra sigma costs you exponentially in probability, which is why 6σ is effectively unreachable. Under a power law each *doubling* of the move costs a fixed factor 2^(−α), so extremes remain reachable no matter how far out you go.
+
+**Small α means fat.** As α falls, the tail thickens.
+
+## Measuring it, two ways
+
+**By moments — the Student-t.** The t-distribution with ν degrees of freedom has excess kurtosis 6/(ν−4) for ν > 4, so invert it:
+
+\`\`\`
+   observed excess kurtosis  =  16.71
+
+        ν  =  6/16.71 + 4  ≈  4.36 degrees of freedom
+\`\`\`
+
+Which is already interesting: ν ≈ 4.4 is at the very edge of where kurtosis is defined at all.
+
+**By the tail directly — the Hill estimator.** Rather than fitting the whole distribution, use only the k largest observations:
+
+\`\`\`
+                    k
+   α̂  =  ─────────────────────────────       x₍ᵢ₎ = the i-th largest loss
+          Σᵢ₌₁ᵏ  ln( x₍ᵢ₎ / x₍ₖ₊₁₎ )
+
+   S&P 500 losses, 2016–2026 (1,136 down days):
+
+        top  25 losses   →   α ≈ 3.07
+        top  50 losses   →   α ≈ 2.90
+        top 100 losses   →   α ≈ 2.35
+        top 150 losses   →   α ≈ 2.34
+\`\`\`
+
+Note the estimate drifts as k grows. That is the Hill estimator's well-known bias-variance trade-off: too few points and the estimate is noisy, too many and you contaminate the tail with the body of the distribution. The honest reading of that column is **α is somewhere around 2.5 to 3**, not any single decimal.
+
+## The inverse cubic law
+
+That range is not specific to this decade or this index. Across equities, indices, FX, and commodities, over horizons from minutes to days, measured on data going back a century, the tail index of returns clusters around
+
+\`\`\`
+                          α  ≈  3
+\`\`\`
+
+This is the **inverse cubic law**, and it is one of the closest things finance has to an empirical constant. Its universality is exactly why the econophysics literature got interested — this is the behaviour of a system with scale-invariant fluctuations, and it looks far more like critical phenomena in statistical physics than like anything in a finance textbook. The roadmap's claim that a physics background pays off most in M3 is really a claim about this fact.
+
+## The consequence that bites
+
+Here is why the tail index is worth measuring rather than admiring. **For a power-law tail with index α, moments of order ≥ α do not exist.**
+
+\`\`\`
+   α ≈ 3  ⟹    mean       (1st moment)   exists          ✓
+               variance   (2nd moment)   exists          ✓
+               skewness   (3rd moment)   marginal        ~
+               kurtosis   (4th moment)   DOES NOT EXIST  ✗
+\`\`\`
+
+Read that against M3.1, which reported a kurtosis of 19.71. If the fourth moment of the underlying distribution is infinite, then **19.71 is not an estimate of anything**. It is a number computed from a finite sample of a population whose kurtosis does not converge — and it will keep growing, erratically, as you add data, jumping every time a new record day arrives.
+
+This is not a technicality. It is the reason:
+
+- **Sample moments are unstable.** M3.7 shows that removing ten days from 2,513 moves the Sharpe ratio from 0.70 to 0.37 or 1.17 depending which ten. With near-infinite higher moments, a handful of observations dominate.
+- **"σ" is a shakier object than it looks.** Variance exists, but its *estimate* has a fat-tailed sampling distribution, so volatility estimates are themselves volatile.
+- **Any risk number built from a fitted normal is not conservative, it is wrong** — and wrong in the direction that loses money (M3.4).
+
+## So what should you use?
+
+Three honest options, in ascending order of correctness and effort:
+
+**Student-t instead of normal.** Cheap, better, and captures much of the tail behaviour. ν ≈ 4 is a reasonable default for daily equity returns. Most risk systems that do anything at all do this.
+
+**Fit the tail separately — extreme value theory.** The insight of EVT is that you should not fit a distribution to all the data and read off the tail; you should model *only* the tail. The Pickands–Balkema–de Haan theorem says exceedances over a high threshold converge to a **generalised Pareto distribution**, regardless of the parent distribution — a CLT for extremes. This is the right tool for "how bad is the 1-in-1000 day", and it does not require pretending the middle of the distribution is informative about the edges.
+
+**Accept irreducible uncertainty.** With α ≈ 3 and a decade of data you have maybe a dozen genuinely extreme observations. You cannot estimate a 1-in-10,000-day event from 2,513 days no matter how good your method. The correct response is structural — position sizing that survives being wrong (M3.6) — not a better point estimate.
+
+## Where the tails come from
+
+Two mechanisms, and they are complementary rather than competing.
+
+**Volatility clustering generates fat tails mechanically.** A mixture of normal distributions with different variances is itself fat-tailed, even though every component is Gaussian. Since volatility clusters and varies enormously (M3.3), the *unconditional* distribution of returns is a mixture, and inherits heavy tails automatically. A good chunk of the observed kurtosis is this.
+
+**But not all of it.** Fit a GARCH model, standardise the returns by its conditional volatility, and the residuals *are* thinner-tailed than the raw returns — but still not Gaussian. Something genuinely jumpy remains: news arrives discontinuously, liquidity withdraws (M1.2, as μ → 1), and crowded positions unwind at once. That residual is real, and it is what M0.7's leverage and M3.6's position sizing have to survive.
+
+> **Pub test:** Heavy tails are measured by a **tail index α**, where P(|r| > x) decays like x^(−α) rather than exponentially. Fitting the S&P gives a Student-t with **ν ≈ 4.4** and Hill estimates of **α ≈ 2.3–3.1**, straddling the **inverse cubic law** (α ≈ 3) found across markets and decades. The consequence that matters is that **moments above α do not exist** — with α ≈ 3, the mean and variance are finite but the **fourth moment is not**, so the “kurtosis of 19.7” is a sample statistic of a population quantity that is plausibly infinite. That is why it lurches when you add data, and why for tail questions you should use **extreme value theory** on the tail rather than a distribution fitted to the middle.
+`},
+  {id:"M3.3", module:"M3", title:"Volatility clustering & GARCH", done:true,
+   source:"Engle (1982) and Bollerslev (1986) are the originals and are readable. For the practical treatment, Ruey Tsay, *Analysis of Financial Time Series*, ch.3, is the standard course text. On realized volatility beating latent-variance models, Corsi (2009) on the HAR model is short and persuasive.",
+   body:`
+# Volatility clustering & GARCH
+
+M3.1's autocorrelation table contained the most commercially useful asymmetry in the whole course:
+
+\`\`\`
+   returns      decay into noise within a couple of lags
+   |returns|    still 0.195 at lag 20 — ten times the noise band
+\`\`\`
+
+**You cannot forecast whether the market goes up. You can forecast how much it will move.** Everything in this lesson follows from taking that seriously, and so does a genuine chunk of the industry — variance swaps, VIX products, vol targeting, and risk systems all exist because the second row is true.
+
+## Why clustering happens at all
+
+Before the model, the mechanism. Volatility clusters because the things that cause volatility are themselves persistent:
+
+- **Information arrives in bursts.** An earnings surprise is followed by analyst revisions, position adjustments, and index rebalancing — a single event generates days of flow.
+- **Disagreement takes time to resolve.** M1.2's μ, the fraction of informed flow, rises during genuine uncertainty and stays elevated until it is settled. Makers widen (M0.4) and stay wide.
+- **Positions unwind slowly.** Leverage forces selling, selling moves prices, movement forces more selling (M0.7's margin spiral). The feedback has a natural timescale of days.
+
+So the statistical model needs one property above all: **a shock to volatility should decay slowly, not immediately.**
+
+## From ARCH to GARCH
+
+Engle's ARCH insight (1982) was to let today's *variance* depend on yesterday's *squared shock*:
+
+\`\`\`
+   ARCH(1):     h_t  =  ω  +  α·ε²_{t−1}
+\`\`\`
+
+Big move yesterday → high variance forecast today. Correct in spirit, but it decays far too fast — a single lag gives volatility a memory of one day, and to fit the observed 20-lag persistence you need an unwieldy number of terms.
+
+Bollerslev's GARCH (1986) fixed it with one extra term, and it is the workhorse to this day:
+
+\`\`\`
+   ─────────────────────────────────────────────────────────────
+        h_t  =  ω  +  α·ε²_{t−1}  +  β·h_{t−1}
+   ─────────────────────────────────────────────────────────────
+
+     ω    baseline variance
+     α    REACTION   — how much the latest shock moves the forecast
+     β    MEMORY     — how much of yesterday's forecast carries over
+\`\`\`
+
+The β term is the whole trick: because yesterday's forecast already embedded the day before's, one lag gives you a geometrically decaying weight on the entire history. Long memory, three parameters.
+
+## Fitted to real data
+
+Maximum likelihood on the same S&P 500 series as M3.1 (2,513 days, variance-targeted so the model reproduces the sample variance):
+
+\`\`\`
+   α  =  0.155        reaction to the latest shock
+   β  =  0.820        memory of the previous forecast
+   ─────────────────────────────────────────────────
+   α + β  =  0.975    PERSISTENCE
+
+   volatility half-life  =  ln2 / −ln(0.975)  ≈  27.4 days
+   unconditional vol     =  18.1%  (matching M3.1)
+\`\`\`
+
+Three things to read off these numbers.
+
+**Persistence of 0.975 is the headline.** It is close to 1, which is typical — fitted equity persistence almost always lands between 0.95 and 0.99. It means a volatility shock takes about **a month to half-decay**, which is precisely why "calm markets" and "turbulent markets" feel like distinct regimes rather than random alternation. They are the same process with a long memory.
+
+**β ≫ α.** Volatility is mostly inertia (0.82) and only somewhat news (0.155). Today's forecast is dominated by yesterday's forecast, not yesterday's move. This is why volatility looks smooth and mean-reverting while returns look like noise.
+
+**Persistence near 1 is uncomfortably near non-stationary.** At α+β = 1 you get IGARCH, where shocks never decay and unconditional variance is undefined. Fitted values hovering just below 1, in every market, on every sample, are a hint that a simple GARCH is an approximation to something with genuinely long memory — which is what the multifractal and long-memory literature argues.
+
+## What GARCH buys you
+
+**Risk that adapts.** A constant-volatility risk model is wrong in both directions — too conservative in calm markets, catastrophically loose in turbulent ones. A conditional model tightens exactly when it should. This is the input M3.6's vol targeting needs.
+
+**Fat tails, partly for free.** This is the elegant part. Mix normal distributions with different variances and the mixture is **heavy-tailed**, even though every component is Gaussian. Since volatility varies a lot and clusters, the unconditional distribution of returns is exactly such a mixture — so GARCH *generates* excess kurtosis mechanically, without any fat-tailed input.
+
+That looks like it might explain M3.1 entirely. It doesn't, and the check is the honest one: fit the model, divide each return by its conditional volatility, and examine the standardised residuals. They are **thinner-tailed than the raw returns but still clearly non-Gaussian**. So clustering accounts for much of the observed kurtosis and not all of it; the remainder is genuine jumpiness. In practice this is why serious implementations use **GARCH with Student-t innovations** — clustering for the persistence, fat-tailed shocks for what's left.
+
+## The variants worth knowing
+
+\`\`\`
+   GJR-GARCH / EGARCH   adds the LEVERAGE EFFECT — volatility rises
+                        more after DOWN moves than up moves. Matches
+                        M3.1's negative skew and prices M2.4's equity
+                        skew. Essential for equities.
+
+   GARCH-t              Student-t innovations instead of Gaussian.
+                        Almost always a better fit (see above).
+
+   Multivariate
+   (DCC, BEKK)          correlations that move too — M3.5's problem.
+
+   Realized vol / HAR   abandon latent variance entirely. Use
+                        intraday data to MEASURE daily volatility
+                        directly, then forecast that with a simple
+                        regression on daily/weekly/monthly averages.
+                        Usually beats GARCH when you have the data,
+                        which is why it dominates modern practice.
+
+   Stochastic vol
+   (Heston)             volatility gets its own driving noise.
+                        The continuous-time cousin, and the one
+                        that prices options (M2.4).
+\`\`\`
+
+The trajectory there is worth noticing: GARCH *infers* volatility from returns because for decades that was all anyone had. Once high-frequency data existed you could simply **measure** it, and the measurement beat the inference. A methodological lesson that generalises well beyond volatility.
+
+## The thing that is actually tradeable
+
+Since volatility is forecastable and direction isn't, volatility is what you trade — which closes the loop with M2.
+
+\`\`\`
+   forecast vol > implied vol   →  buy options, delta-hedge (M2.3)
+                                   you are long realized vol
+   forecast vol < implied vol   →  sell them, and carry the risk
+                                   that makes the variance premium
+                                   positive in the first place (M2.4)
+\`\`\`
+
+And the darker corollary, which M3.4 and M3.6 develop: **because volatility is persistent, so is danger.** A model that knows today is turbulent also knows tomorrow probably is. Risk systems that ignore this are surprised repeatedly by the same event.
+
+> **Pub test:** Direction is nearly unforecastable but **magnitude is highly forecastable**, so the tradeable statistic is volatility. **GARCH(1,1)** models it as h_t = ω + αε²_{t−1} + βh_{t−1} — α is reaction to the latest shock, β is memory of the previous forecast. Fitted to ten years of S&P dailies it gives **α ≈ 0.155, β ≈ 0.820, persistence α+β ≈ 0.975**, a volatility half-life of about **27 days**. Persistence that close to 1 means shocks decay slowly, which is why calm and turbulent regimes exist. It also **generates fat tails mechanically**, since a mixture of normals with varying variance is heavy-tailed — but standardised residuals stay non-Gaussian, so clustering explains much of the kurtosis and not all of it.
+`},
+  {id:"M3.4", module:"M3", title:"VaR & expected shortfall", done:true,
+   source:"McNeil, Frey & Embrechts, *Quantitative Risk Management*, ch.2 and 8 — the coherence axioms are Artzner et al. (1999) and worth reading in the original for how clean the argument is. The Basel FRTB documents are dry but show the ES transition being argued in public.",
+   body:`
+# VaR & expected shortfall
+
+Everything so far has been descriptive. This lesson turns it into the number a risk committee actually looks at — and shows how each way of computing it fails.
+
+## The two measures
+
+\`\`\`
+   VaR_α    the loss that will not be exceeded with probability α
+            "we are 99% confident we won't lose more than X today"
+
+   ES_α     the AVERAGE loss, given that VaR_α was breached
+   (a.k.a.  "when it does go wrong, how bad is it on average?"
+   CVaR,
+   tail loss)
+\`\`\`
+
+The distinction is the whole lesson in one line: **VaR marks the door; ES tells you what is behind it.**
+
+\`\`\`
+      probability
+          │
+          │   ████████
+          │  ██████████
+          │ ████████████
+          │██████████████▓▒░
+          └──────────────┬────────────────▶  loss
+                       VaR_99
+                         ├──── ES = average of EVERYTHING out here ───▶
+                         │
+                    VaR says nothing whatsoever about this region
+\`\`\`
+
+## The same book, four ways
+
+A £1,000,000 position in the S&P 500, 1-day horizon, 99% confidence, computed from the same 2,513 real daily returns as M3.1:
+
+\`\`\`
+   method                          number      what it assumes
+   ────────────────────────────────────────────────────────────────
+   Gaussian (parametric) VaR      £26,563      returns are normal
+   Historical VaR                 £33,416      the past resembles
+                                                the future
+   Historical Expected Shortfall  £49,557      —
+   ────────────────────────────────────────────────────────────────
+   worst day that actually
+   happened (2020-03-16)         £127,652
+\`\`\`
+
+Read those four numbers in order, because each gap is a distinct failure.
+
+**Gaussian → historical: +26%.** Assuming normality understates the 99% loss by a quarter, for exactly the reason M3.1 and M3.2 gave. A fitted normal is calibrated on the middle of the distribution, where most of the data is, and the middle knows nothing about the tail.
+
+**Historical VaR → ES: +48%.** Even having got the quantile right, the *average* breach is half as large again. VaR is a threshold, and the losses beyond it are not clustered just past it.
+
+**ES → worst day: +158%.** And the worst single day was **4.8× the Gaussian VaR.** No quantile measure was ever going to tell you about that day; that is a statement about the tail index (M3.2), not about the confidence level.
+
+## Backtesting it, which is the honest test
+
+A 99% VaR should be breached about 1% of the time. Count:
+
+\`\`\`
+   Gaussian 99% VaR breaches:   49 observed   vs   25 expected
+
+                                ≈ 2× too many
+\`\`\`
+
+Twice the intended breach rate, from a model that a risk report would describe as "99% confidence." Note this is the *in-sample* failure — the Gaussian was fitted to the very data it then failed on. It is not that the future was surprising; it is that the model could not describe the past.
+
+## VaR's structural problem
+
+Everything above is a distributional complaint, fixable by using better distributions. VaR has a worse and more fundamental defect.
+
+A risk measure ought to be **coherent**, which is four properties, of which the interesting one is:
+
+\`\`\`
+   SUBADDITIVITY:    risk(A + B)  ≤  risk(A) + risk(B)
+
+   i.e. combining two portfolios cannot create risk.
+        DIVERSIFICATION SHOULD NEVER LOOK BAD.
+\`\`\`
+
+**VaR is not subadditive.** You can construct — and people have found in the wild — portfolios where the VaR of the combination exceeds the sum of the individual VaRs. The classic case is two positions each of which loses a large amount with probability just under 1%: individually neither breach shows up at the 99% quantile, so each has low VaR; combined, the probability of *some* large loss exceeds 1% and the VaR jumps.
+
+Two consequences follow, and the second is the serious one:
+
+- Aggregating desk-level VaR into a firm number is not mathematically sound.
+- **VaR can be gamed.** A trader optimising against a VaR limit is incentivised to move risk *just beyond* the quantile — selling far out-of-the-money options is the canonical example. It reports beautifully, earns steady premium, and is exactly the short-gamma payoff M2.3 warned about. VaR does not see it, because the losses live in the region VaR is blind to.
+
+**Expected shortfall is coherent**, subadditive included, and it cannot be gamed the same way because it averages over the whole tail — pushing losses further out makes ES worse, not better. This is why the Basel Committee's FRTB moved market-risk capital from 99% VaR to **97.5% expected shortfall**. That reform is the regulatory system conceding the argument.
+
+## Three ways to compute either, each broken differently
+
+\`\`\`
+   PARAMETRIC       assume a distribution, use its quantile.
+   (variance-       fast, smooth, and wrong in the tail unless
+    covariance)     you use something fat-tailed (M3.2)
+
+   HISTORICAL       use the empirical quantile of past returns.
+                    no distributional assumption — but your 99%
+                    estimate rests on ~25 observations, and it
+                    cannot produce a loss larger than the worst
+                    one already seen
+
+   MONTE CARLO      simulate from a model. flexible, handles
+                    options and path dependence — and inherits
+                    every flaw of the model you simulated from.
+                    Gaussian innovations give Gaussian answers
+                    with a computational veneer
+\`\`\`
+
+Historical VaR's limitation deserves emphasis because it is so easily missed: **it can never tell you about a loss bigger than the largest in your sample.** On 2020-03-15, a historical VaR model had never seen 2020-03-16. If you need the 1-in-1000 day, EVT (M3.2) is the tool, because it extrapolates the tail's shape instead of reading off an order statistic you don't have.
+
+## Using them without being fooled
+
+\`\`\`
+   ✓ Quote ES, not VaR — or at minimum, always quote both.
+   ✓ Backtest the breach count. A 99% measure breached 2% of the
+     time is not a risk number, it is a decoration.
+   ✓ Stress test separately. Risk measures are estimated from a
+     sample; scenarios are not, so they can ask about things that
+     have never happened.
+   ✓ Remember volatility clusters (M3.3). A one-day VaR on a
+     turbulent day should be far larger than on a calm one — a
+     static estimate is wrong on both.
+   ✓ Never confuse "we are 99% confident" with "we are safe." One
+     percent of trading days is two and a half days a year.
+\`\`\`
+
+That last point is the cultural one. VaR's greatest damage has probably not been mathematical but rhetorical: it produces a single, confident-sounding number that gets repeated by people who do not know what it excludes. **It is a summary of the losses you expect to survive — and it is silent, by construction, about the ones you might not.**
+
+> **Pub test:** Value at Risk (**VaR**) is the loss a given quantile won’t exceed; **expected shortfall** is the average loss *given* you breached it. On real S&P data a £1m book has a 1-day 99% Gaussian VaR of **£26.6k**, a historical VaR of **£33.4k**, an ES of **£49.6k**, and a worst actual day of **£127.7k** — so the Gaussian number was breached **49 times where 25 were expected**, and the true worst day was nearly **5×** it. VaR’s deeper defect is structural rather than distributional — it is **not subadditive**, so it can penalise diversification, and it says nothing about the size of the losses beyond it. ES is coherent and is what Basel moved to, which is why it is the number to reach for.
+`},
+  {id:"M3.5", module:"M3", title:"Correlation breakdown & tail dependence", done:true,
+   source:"McNeil, Frey & Embrechts, *Quantitative Risk Management*, ch.7 on copulas and tail dependence — the definitive treatment, and clear about the Gaussian copula's defect years before it mattered publicly. Longin & Solnik, “Extreme correlation of international equity markets” (2001) for the empirics. Felix Salmon’s “Recipe for Disaster: The Formula That Killed Wall Street” (Wired, 2009) is the readable version of the Li story, and overstates it — read it after the maths, as with *Flash Boys* in M1.6.",
+   body:`
+# Correlation breakdown & tail dependence
+
+Diversification is the one free lunch in finance, and it is priced off a single number — the correlation between assets. This lesson shows that number is not a constant, that it moves in the worst possible direction, and that the standard mathematical machinery for combining risks assumed the problem away.
+
+## Measure it in calm and in stress
+
+Take the S&P 500 and the NASDAQ Composite over the same ten years as M3.1 — 2,513 overlapping days — and compute the correlation of daily returns three ways: over everything, over quiet days, and over turbulent ones.
+
+\`\`\`
+   sample                            correlation      n
+   ────────────────────────────────────────────────────────
+   all days                             0.949       2,513
+   calm days      (|r| < 1σ)            0.871       2,021
+   stressed days  (|r| > 2σ)            0.985         111
+\`\`\`
+
+The correlation you would use for portfolio construction — the full-sample 0.949 — is **higher than the calm-market value you experience almost all of the time, and lower than the crisis value that determines whether you survive.** It is a blend of two regimes and describes neither.
+
+The direction is what matters. Going from calm to stressed, correlation rises from 0.871 to **0.985**. Whatever diversification existed between these two indices is essentially gone on the days it would have mattered.
+
+Two caveats, because this comparison is easy to overstate. First, US large-cap indices are close cousins, so 0.87 is already high; the effect is more dramatic across genuinely different assets. Second, conditioning on large moves mechanically inflates measured correlation even for a bivariate normal — selecting on extremes is not a neutral operation. So part of this gap is a statistical artefact. But only part: the effect survives careful treatment, it shows up across every asset pair anyone has looked at, and traders have a blunter name for it.
+
+> **"In a crisis, all correlations go to one."**
+
+## Why it happens
+
+The mechanisms are not statistical, which is why they don't respect your covariance matrix:
+
+- **Common factor dominance.** In calm markets, idiosyncratic news drives most of each asset's variance and the assets look different. In a crisis a single factor — risk appetite — dominates everything, and every asset becomes a proxy for it.
+- **Forced selling.** Leverage (M0.7) and margin calls force liquidation of whatever *can* be sold, not what a manager wants to sell. This transmits stress into assets with no fundamental connection to the shock, correlating them by the mechanics of deleveraging.
+- **Liquidity withdrawal.** Makers widen or leave simultaneously across markets (M1.2, as μ rises everywhere at once), so prices in unrelated assets move together simply because the same liquidity providers stepped back from all of them.
+
+Each is a story about *plumbing*, and none of them appears anywhere in a correlation estimate.
+
+## Tail dependence, the right concept
+
+Correlation is a single number summarising the whole joint distribution — mostly the middle of it, where most of the data is. What a risk manager actually wants is a tail question:
+
+\`\`\`
+   λ  =  lim   P( X extreme  |  Y extreme )
+        u→1
+
+   "given one asset has a once-in-a-hundred-days move,
+    what is the chance the other does too?"
+\`\`\`
+
+That is **tail dependence**, and it is not determined by correlation. Two joint distributions can share an identical correlation and differ completely in whether their extremes arrive together.
+
+This is where **copulas** come in — a copula separates the individual (marginal) behaviour of each asset from the structure binding them together, so you can fit fat tails to each asset and *separately* choose how their extremes co-occur. Useful, and it exposes exactly where the standard choice goes wrong:
+
+\`\`\`
+   copula          tail dependence λ      meaning
+   ──────────────────────────────────────────────────────────────
+   GAUSSIAN            EXACTLY 0          joint extremes are
+                                          asymptotically impossible,
+                                          for ANY correlation < 1
+   Student-t            > 0               extremes cluster; heavier
+                                          with lower ν
+   Gumbel               > 0 upper tail    asymmetric — models joint
+                                          crashes or joint booms
+\`\`\`
+
+Sit with the first row, because it is genuinely startling. Under a Gaussian copula, **even at a correlation of 0.99, the probability that both assets are simultaneously extreme tends to zero** as you go further into the tail. The model does not merely underestimate joint disasters. It asserts they cannot happen.
+
+## The 2008 version of this sentence
+
+That mathematical property was not academic. David Li's 2000 paper introduced the Gaussian copula as a way to price correlated default in CDOs, and it became the market standard because it was tractable and everyone could agree on it — much as Black–Scholes became a language in M2.4.
+
+The difference is that Black–Scholes' failure mode is visible: the volatility surface (M2.4) is the market openly disagreeing with the model, in public, every day. The Gaussian copula's failure mode was invisible, because its central error concerned an event that had not yet occurred. It said that large numbers of mortgages defaulting *simultaneously* was vanishingly unlikely — a senior CDO tranche could only be hit by a wave of correlated defaults, so senior tranches were rated safe.
+
+Correlated default is precisely what happened. The model's zero tail dependence was not a rounding error; it was the assumption that the actual failure mode was impossible.
+
+The general lesson generalises well past 2008: **a model's most dangerous assumption is the one that makes your specific disaster have probability zero**, because no amount of calibration to ordinary data will ever reveal it.
+
+## What to do instead
+
+\`\`\`
+   ✓ Estimate correlations on STRESSED subsamples, not full
+     history — or at minimum look at both and know the gap.
+   ✓ Use a t-copula, or any structure with non-zero tail
+     dependence, if you are aggregating tail risk at all.
+   ✓ Stress-test with correlations set to 1. If the portfolio only
+     survives because of diversification, it does not survive.
+   ✓ Prefer structural diversification to statistical: assets that
+     differ because of what they ARE, not because their historical
+     returns happened not to line up.
+   ✓ Treat a low measured correlation with suspicion in proportion
+     to how much of your risk budget depends on it.
+\`\`\`
+
+That last point is the honest summary of both this lesson and M3.4. Risk estimates are least reliable exactly where they are load-bearing. The response is not a better estimate — it is a portfolio that does not need the estimate to be right, which is M3.6.
+
+> **Pub test:** Correlation is not a constant, and it moves in the least helpful direction — S&P 500 against NASDAQ over ten years correlates **0.871 on calm days and 0.985 on stressed ones**, so diversification thins out exactly when it is needed. The right concept is **tail dependence**, the probability that one asset is extreme *given* the other is, and the fatal property of the **Gaussian copula** is that its tail dependence is **exactly zero** — under it, joint disasters cannot happen. That assumption, embedded in CDO pricing via Li’s formula, is a large part of why 2008 surprised the models. A **t-copula** has non-zero tail dependence, and correlations used for risk should be estimated on stressed periods, not full samples.
+`},
+  {id:"M3.6", module:"M3", title:"Position sizing under fat tails", done:true,
+   source:"Ed Thorp, *A Man for All Markets*, for Kelly from someone who used it in both casinos and markets. On fractional Kelly and estimation error, MacLean, Thorp & Ziemba, *The Kelly Capital Growth Investment Criterion*. Ole Peters, “The ergodicity problem in economics” (Nature Physics, 2019) is short, well argued, and the clearest statement of the time-average point — a physics paper about finance, which is the theme of this whole module.",
+   body:`
+# Position sizing under fat tails
+
+M3.1 to M3.5 were diagnosis. This is the treatment: given that returns have kurtosis of 20, correlations converge in crises, and every risk estimate is unreliable, **how much should you actually bet?**
+
+It is the stage of M2.1's pipeline that gets the least attention and destroys the most people. A mediocre signal sized sensibly survives. An excellent signal sized aggressively does not — and the fat tails are precisely why.
+
+## Kelly, and what it recommends
+
+The Kelly criterion maximises the long-run *growth rate* of wealth. For continuous returns it has a famously simple form:
+
+\`\`\`
+   f*  =  μ / σ²        the growth-optimal fraction of capital
+
+   S&P 500, 2016–2026:   μ = 12.7%,  σ = 18.1%
+
+   f*  =  0.127 / 0.181²  =  0.127 / 0.0329  =  3.87×  LEVERAGE
+\`\`\`
+
+Kelly says: borrow to hold nearly four times your capital in equities. That should immediately feel wrong, and it is worth understanding *precisely how* it is wrong, because the failure is instructive rather than a flaw in the mathematics.
+
+## Run it through the actual path
+
+Take those same 2,513 real daily returns and apply constant leverage L, rebalanced daily:
+
+\`\`\`
+   leverage    final wealth    max drawdown    worst day
+   ──────────────────────────────────────────────────────────
+      1.00          3.56×          33.9%        −12.0%
+      1.94          8.65×          57.9%        −23.2%   ← half Kelly
+      3.00         16.50×          76.7%        −36.0%
+      3.87         20.73×          86.8%        −46.4%   ← full Kelly
+      5.00         17.97×          94.5%        −59.9%
+\`\`\`
+
+Two rows deserve attention.
+
+**Full Kelly (3.87×) does produce the highest wealth — 20.7× — and an 86.8% drawdown to get it.** That is not a risk of ruin; it is near-certain career death. No allocator, fund, or human tolerates losing 87% en route to a good outcome. Kelly maximises *terminal growth* and is entirely indifferent to the path, which is a mismatch with every real constraint anyone operates under.
+
+**At 5× leverage, wealth actually falls** — 17.97× against 20.73× — while drawdown climbs to 94.5%. This is the clearest possible demonstration that leverage is not monotone in return. Past the growth optimum, **variance drag** dominates: compounding is multiplicative, and a −50% day requires a +100% day to undo. The growth rate under leverage L is approximately
+
+\`\`\`
+   g(L)  ≈  L·μ  −  ½·L²σ²
+
+   linear gain, QUADRATIC penalty — so there is always a peak,
+   and beyond it more risk buys less money
+\`\`\`
+
+Anyone who has levered a good strategy into a bad outcome has met this curve.
+
+## Three reasons to bet less than Kelly says
+
+**1. You don't know μ.** Kelly takes μ and σ as known. M2.1 established that a Sharpe estimate carries a standard error around 0.45 on five years of daily data — so f* = μ/σ² is a ratio of estimated quantities, and the numerator is the badly estimated one. Overestimate μ by a factor of two and you bet twice Kelly, which the table above shows is on the wrong side of the peak. Since the growth curve is *flat near its maximum* but falls steeply beyond it, the asymmetry is decisive: **underbetting costs you a little, overbetting costs you everything.** Half-Kelly captures roughly 75% of the growth for a fraction of the drawdown, which is why it is the practitioner default.
+
+**2. Kelly's derivation assumes continuous rebalancing.** It assumes you can adjust as the price moves. Real markets **gap** — overnight, on news, on 2020-03-16. At 3.87× leverage a −12% gap is a −46% loss with no opportunity to reduce on the way. And M0.7's margin mechanics mean that loss arrives as a *cash call* the following morning. Fat tails plus leverage plus daily settlement is precisely the combination that ends funds.
+
+**3. It assumes you know the distribution.** With α ≈ 3 (M3.2), the moments Kelly needs are estimated from a sample dominated by a handful of days. Sizing off σ when σ itself is unstable is building on the least reliable statistic you have.
+
+## Volatility targeting — the practical alternative
+
+The insight from M3.3 was that volatility is forecastable even when returns aren't. That is exactly what a position sizer needs:
+
+\`\`\`
+                        σ_target
+   position_t  =  ─────────────────────
+                    σ̂_t   (forecast)
+
+   calm market   → σ̂ low  → size UP
+   turbulent     → σ̂ high → size DOWN, automatically
+\`\`\`
+
+This works because it uses the part of the distribution that *is* predictable, and it side-steps the estimation problem that wrecks Kelly — you never need μ, only σ, which is the quantity you can actually forecast. It delivers roughly constant risk through time rather than constant exposure, it de-levers into crises without anyone deciding to, and empirically it improves the Sharpe of most strategies while sharply reducing drawdowns.
+
+It is not free. Vol targeting is **procyclical** — it sells after volatility rises, which is after prices have fallen — so at scale it can amplify the very selloff it responds to. This is a live criticism of risk-parity and vol-target funds as a class, and it is another instance of M3.5's point that the mechanism, not the statistics, transmits stress.
+
+## Drawdown is the real constraint
+
+The deepest reframing here is what you are optimising at all. Variance is the textbook risk measure because it is analytically convenient. Nobody is fired for variance.
+
+\`\`\`
+   what the model minimises      what actually ends things
+   ────────────────────────────────────────────────────────────
+   variance                      DRAWDOWN — investors redeem,
+                                 risk limits bind, you are
+                                 stopped out at the bottom
+   expected loss                 a single day you cannot fund
+   long-run growth rate          a path you do not survive to
+                                 the end of
+\`\`\`
+
+Which surfaces the distinction that makes all this coherent. **Ensemble average is not time average.** Averaged across many parallel traders, a high-leverage strategy might have a wonderful expected return, carried by the few who avoided the bad path. But *you* only get one path. The quantity that governs a single realisation is the time-average growth rate, and it is systematically lower than the expected return whenever returns are multiplicative — dramatically so under leverage and fat tails.
+
+This is the **ergodicity** argument, and it is the rigorous version of an old piece of trading-desk wisdom:
+
+> **Survival is a precondition, not a preference.** A strategy that compounds at 8% for twenty years beats one that compounds at 40% for four and then goes to zero — and the second one looks far better right up until it doesn't.
+
+> **Pub test:** The **Kelly** criterion maximises long-run growth at f* = μ/σ², which on ten years of real S&P data prescribes **3.87× leverage** — and running that through the actual return path gives an **86.8% drawdown** and a **−46% single day**. Push to 5× and terminal wealth *falls* while drawdown reaches 94.5%, because past the optimum, variance drag dominates. Kelly also assumes μ and σ are **known**, and M2.1 showed a Sharpe estimate has a standard error near 0.45, so the optimal fraction is itself an uncertain quantity — which is why practitioners run **half-Kelly or less**. The robust alternatives are **volatility targeting** (scaling by a GARCH forecast, since volatility is predictable when returns aren’t) and treating **drawdown, not variance, as the binding constraint**.
+`},
+  {id:"M3.7", module:"M3", title:"Statistical vs practical significance", done:true,
+   source:"Campbell Harvey’s presidential address, “The Scientific Outlook in Financial Economics” (2017), on significance thresholds in a field that tests thousands of hypotheses. For the self-normalisation result, Logan et al. (1973) is the original; any modern text on self-normalised sums covers it. Eric Falkenstein, *The Missing Risk Premium*, is the roadmap’s pick for the broader theme of results that are statistically real and economically absent.",
+   body:`
+# Statistical vs practical significance
+
+M3 has been a catalogue of ways the Gaussian assumption fails. The natural conclusion — and the one I expected to write — is that the statistical machinery built on it must fail too, so your t-statistics are unreliable and your significance tests are lying.
+
+I tested it. **It isn't true**, and the reason it isn't is more useful than the claim would have been.
+
+## The test that doesn't break
+
+Simulate data with a true mean of **exactly zero**, run an ordinary two-sided t-test at a nominal 5% level, and count how often it wrongly reports significance. Do it for progressively fatter-tailed distributions:
+
+\`\`\`
+   false-positive rate of a nominal 5% t-test  (true mean = 0)
+
+   distribution      n=20     n=60    n=252   n=1260
+   ─────────────────────────────────────────────────────
+   Gaussian          6.1%     5.5%     5.1%     5.0%
+   t(6)              6.2%     5.2%     5.1%     5.3%
+   t(4)              6.3%     5.4%     4.8%     5.3%
+   t(3)              5.8%     5.0%     5.1%     5.0%
+   t(2.5)            5.2%     4.5%     4.2%     4.5%
+   t(2)  ← infinite  5.1%     4.4%     4.3%     4.4%
+          variance
+\`\`\`
+
+The rate sits at roughly 5% everywhere. Even **t(2), which has infinite variance** — a distribution so heavy that the Central Limit Theorem in its standard form does not apply — produces a *conservative* 4.3%, not an inflated one.
+
+The reason is worth knowing because it generalises: **the t-statistic is self-normalising.** It is a ratio, and the same outliers that inflate the sample mean in the numerator also inflate the sample standard deviation in the denominator. The two effects largely cancel. Self-normalised sums have far better limiting behaviour than their unnormalised counterparts — a known result, and a genuinely elegant one.
+
+So: do not go into an interview claiming fat tails break your p-values. They mostly don't. What they break is something else.
+
+## What fat tails actually break
+
+**Stability.** Take the real S&P returns from M3.1 and remove a handful of days:
+
+\`\`\`
+   sample                        ann. return   ann. vol   Sharpe
+   ──────────────────────────────────────────────────────────────
+   all 2,513 days                    12.72%     18.13%     0.70
+   drop 10 largest |moves|           13.09%     16.03%     0.82
+   drop the 10 BEST days              6.21%     16.87%     0.37
+   drop the 10 WORST days            19.54%     16.64%     1.17
+\`\`\`
+
+**Ten days out of 2,513 — four-tenths of one percent of the sample — move the Sharpe ratio between 0.37 and 1.17.** That is the entire range from "not worth doing" to "excellent business," decided by which fortnight you happened to include.
+
+The test statistic is well behaved; the *quantity being estimated* is hostage to a few observations. Which means an in-sample result that looks robust may simply reflect which extremes fell inside your window, and the out-of-sample period will contain different extremes. This is the honest fat-tail problem, and it is far more corrosive than a mis-sized p-value would be, because no amount of statistical rigour fixes it — only more data, which you cannot have.
+
+You saw the same effect in M3.1: a lag-1 autocorrelation of −0.145 that collapses to −0.028 once 2020 is excluded.
+
+**Power, not size.** The tests keep their false-positive rate, but their ability to *detect* a real effect degrades — you need more data than a Gaussian calculation suggests. Combined with M2.1's standard error of ~0.45 on a Sharpe estimate, the picture is consistent: not that you will see things that aren't there, but that you will be unable to confirm the things that are.
+
+## Significance was never the constraint
+
+Now the part that matters more than any of it. Suppose your signal *is* statistically real. That tells you almost nothing about whether it is worth trading.
+
+Let a signal have **information coefficient** IC — the correlation between its prediction and the next day's return. Over the same 2,513 days, with the S&P's real 114 bps daily volatility and a round-trip cost of 5 bps:
+
+\`\`\`
+     IC    t-stat   gross bps/day   net bps/day   gross Sharpe
+   ─────────────────────────────────────────────────────────────
+   0.01      0.50         1.1           −3.9          0.16
+   0.02      1.00         2.3           −2.7          0.32
+   0.05      2.51         5.7           +0.7          0.79
+   0.10      5.01        11.4           +6.4          1.59
+   0.15      7.52        17.1          +12.1          2.38
+\`\`\`
+
+Read the IC = 0.05 row carefully, because it is where most real signals live. It is **statistically significant** — t = 2.51, publishable, and it would survive a referee. It is also worth **0.7 basis points a day** after costs, which is a rounding error that any slippage, any capacity constraint (M1.5), or any mild decay in the signal turns negative.
+
+Meanwhile IC = 0.02 is not significant *and* loses money, and IC = 0.15 is a genuinely excellent signal that essentially nobody has in a liquid market.
+
+The window in which a signal is both **detectable** and **economically worthwhile** is narrow, and its left edge is set by trading costs, not by statistics. Which gives the closing rule of M2 and M3 together:
+
+> **Statistical significance is necessary and nowhere near sufficient. Ask for the effect size in basis points, then subtract the costs, before asking for the p-value.**
+
+## The full checklist
+
+Putting M2.7 and M3 together, when someone shows you a result:
+
+\`\`\`
+   ✓ How big is the effect, in basis points, before any p-value?
+   ✓ What are the costs at the intended size? (M1.5, M2.6)
+   ✓ How many variants were tried before this one? (M2.7)
+   ✓ How much of it rests on a handful of days? Drop the top ten
+     and re-run — if it vanishes, you have an outlier, not an edge.
+   ✓ Does it survive out of sample, on data looked at ONCE?
+   ✓ Is the mechanism plausible, or is it only a correlation?
+   ✓ What is the drawdown, not the variance? (M3.6)
+\`\`\`
+
+The fourth line is M3's specific contribution, and it is the cheapest test on the list.
+
+## Where M3 leaves you
+
+You can now say precisely why the standard toolkit misleads. Returns are not Gaussian — kurtosis 20, six-sigma days six times a decade. Tails follow a power law with α ≈ 3, so the higher moments you casually compute may not exist. Volatility clusters and is forecastable even though direction is not. Risk measures built on normality understate losses by 25% and get breached twice as often as advertised. Correlations rise exactly when diversification is needed. And position sizing, not signal quality, is what determines survival.
+
+That is the module the roadmap said would reward a quantitative background most, and the reason is now clear: **almost none of this is finance.** It is heavy-tailed distributions, long-memory processes, extreme value theory, and multiplicative dynamics — statistical physics with a ticker symbol attached.
+
+M4 changes register entirely, to macro and rates: less mathematics, more institutional knowledge, and the context that explains *why* the moves in this module happen when they do.
+
+> **Pub test:** The folk claim that fat tails invalidate your t-statistics is **wrong**, and testing it shows why — the t-test holds its nominal 5% false-positive rate even under an infinite-variance t(2), because it is **self-normalising** and the outliers inflating the numerator inflate the denominator too. What fat tails actually wreck is **stability** — dropping ten days from 2,513 moves the S&P’s Sharpe from 0.70 to either 0.37 or 1.17, so any statistic is hostage to a handful of observations. And significance was never the binding constraint anyway — an information coefficient of 0.02 is a t-stat of 1.0 and loses money, while 0.05 is comfortably significant (t = 2.5) and still nets under a basis point a day after costs. **Statistical significance is necessary and nowhere near sufficient.**
+`},
 ];
 
 /* ---- M0 item skeleton (titles mirror the progress file) ---- */

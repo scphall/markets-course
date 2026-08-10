@@ -36,10 +36,15 @@ every lesson into static markup.
 
 ## Status
 
-Three modules are written: **M0 — How markets actually work** (8 lessons),
-**M1 — Market microstructure** (7) and **M2 — Quantitative finance
-fundamentals** (7). Modules M3–M6 are designed and sequenced in
-[`ROADMAP.md`](ROADMAP.md) but not yet written.
+Four modules are written: **M0 — How markets actually work** (8 lessons),
+**M1 — Market microstructure** (7), **M2 — Quantitative finance
+fundamentals** (7) and **M3 — Statistics of returns** (7). Modules M4–M6
+are designed and sequenced in [`ROADMAP.md`](ROADMAP.md) but not yet
+written.
+
+M3 works throughout from real S&P 500 daily data (FRED, 2016–2026)
+rather than illustration — every figure in it is reproducible from a
+single CSV download.
 
 M0 favours intuition first; M1 and M2 go further and derive their central
 results (Glosten–Milgrom's spread, Kyle's λ, Black–Scholes by replication,

@@ -33,7 +33,7 @@ else.
 | M0 | How markets actually work | ✅ written (8/8) |
 | M1 | Market microstructure | ✅ written (7/7) |
 | M2 | Quant finance fundamentals | ✅ written (7/7) |
-| M3 | Statistics of returns | ▢ planned |
+| M3 | Statistics of returns | ✅ written (7/7) |
 | M4 | Macro & rates | ▢ planned |
 | M5 | The industry & the firms | ▢ planned |
 | M6 | Reading the news (habit) | ▢ ongoing |
@@ -134,11 +134,21 @@ each means operationally.
 
 ---
 
-## M3 — Statistics of returns · planned
+## M3 — Statistics of returns · written
 
 **Goal:** returns are *not* Gaussian. The heavy-tailed, clustered distributions
 here have more in common with statistical physics than with textbook finance,
 which is where a physics or stats background gives the largest edge.
+
+Lessons (all written, in `course.html`; every figure computed from real S&P 500 daily data, FRED 2016–2026):
+
+- **M3.1 — The stylised facts:** kurtosis 19.7, six days beyond ±6σ, and the split that matters — returns unforecastable, |returns| correlated past 20 lags.
+- **M3.2 — Fat tails and the tail index:** power-law decay, Hill estimation, the inverse cubic law, and why moments above α do not exist.
+- **M3.3 — Volatility clustering & GARCH:** ARCH → GARCH(1,1), fitted persistence 0.975 and a 27-day volatility half-life; why clustering generates fat tails but not all of them.
+- **M3.4 — VaR & expected shortfall:** the two measures, coherence and subadditivity, and why Basel moved to ES.
+- **M3.5 — Correlation breakdown & tail dependence:** correlations rising in stress, copulas, and the Gaussian copula's zero tail dependence.
+- **M3.6 — Position sizing under fat tails:** Kelly at 3.87x leverage and an 86.8% drawdown, fractional Kelly, vol targeting, and ergodicity.
+- **M3.7 — Statistical vs. practical significance:** fat tails do *not* break the t-test; estimator instability and effect-size-versus-cost are the real constraints.
 
 **Materials:** Benoît Mandelbrot, *The (Mis)behavior of Markets* (required);
 Rama Cont, "Empirical properties of asset returns: stylized facts and
