@@ -59,7 +59,7 @@
 <a id="top"></a>
 <div class="wrap">
   <h1 class="site">markets // course</h1>
-  <div class="sub">mobile reader · 29 lessons taught · static (no-JS) build</div>
+  <div class="sub">mobile reader · 35 lessons taught · static (no-JS) build</div>
   <div class="toc"><div class="toc-mod"><div class="toc-h">M0 · How markets actually work</div><a class="toc-i done" href="#L_M0_1">✓ M0.1 — What a market is</a><a class="toc-i done" href="#L_M0_2">✓ M0.2 — The limit order book</a><a class="toc-i done" href="#L_M0_3">✓ M0.3 — Order types: market vs limit; click→settlement</a><a class="toc-i done" href="#L_M0_4">✓ M0.4 — The bid-ask spread</a><a class="toc-i done" href="#L_M0_5">✓ M0.5 — Asset classes</a><a class="toc-i done" href="#L_M0_6">✓ M0.6 — Venues & plumbing</a><div class="toc-i gate">▢ GATE M0 — Module test</div></div><div class="toc-mod"><div class="toc-h">M1 · Market microstructure</div><a class="toc-i done" href="#L_M1_1">✓ M1.1 — The microstructure lens</a><a class="toc-i done" href="#L_M1_2">✓ M1.2 — Adverse selection (Glosten–Milgrom)</a><a class="toc-i done" href="#L_M1_3">✓ M1.3 — Inventory models & quote skewing</a><a class="toc-i done" href="#L_M1_4">✓ M1.4 — The Kyle (1985) model</a><div class="toc-i gate">▢ CHECKPOINT M1 — Mid-module test</div><a class="toc-i done" href="#L_M1_5">✓ M1.5 — Price impact & the square-root law</a><a class="toc-i done" href="#L_M1_6">✓ M1.6 — Latency & the HFT layer</a><a class="toc-i done" href="#L_M1_7">✓ M1.7 — Flow toxicity & maker-taker economics</a><div class="toc-i gate">▢ GATE M1 — Module test</div></div><div class="toc-mod"><div class="toc-h">M2 · Quant finance fundamentals</div></div><div class="toc-mod"><div class="toc-h">M3 · Statistics of returns</div></div><div class="toc-mod"><div class="toc-h">M4 · Macro & rates</div></div><div class="toc-mod"><div class="toc-h">M5 · The industry & the firms</div></div><div class="toc-mod"><div class="toc-h">M6 · Reading the news (habit)</div></div></div>
   <section id="L_M0_1"><div class="kicker">M0 · M0.1</div><h1>What a market is</h1>
 <p>Strip away the screens and the jargon and a market is just <strong>a place where people who want to buy meet people who want to sell, and a price gets discovered in the process.</strong> Everything else — exchanges, order books, high-frequency trading — is machinery built on top of that one idea.</p>
@@ -1773,7 +1773,346 @@ for c in (0.0, 0.25, 0.50, 1.00):
 <p>You can now say precisely why the standard toolkit misleads. Returns are not Gaussian — kurtosis 20, six-sigma days six times a decade. Tails follow a power law with α ≈ 3, so the higher moments you casually compute may not exist. Volatility clusters and is forecastable even though direction is not. Risk measures built on normality understate losses by 25% and get breached twice as often as advertised. Correlations rise exactly when diversification is needed. And position sizing, not signal quality, is what determines survival.</p>
 <p>That is the module the roadmap said would reward a quantitative background most, and the reason is now clear: <strong>almost none of this is finance.</strong> It is heavy-tailed distributions, long-memory processes, extreme value theory, and multiplicative dynamics — statistical physics with a ticker symbol attached.</p>
 <p>M4 changes register entirely, to macro and rates: less mathematics, more institutional knowledge, and the context that explains <em>why</em> the moves in this module happen when they do.</p>
-<blockquote><p><strong>Pub test:</strong> The folk claim that fat tails invalidate your t-statistics is <strong>wrong</strong>, and testing it shows why — the t-test holds its nominal 5% false-positive rate even under an infinite-variance t(2), because it is <strong>self-normalising</strong> and the outliers inflating the numerator inflate the denominator too. What fat tails actually wreck is <strong>stability</strong> — dropping ten days from 2,513 moves the S&amp;P’s Sharpe from 0.70 to either 0.37 or 1.17, so any statistic is hostage to a handful of observations. And significance was never the binding constraint anyway — an information coefficient of 0.02 is a t-stat of 1.0 and loses money, while 0.05 is comfortably significant (t = 2.5) and still nets under a basis point a day after costs. <strong>Statistical significance is necessary and nowhere near sufficient.</strong></p></blockquote><div class="source"><b>↳ go deeper:</b> Campbell Harvey’s presidential address, “The Scientific Outlook in Financial Economics” (2017), on significance thresholds in a field that tests thousands of hypotheses. For the self-normalisation result, Logan et al. (1973) is the original; any modern text on self-normalised sums covers it. Eric Falkenstein, <em>The Missing Risk Premium</em>, is the roadmap’s pick for the broader theme of results that are statistically real and economically absent.</div><a class="top" href="#top">↑ contents</a></section>
+<blockquote><p><strong>Pub test:</strong> The folk claim that fat tails invalidate your t-statistics is <strong>wrong</strong>, and testing it shows why — the t-test holds its nominal 5% false-positive rate even under an infinite-variance t(2), because it is <strong>self-normalising</strong> and the outliers inflating the numerator inflate the denominator too. What fat tails actually wreck is <strong>stability</strong> — dropping ten days from 2,513 moves the S&amp;P’s Sharpe from 0.70 to either 0.37 or 1.17, so any statistic is hostage to a handful of observations. And significance was never the binding constraint anyway — an information coefficient of 0.02 is a t-stat of 1.0 and loses money, while 0.05 is comfortably significant (t = 2.5) and still nets under a basis point a day after costs. <strong>Statistical significance is necessary and nowhere near sufficient.</strong></p></blockquote><div class="source"><b>↳ go deeper:</b> Campbell Harvey’s presidential address, “The Scientific Outlook in Financial Economics” (2017), on significance thresholds in a field that tests thousands of hypotheses. For the self-normalisation result, Logan et al. (1973) is the original; any modern text on self-normalised sums covers it. Eric Falkenstein, <em>The Missing Risk Premium</em>, is the roadmap’s pick for the broader theme of results that are statistically real and economically absent.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M4_1"><div class="kicker">M4 · M4.1</div><h1>Rates are the price of time</h1>
+<p>M3 ended in statistical physics. M4 changes register completely — less mathematics, more institutions, and the context that explains <em>why</em> the moves in earlier modules happen when they do.</p>
+<p>But it starts with a debt. M0.5 said bonds are "priced in <strong>yield</strong>, not just price" and moved on. The course has never said what a yield is, and every remaining lesson in this module depends on it.</p>
+<h2>Yield is a summary, not a rate you are paid</h2>
+<p>A bond is a fixed schedule of future cashflows. It has a price today. The <strong>yield to maturity</strong> is the single discount rate that reconciles the two:</p>
+<pre class="diagram">                  C          C                C + F
+      P  =  ───────── + ─────────── + … + ───────────
+             (1 + y)     (1 + y)²           (1 + y)ⁿ
+
+      P = price today    C = coupon    F = face value    n = years
+      y = YIELD — the one rate that makes this equation true</pre>
+<p>Three consequences worth stating explicitly:</p>
+<p><strong>Price and yield move inversely, always.</strong> They are two views of one quantity. "Bonds sold off" and "yields rose" are the same sentence. Beginners lose a surprising amount of time to this.</p>
+<p><strong>Yield is a summary statistic, not a promise.</strong> It is the return you earn <em>if</em> you hold to maturity <em>and</em> reinvest every coupon at the same rate y. That reinvestment assumption is rarely true, which is why yield is a comparison device rather than a forecast.</p>
+<p><strong>It makes bonds comparable.</strong> M0.5's point lands here: one issuer floats many bonds with different coupons and maturities, so raw prices are meaningless across them. Yield puts them on one axis, which is why the market quotes it.</p>
+<h2>Duration — how much you lose when rates rise</h2>
+<p>The question that matters is sensitivity. Differentiate the pricing formula and you get a weighted average of the times at which cashflows arrive:</p>
+<pre class="diagram">   Macaulay duration  D   =  Σ t·PV(cashflow_t) / P        (in years)
+
+   Modified duration  MD  =  D / (1 + y)
+
+                     ΔP/P  ≈  −MD × Δy</pre>
+<p>For a 10-year bond with a 4% annual coupon, priced at par:</p>
+<pre class="diagram">   price 100.00     Macaulay duration 8.44 years
+                    modified duration 8.11
+                    convexity 80.8</pre>
+<p>So <strong>+100bp of yield costs about 8.1% of price.</strong> Duration is the single number that tells you what a rate move does to a bond, and it is why "long duration" and "rate-sensitive" mean the same thing.</p>
+<p>Two things follow that are worth having as reflexes: duration rises with maturity (cashflows are further away) and <em>falls</em> with coupon (a high coupon returns your money sooner, so the average cashflow arrives earlier). A zero-coupon bond has duration exactly equal to its maturity, because there is only one cashflow.</p>
+<h2>Convexity — and why it is a gift</h2>
+<p>Duration is a first derivative, so it is a straight line approximating a curve. Push the yield far and the approximation drifts:</p>
+<pre class="diagram">        Δy    actual price   actual %   duration says   + convexity
+   ─────────────────────────────────────────────────────────────────
+    −200bp        117.97      +17.97%       +16.22%        +17.84%
+    −100bp        108.53       +8.53%        +8.11%         +8.51%
+     −50bp        104.16       +4.16%        +4.06%         +4.16%
+     +50bp         96.04       −3.96%        −4.06%         −3.95%
+    +100bp         92.28       −7.72%        −8.11%         −7.71%
+    +200bp         85.28      −14.72%       −16.22%        −14.61%
+    +300bp         78.93      −21.07%       −24.33%        −20.70%</pre>
+<p>Look at the ±200bp rows together. Duration predicts a symmetric ±16.22%. The truth is <strong>−14.72% down, +17.97% up</strong> — you lose less than predicted and gain more than predicted, in <em>both</em> directions.</p>
+<p>That asymmetry is <strong>convexity</strong>, the second derivative, and for an ordinary bond it is positive:</p>
+<pre class="diagram">   ΔP/P  ≈  −MD·Δy  +  ½·C·(Δy)²
+                        ────────────
+                        always positive — it ADDS in both directions</pre>
+<p>Adding that term (the last column) tracks reality closely out to ±300bp. Positive convexity is genuinely valuable — it is optionality in a bond, and it is why convexity is quoted and paid for. Instruments with <em>negative</em> convexity, most notably mortgage-backed securities where borrowers refinance when rates fall, have exactly the opposite and much nastier profile.</p>
+<h2>2022, so this doesn't stay theoretical</h2>
+<p>Bonds are widely described as the safe asset. Here is what "safe" did in a single year:</p>
+<pre class="diagram">   10-year Treasury yield,  2022-01-03  →  2022-12-30
+
+              1.63%   →   3.88%          (+225 basis points)
+
+   a 10-year bond over that move:   −17%</pre>
+<p>A −17% year in the asset held precisely because it is <em>not</em> supposed to do that. No default, no credit event, nothing exotic — just duration meeting a 225bp move. And bonds fell in the same year equities did, which is not supposed to happen either; that part is M4.6.</p>
+<p>The mechanism is now completely unmysterious to you, which is the point of this lesson. <strong>Duration times the rate move.</strong> Everything else in M4 is about why the rate moved.</p>
+<blockquote><p><strong>Pub test:</strong> A bond’s <strong>yield</strong> is the single discount rate that makes its future cashflows equal today’s price, so price and yield move <strong>inversely</strong> and quoting in yield lets bonds with different coupons and maturities be compared. <strong>Duration</strong> is the sensitivity — a 10-year 4% bond has modified duration ≈ 8.1, so +100bp costs roughly 8%. Duration is only a first derivative, so it errs on big moves; <strong>convexity</strong> is the second, and it works in the holder’s favour — at ±200bp the actual loss is 14.7% against duration’s predicted 16.2%, while the actual gain is 18.0% against 16.2%. This is not abstract — in 2022 the 10-year yield rose 225bp and a 10-year bond lost about <strong>17%</strong>.</p></blockquote><div class="source"><b>↳ go deeper:</b> any fixed-income primer covers this; Bruce Tuckman, <em>Fixed Income Securities</em>, ch.4–6 is the standard if you want it properly. The numbers above are from FRED series \<code>DGS10\</code> and a page of arithmetic — worth reproducing, since duration is one of those quantities that only becomes intuitive once you have watched it mis-predict a large move.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M4_2"><div class="kicker">M4 · M4.2</div><h1>What a central bank actually does</h1>
+<p>Central banking sounds enormous and is, mechanically, quite narrow. <strong>A central bank sets one price.</strong> Everything that follows — mortgages, corporate borrowing, currencies, equity valuations — is transmission from that single number.</p>
+<p>Getting clear on what the number <em>is</em> removes most of the mystery.</p>
+<h2>The one price</h2>
+<p>The policy rate is the interest rate on <strong>overnight lending of reserves between banks</strong> — the Fed funds rate in the US, Bank Rate in the UK, the deposit facility rate in the euro area. Banks hold reserve accounts at the central bank; at the end of each day some have more than they need and some less; they lend to each other overnight; that market has a price.</p>
+<p>The central bank controls that price, and only that price, directly.</p>
+<p>Note what this is <strong>not</strong>. It is not the rate on your mortgage, a corporate bond, or a government bond. It is the shortest, safest rate in the system — the anchor from which all others are quoted at a spread.</p>
+<h2>How the rate is actually enforced</h2>
+<p>Textbooks describe open-market operations: the central bank buys or sells securities to change the quantity of reserves, and a scarce supply meeting demand determines the price. That was broadly true before 2008 and is <strong>not how it works now</strong>.</p>
+<p>Since the crisis, reserves are abundant — QE created trillions of them — so scarcity cannot set the price. Modern implementation is a <strong>floor system</strong>:</p>
+<pre class="diagram">   the central bank simply PAYS INTEREST ON RESERVES at its target rate
+
+   ⟹  no bank lends to another bank below that rate, because it can
+       earn the target risk-free by leaving the money at the central bank
+
+   ⟹  the rate the central bank pays becomes a FLOOR that drags the
+       whole overnight market to it, regardless of quantity</pre>
+<p>Supporting facilities catch the edges — a standing repo facility above and a reverse-repo facility below form a corridor for entities that cannot earn interest on reserves. But the essential mechanism is that <strong>the central bank sets the rate by announcing what it will pay</strong>, not by rationing supply. It is administered, not traded into place.</p>
+<h2>Why one overnight rate moves everything</h2>
+<p>An overnight rate is, by itself, irrelevant to a thirty-year mortgage. It matters because of an arbitrage-flavoured relationship you already have the tools for:</p>
+<blockquote><p>A long rate is approximately the <strong>average of expected future short rates</strong>, plus compensation for the risk of being wrong about that path.</p></blockquote>
+<p>Lending for two years should pay roughly what rolling one-year loans is expected to pay, or one of the two is mispriced. So the entire curve of interest rates is, to a first approximation, <strong>the market's forecast of the central bank's future decisions</strong> — which is what M4.4 is about.</p>
+<p>That has a consequence which surprises people watching their first rate decision:</p>
+<pre class="diagram">   the DECISION is usually already priced — markets have inferred it
+   from data and speeches for weeks
+
+   what moves prices is the CHANGE IN THE EXPECTED PATH:
+     · the statement's wording
+     · the "dot plot" of officials' rate projections
+     · the press conference
+     · anything implying the path is higher/lower for longer</pre>
+<p><strong>A 25bp hike that was fully expected can leave markets unmoved, while an unchanged rate with a hawkish sentence can move them violently.</strong> This is why "forward guidance" is a policy tool in its own right: talking about future rates changes long rates today, at no cost, without touching the policy rate at all.</p>
+<h2>When the policy rate runs out</h2>
+<p>The policy rate cannot fall far below zero — depositors can hold cash instead, so there is an effective lower bound. In 2008 and again in 2020, central banks reached it and needed something else.</p>
+<pre class="diagram">   QE — quantitative easing
+     buy long-dated government (and other) bonds with newly created
+     reserves. Removes duration from the market, which compresses the
+     TERM PREMIUM (M4.4) and pushes long yields down even with the
+     policy rate stuck at zero. Also a signalling device — it commits
+     the bank to a stance more credibly than words.
+
+   QT — quantitative tightening
+     the reverse, usually passive: let bonds mature without
+     reinvesting, shrinking the balance sheet gradually.</pre>
+<p>QE is often described as "printing money". The mechanically accurate description is <strong>an asset swap</strong>: the central bank exchanges reserves for bonds, changing the <em>composition</em> of what the private sector holds rather than its net wealth. Whether that is inflationary is genuinely contested — 2009–2019 saw enormous QE and persistently <em>below</em>-target inflation, which is a real problem for the simple story, and 2021–22's inflation followed fiscal transfers and supply shocks at least as much as balance-sheet growth.</p>
+<h2>The mandate, and what it isn't</h2>
+<pre class="diagram">   Federal Reserve      DUAL mandate — stable prices AND maximum
+                        employment. Explains why US decisions hinge
+                        on payrolls data as much as on CPI.
+   Bank of England      inflation target (2%), with a secondary
+                        growth/employment objective.
+   ECB                  price stability, primary and near-singular.</pre>
+<p>None of them has a mandate for the stock market. Equities matter only through the <em>wealth effect</em> and financial conditions — as a transmission channel, not a goal. "The Fed won't let stocks fall" is a claim about reaction functions, not about mandates, and it is a claim that 2022 tested and falsified.</p>
+<p>That is also the honest framing of central bank independence: the whole design assumes politicians want lower rates before elections and someone else should be able to say no.</p>
+<p>Which leaves the question the next lesson answers — <strong>if the mandate is inflation, why does every equity trader watch the decision?</strong></p>
+<blockquote><p><strong>Pub test:</strong> A central bank sets <strong>one</strong> price — the overnight rate at which banks lend reserves to each other — and everything else is transmission. Modern implementation is a <strong>floor system</strong> rather than scarcity, so the rate paid on reserves sets the whole market rather than open-market operations nudging a scarce supply. That one overnight rate propagates outward because every longer rate is roughly an expectation of the path of short rates, which is why <strong>forward guidance moves markets more than the decision</strong> — the decision is usually priced already. <strong>QE</strong> is the tool for when the policy rate hits zero, buying long bonds to compress term premium; <strong>QT</strong> unwinds it. The mandate is inflation, and often employment, not the stock market.</p></blockquote><div class="source"><b>↳ go deeper:</b> for mechanics, any central-bank primer on implementation — the Fed's own "Policy Implementation" explainers are short and unusually clear about the floor system, which most textbooks still describe wrongly. Matt Levine's <em>Money Stuff</em> is the roadmap's pick for absorbing this by osmosis; start reading it now rather than after the module.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M4_3"><div class="kicker">M4 · M4.3</div><h1>From the policy rate to the stock price</h1>
+<p>The central bank sets an overnight rate and has no mandate for equities. Yet every equity desk stops for the decision. This lesson is the transmission — the first of the roadmap's three self-assessment targets, and the one that makes macro matter to someone who only trades stocks.</p>
+<p>There are three channels. They can push in the same direction or fight each other, which is why the market's reaction to a hike is not always obvious in advance.</p>
+<h2>Channel 1 — the discount rate</h2>
+<p>A stock is a claim on future cashflows, and future cashflows must be discounted:</p>
+<pre class="diagram">              CF₁        CF₂        CF₃
+      P  =  ─────── + ───────── + ───────── + …
+             (1+r)     (1+r)²     (1+r)³</pre>
+<p>That is the same equation as M4.1's bond, with uncertain cashflows and no maturity. <strong>Raise r and every term shrinks</strong> — mechanically, before any change to the business.</p>
+<p>And because the exponent grows with t, distant cashflows shrink <em>most</em>. Which gives the single most useful idea in this lesson:</p>
+<blockquote><p><strong>Equities have duration too.</strong> A company whose profits arrive in twenty years is a long-duration asset and behaves like a long bond. A company earning cash now is short-duration.</p></blockquote>
+<pre class="diagram">   long-duration equities            short-duration equities
+   ─────────────────────────────────────────────────────────────
+   unprofitable growth, biotech,     utilities, consumer staples,
+   early-stage tech — value is       banks, energy — cash now,
+   nearly all terminal value         modest growth
+   HIGHLY rate-sensitive             far less rate-sensitive</pre>
+<p>This is why "the growth selloff" and "rates rose" are so often the same event, and why 2022's rate shock hit the Nasdaq far harder than the Dow. Not sentiment about technology — <strong>duration</strong>, in the M4.1 sense, applied to equities.</p>
+<h2>Channel 2 — earnings</h2>
+<p>The policy rate is raised to slow the economy, and a slower economy earns less. Higher borrowing costs squeeze corporate margins, capex is deferred, consumers with mortgages and credit-card debt spend less.</p>
+<p>This channel is <strong>slower and less certain</strong> than the discount channel. Discounting repricing happens in minutes; earnings damage arrives over quarters, and might not arrive at all if the central bank engineers a soft landing. Much of the argument in any tightening cycle is precisely about how much of channel 2 to expect.</p>
+<h2>Channel 3 — the risk premium and the alternative</h2>
+<p>When the risk-free rate is zero, holding equities is close to compulsory — the phrase was <strong>TINA</strong>, "there is no alternative". When cash pays 5%, there very much is an alternative, and equities must compete for capital against a genuinely attractive risk-free return.</p>
+<p>The classic framing:</p>
+<pre class="diagram">   equity risk premium  ≈  expected equity return  −  risk-free rate
+
+   risk-free rate up, expected equity return unchanged
+        ⟹  the compensation for taking equity risk has FALLEN
+        ⟹  equity prices must fall until it is restored</pre>
+<p>It is also a flow story, not only a valuation one: money-market funds and short-dated bonds genuinely compete for allocation when they yield 5%.</p>
+<h2>Why the decision itself does so little</h2>
+<p>From M4.2 — the decision is usually priced weeks ahead. What repricing happens on the day comes from the change in the <strong>expected path</strong>.</p>
+<pre class="diagram">   scenario                                    typical equity reaction
+   ─────────────────────────────────────────────────────────────────────
+   25bp hike, fully expected, neutral tone     ≈ nothing
+   no change, but "higher for longer"          DOWN — path revised up
+   50bp hike, but signals it is the last       UP — path revised down
+   25bp cut, but warns of recession            DOWN — channel 2 dominates</pre>
+<p>Look at the last two rows together. In one, a <em>hike</em> lifts equities; in the other a <em>cut</em> sinks them. Neither is perverse once you see that the market is trading the <strong>path</strong> and the <strong>reason</strong>, not the level.</p>
+<h2>Good news is bad news</h2>
+<p>The most confusing regime for a newcomer, and it follows directly:</p>
+<pre class="diagram">   strong payrolls  →  economy running hot  →  central bank likely to
+   tighten further  →  higher expected path  →  higher discount rate
+                    →  EQUITIES FALL ON GOOD ECONOMIC NEWS</pre>
+<p>This inversion holds while the central bank is the dominant variable — 2022–23 being the clearest recent example, when strong labour data reliably sold equities off. It flips back to "good news is good news" once the tightening cycle is over and channel 2 (earnings) dominates again.</p>
+<p><strong>Knowing which regime you are in is most of what "following the macro" means.</strong> It is not a forecast; it is knowing which channel the market is currently trading.</p>
+<h2>The honest caveat</h2>
+<p>This is a set of mechanisms, not a model with predictive power. The channels have different speeds and can offset — a hike that raises the discount rate but convinces the market inflation is beaten can lift equities outright. Anyone who tells you a rate decision has a reliable directional effect on stocks is selling something.</p>
+<p>What the framework buys you is the ability to <em>read</em> a move after the fact and to know which data matters. That is what the roadmap means by "enough macro to follow conversations about what's moving markets and why" — and it is deliberately less than a forecast.</p>
+<blockquote><p><strong>Pub test:</strong> A rate decision reaches equities through three channels — the <strong>discount rate</strong> (higher r shrinks the present value of distant cashflows), <strong>earnings</strong> (tighter policy slows the economy and cuts profits), and the <strong>risk premium</strong> (a higher risk-free rate makes bonds a genuine alternative). The discount channel explains why <strong>long-duration equities</strong> — growth names whose cashflows are years away — fall hardest, exactly the M4.1 mechanism applied to stocks. It also explains <strong>“good news is bad news”</strong>, where strong data sells off equities because it raises the expected policy path. And since the decision is usually priced, what actually moves prices is the change in the <strong>expected path</strong>, not the change itself.</p></blockquote><div class="source"><b>↳ go deeper:</b> Howard Marks, <em>Mastering the Market Cycle</em>, for the cycle-level version of the same argument, and it is the roadmap’s pick. For the discount-rate channel done rigorously, any equity-valuation text on DCF; the duration-of-equities framing is worth searching for in sell-side research, where it is usually explained better than in textbooks.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M4_4"><div class="kicker">M4 · M4.4</div><h1>The yield curve and inversion</h1>
+<p>Plot yield against maturity and you get the <strong>yield curve</strong> — the single most-watched picture in macro, and the second of the roadmap's self-assessment targets.</p>
+<pre class="diagram">   yield
+     │                          ╭──────────  NORMAL (upward-sloping)
+     │                     ╭────╯
+     │                ╭────╯
+     │           ╭────╯
+     │      ╭────╯
+     │ ╭────╯
+     └─┬────┬────┬────┬────┬────┬────┬────▶  maturity
+      3m   1y   2y   5y   10y  20y  30y</pre>
+<h2>What the shape means</h2>
+<p>From M4.2, a long rate is roughly the average of expected future short rates. Add one more piece and the whole curve is explained:</p>
+<pre class="diagram">   long yield  ≈  average expected future short rates  +  TERM PREMIUM
+                  ───────────────────────────────────     ─────────────
+                  what the market thinks the central       compensation
+                  bank will do                             for the risk
+                                                           of being wrong</pre>
+<p><strong>Term premium</strong> exists because lending for thirty years is riskier than rolling overnight — you bear inflation risk, rate risk, and the duration exposure of M4.1. Normally you must be paid for that, which is why the curve usually slopes up even when no rate change is expected.</p>
+<p>That decomposition matters because the two components have completely different meanings. A rise in long yields driven by <em>expectations</em> says the market expects tighter policy; one driven by <em>term premium</em> says the market wants more compensation to hold duration — a fiscal-supply or uncertainty story. QE (M4.2) works almost entirely on the second.</p>
+<h2>Inversion</h2>
+<p>An <strong>inverted</strong> curve — long yields below short — is strange on its face. Why accept less for locking money up longer?</p>
+<p>Because you would only do it if you expected short rates to be <strong>much lower</strong> in future. Inversion is the market saying the policy rate is going to be <em>cut</em>, and the central bank cuts when the economy is deteriorating.</p>
+<pre class="diagram">   INVERTED
+   yield
+     │ ╰────╮
+     │      ╰────╮
+     │           ╰────╮
+     │                ╰────╮
+     │                     ╰─────────────
+     └─┬────┬────┬────┬────┬────┬────┬───▶  maturity
+      3m   1y   2y   5y   10y  20y  30y
+
+   short rates HIGH — the central bank is currently tight
+   long rates LOWER — the market expects cuts, i.e. a downturn</pre>
+<p>So the curve is not a mystical indicator. <strong>It is an aggregated forecast</strong>, and the reason people respect it is that this particular forecast has an unusually good record.</p>
+<p>The standard measure is the <strong>2s10s</strong> — the 10-year yield minus the 2-year.</p>
+<h2>The record, honestly</h2>
+<p>Every US recession since 1976, checked against every sustained 2s10s inversion:</p>
+<pre class="diagram">      inversion episode        days   next recession   lead time
+   ─────────────────────────────────────────────────────────────
+   1978-08-18 → 1980-05-01      423     1980-02-01     17 months
+   1980-09-12 → 1982-07-16      400     1981-08-01     11 months
+   1988-12-13 → 1989-11-06      174     1990-08-01     20 months
+   1990-03-08 → 1990-03-29       16     1990-08-01      5 months
+   1998-05-26 → 1998-07-27       27     2001-04-01     34 months
+   2000-02-02 → 2000-12-28      227     2001-04-01     14 months
+   2005-12-27 → 2007-06-05      238     2008-01-01     24 months
+   2022-07-06 → 2024-09-05      539       none yet</pre>
+<p>Three readings, and you need all three.</p>
+<p><strong>The hit rate is remarkable.</strong> Every one of the six NBER recessions in this window was preceded by an inversion. Very few macro indicators can claim that.</p>
+<p><strong>The lead time is useless.</strong> Five months to thirty-four. An indicator that says "a recession will begin somewhere between next quarter and three years hence" cannot be traded, and the 1998 episode — 34 months to a recession that arrived for unrelated reasons — is arguably a false positive that history flattered.</p>
+<p><strong>The most recent one has not worked.</strong> The 2022–24 inversion ran <strong>539 days, the longest in the whole sample</strong>, ended in September 2024, and no recession has followed. That is either the first clean failure, or a lead time longer than any on record. Anyone who tells you confidently which is being clever after the fact.</p>
+<p>The honest summary: <strong>a genuinely good recession indicator, with a lead time so variable it cannot time anything, and one live counterexample.</strong></p>
+<h2>Why it might work — and why it might stop</h2>
+<p>Two families of explanation, and they differ in whether the signal survives.</p>
+<p><strong>Causal.</strong> An inverted curve is bad for banks, which borrow short and lend long — it compresses their margin, so they lend less, and less credit slows the economy. Here the curve <em>contributes</em> to the recession, and the signal should keep working.</p>
+<p><strong>Informational.</strong> Inversion is only the bond market forecasting cuts, and the bond market happens to be good at that. Here the curve causes nothing and merely aggregates. The signal survives only while that forecast stays good.</p>
+<p>There is also a specific reason for caution now: after a decade of QE, <strong>term premium was heavily compressed</strong> by central bank buying (M4.2). If the normal upward slope is partly term premium and term premium has been artificially squeezed, then the curve inverts on smaller expectation changes than it used to — the threshold moved, so the historical base rates may not transfer.</p>
+<p>Which is a good general lesson about macro indicators, and the connection back to M3.7: <strong>a relationship estimated across regimes may not survive a change of regime</strong>, and the sample here is <em>six</em> recessions. Six. Every confident claim about the yield curve rests on a sample size you would laugh at in any other context.</p>
+<blockquote><p><strong>Pub test:</strong> The yield curve plots yield against maturity, and it is normally upward-sloping because long rates carry a <strong>term premium</strong> on top of expected future short rates. It <strong>inverts</strong> when the market expects the policy rate to be <em>cut</em>, which usually means it expects a recession — so inversion is the market forecasting easing, not causing it. The record since 1976 is genuinely strong — <strong>every US recession was preceded by a 2s10s inversion</strong> — but the lead time ranges from <strong>5 to 34 months</strong>, which makes it useless for timing. And the signal is not infallible — the <strong>2022–24 inversion lasted 539 days, the longest in the sample, and no recession has followed</strong>.</p></blockquote><div class="source"><b>↳ go deeper:</b> Campbell Harvey’s work is the origin of the curve-as-recession-predictor literature. The New York Fed publishes a recession-probability model built on the 3m10y spread and its methodology is public. Numbers above computed from FRED series \<code>DGS10\</code>, \<code>DGS2\</code> and \<code>USREC\</code> — the NBER indicator — and reproducible in a page of code.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M4_5"><div class="kicker">M4 · M4.5</div><h1>Inflation, real rates and breakevens</h1>
+<p>Everything in M4 so far has discussed rates as one number. But a 5% yield means something completely different when inflation is 2% than when it is 8%, and markets price that distinction explicitly.</p>
+<h2>The Fisher relation</h2>
+<pre class="diagram">   nominal yield  ≈  real yield  +  expected inflation
+
+   5% nominal with 2% inflation  →  ~3% real — you gain purchasing power
+   5% nominal with 8% inflation  →  ~−3% real — you lose it, while
+                                     "earning" 5%</pre>
+<p>The real rate is the one that governs behaviour. It is what a borrower actually pays in goods, what a saver actually earns, and what belongs in the discount rate of M4.3 when the cashflows themselves grow with inflation. <strong>A negative real rate means lenders are paying for the privilege</strong>, which is why it reliably produces borrowing, leverage and asset-price inflation.</p>
+<h2>Markets quote both</h2>
+<p>Governments issue <strong>index-linked bonds</strong> — TIPS in the US, linkers in the UK — whose principal and coupons rise with a published inflation index. Their yield is therefore a <strong>real</strong> yield, directly observable.</p>
+<p>Put the two bonds side by side and the difference is the market's inflation compensation:</p>
+<pre class="diagram">   nominal 10-year yield   −   real (TIPS) 10-year yield   =   BREAKEVEN
+
+   today (2026-08-07):
+        nominal   4.65%
+        real      2.40%
+        breakeven 2.25%</pre>
+<p>Called the breakeven because it is the inflation rate at which the two bonds deliver the same return — above it, the linker wins; below it, the nominal.</p>
+<p><strong>One honest caveat, immediately.</strong> In FRED the breakeven series is <em>constructed</em> as nominal minus real, so checking that the three numbers add up validates nothing — it is a definition, not a finding. The content is in the decomposition, not in the identity.</p>
+<p>A second caveat with real teeth: the breakeven is <strong>not</strong> pure expected inflation. It also contains an <strong>inflation risk premium</strong> (compensation for the risk that inflation surprises) and a <strong>liquidity premium</strong> (TIPS trade far less than nominal Treasuries, so their yield carries an illiquidity concession — exactly the Amihud–Mendelson effect from M1.3). Both push the measured breakeven around independently of what anyone expects. Treat it as a useful market-implied indicator, not a survey of beliefs.</p>
+<h2>2022, decomposed</h2>
+<p>M4.1 showed a 10-year bond losing 17% as yields rose 225bp. The obvious story is that inflation hit 9% and the bond market repriced inflation. Split the move and that story collapses:</p>
+<pre class="diagram">                     nominal      real     breakeven
+   ──────────────────────────────────────────────────
+   start 2022          1.63%     −0.97%       2.60%
+   end 2022            3.88%     +1.58%       2.30%
+   ──────────────────────────────────────────────────
+   change             +225bp     +255bp       −30bp</pre>
+<p><strong>The real yield supplied more than the entire move, and breakevens fell.</strong></p>
+<p>Sit with that, because it is genuinely counterintuitive. In the year of the largest inflation shock in four decades, the bond market's implied expectation of <em>future</em> inflation went <strong>down</strong>. What repriced was the real cost of money — from −0.97%, deeply negative, to +1.58%.</p>
+<p>The interpretation is coherent once stated: the market never believed 9% inflation would persist. It believed the central bank would raise rates far enough to stop it, and priced exactly that — a much higher real rate, and inflation returning to target. <strong>2022 was a credibility story, not an expectations story.</strong> The bond market was, in effect, marking to market its confidence in M4.2's institution.</p>
+<p>And it explains M4.3's equity carnage precisely. A real rate moving from −1% to +1.6% is the discount rate in the DCF rising by 255bp, which crushes long-duration cashflows. It was not fear of inflation that de-rated growth equities; it was the end of free money.</p>
+<h2>Why negative real rates were such a big deal</h2>
+<p>Look again at that starting point: <strong>−0.97%</strong>. Lending to the US government for a decade and accepting a guaranteed loss of purchasing power.</p>
+<p>That was not a market failure; it was policy working as designed. QE (M4.2) plus a zero policy rate pushed real yields below zero to force capital out of safe assets and into risk. It did exactly that — the entire 2010s regime of TINA, long-duration growth outperformance, and asset-price inflation follows from a persistently negative real rate.</p>
+<p>Which frames the whole period as one variable:</p>
+<pre class="diagram">   real rates deeply NEGATIVE     real rates POSITIVE
+   ────────────────────────────────────────────────────────────
+   2010s                          post-2022
+   growth beats value             the reverse
+   duration is rewarded           duration is punished
+   leverage is nearly free        leverage costs something
+   "there is no alternative"      cash yields something real</pre>
+<h2>Reading inflation data</h2>
+<p>Two distinctions that come up constantly:</p>
+<p><strong>Headline vs core.</strong> Core strips food and energy — not because they don't matter, but because they are volatile and supply-driven, so core is the better read on the <em>persistent</em> trend policy can influence.</p>
+<p><strong>Levels vs rates of change.</strong> "Inflation is falling" almost always means the <em>rate</em> is falling. Prices are still rising, only more slowly. Actual price falls are <strong>deflation</strong>, which central banks fear more than moderate inflation, because it encourages deferred spending and makes debt harder to service in real terms — and because the policy rate cannot go far below zero to fight it (M4.2).</p>
+<blockquote><p><strong>Pub test:</strong> The <strong>Fisher</strong> relation splits a nominal yield into a <strong>real yield</strong> plus <strong>expected inflation</strong>, and markets quote both — index-linked bonds (TIPS) yield the real rate, and the gap to the nominal bond is the <strong>breakeven</strong>. What matters for behaviour is the <strong>real</strong> rate, since that is the actual cost of capital. The 2022 shock makes the point — the 10-year nominal rose 225bp, of which the *<em>real yield supplied +255bp while breakevens </em>fell<em> 30bp</em>*. So the great inflation scare of 2022 was, in the bond market’s pricing, not an inflation-expectations event at all — it was the market believing the central bank would win, and repricing the real cost of money to deliver it.</p></blockquote><div class="source"><b>↳ go deeper:</b> for the market-implied measures, the Cleveland Fed and NY Fed both publish inflation-expectation methodologies that are explicit about the risk and liquidity premia in breakevens. Figures above from FRED series \<code>DGS10\</code>, \<code>DFII10\</code> and \<code>T10YIE\</code>.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M4_6"><div class="kicker">M4 · M4.6</div><h1>Carry, and what breaks it</h1>
+<p>The last of the roadmap's three self-assessment targets, and the idea that ties M4 back to everything before it.</p>
+<blockquote><p><strong>A carry trade earns the difference in yield between what you borrow and what you hold.</strong> It makes money as long as the price of the thing you hold doesn't move enough to wipe out that difference.</p></blockquote>
+<p>Two sentences, which is what the roadmap asked for. The rest of this lesson is why that innocuous-sounding trade is one of the most reliably profitable and periodically catastrophic structures in finance.</p>
+<h2>The classic form</h2>
+<pre class="diagram">   BORROW yen at 0.10%          INVEST in dollars at 5.25%
+        └──────────────────────────────┘
+                 carry = +5.15% a year, for doing nothing
+
+   the catch: you are SHORT yen. If the yen strengthens 5.15%
+   against the dollar, a full year of carry is gone.</pre>
+<p>You are being paid to hold a currency position, and the payment accrues smoothly, daily, whether or not anything happens. That is the seduction: <strong>the P&amp;L looks like a savings account right up until it doesn't.</strong></p>
+<p>Note how little movement it takes to break even — at 5.15% a year, roughly <strong>0.43% a month</strong>. Currencies move that in a day.</p>
+<h2>Why theory says it shouldn't work</h2>
+<p><strong>Uncovered interest parity</strong> (UIP) is the no-arbitrage argument: if dollars yield 5% more than yen, the dollar should be <em>expected</em> to depreciate about 5% against the yen, exactly cancelling the carry. Otherwise there is free money, and free money should not persist.</p>
+<p>Empirically, UIP fails — and not marginally. High-yielding currencies have historically depreciated <em>less</em> than the differential, and often appreciated. Carry has earned positive average returns across decades and currency pairs. This is the <strong>forward premium puzzle</strong>, one of the most durable anomalies in international finance.</p>
+<p>The resolution most people accept is a risk story, and you already have the shape for it from M2.3:</p>
+<pre class="diagram">   carry P&amp;L, drawn over time
+
+     ▲                                            ╱
+     │        ╱────────────────────╱─────────────╱
+     │    ╱                                       │
+     │ ╱                                          │
+     └────────────────────────────────────────────┼──▶
+       small steady gains, month after month      │
+                                                  ▼
+                                            sudden violent loss
+
+   this is a SHORT VOLATILITY payoff — the M2.3 short-gamma shape,
+   the M2.4 variance risk premium, and M0.8's warning about
+   selling options, all wearing a currency costume</pre>
+<p>Carry is not free money; it is <strong>compensation for bearing crash risk</strong>. You are paid a steady premium to hold a position that occasionally loses several years of income at once. Whether that is a good trade depends entirely on whether the premium exceeds the crash cost, which is unknowable in advance and is why the trade never disappears.</p>
+<h2>August 2024, the yen</h2>
+<p>The yen-funded carry trade was the biggest example of the 2020s. Japan held rates near zero while the Fed hiked, so the differential became enormous, and the yen obligingly weakened for three years — carry traders earned the differential <em>and</em> a capital gain:</p>
+<pre class="diagram">   USD/JPY   (yen per dollar; higher = weaker yen = carry winning)
+
+   2021-01-04    103.19    ╮
+   2022-01-03    115.27    │  three years of the trade working
+   2023-01-03    130.83    │  perfectly — carry AND appreciation
+   2024-01-02    141.89    │
+   2024-07-03    161.48    ╯  ← peak
+
+   2024-08-05    143.95    ← 33 days later</pre>
+<p>The yen appreciated <strong>12.2%</strong> in five weeks; a yen-funded dollar position lost about <strong>11%</strong> on the currency alone. At a 5.15% annual carry, that is <strong>more than two years of accumulated income erased in thirty-three days</strong> — and it happened alongside a global equity selloff, so the same investors were losing elsewhere simultaneously.</p>
+<p>The trigger was mundane — a small Bank of Japan hike plus a weak US payrolls print. What made it violent was crowding and leverage: everyone held the same position, the unwind forced buying of yen, which strengthened the yen, which forced more unwinding. That feedback loop is M0.7's margin spiral and M3.5's forced-selling mechanism, in a currency.</p>
+<h2>Carry is everywhere</h2>
+<p>Once you see the shape, it recurs across every asset class, and recognising it is most of what this lesson is for:</p>
+<pre class="diagram">   FX carry        borrow low-yield currency, hold high-yield
+   Credit carry    hold corporate bonds, earn the spread over
+                   governments — until defaults arrive
+   Curve carry     borrow short, lend long, earn the term premium
+                   (M4.4) — this is banking, and it is why an
+                   inverted curve hurts banks
+   Vol carry       sell options, collect the variance risk premium
+                   (M2.4) — the most explicit version
+   Equity carry    high-dividend stocks, funded</pre>
+<p>Every one has the same profile: <strong>steady income, rare large loss, and a tendency for everyone to be in it at once because the Sharpe ratio looks wonderful right until the drawdown.</strong> And because they are all short the same underlying risk factor, they tend to lose together — which is M3.5's tail dependence, arriving from a different direction.</p>
+<h2>When the regime changes</h2>
+<p>The deepest version of this is not a trade but an assumption. The largest carry-like position in the world is the belief that <strong>bonds hedge equities</strong> — the 60/40 portfolio, and every risk-parity structure built on it.</p>
+<pre class="diagram">   S&amp;P 500 daily returns vs 10-year bond returns
+
+   window                     correlation
+   ──────────────────────────────────────
+   2016–2019 (pre-Covid)         −0.35
+   2020–2021                     −0.37
+   2022 (inflation shock)        +0.18
+   2023–2026                     +0.05</pre>
+<p>For decades, bonds rose when equities fell — the negative correlation that makes 60/40 work. <strong>In 2022 the sign flipped</strong>, and it has not returned to its old level since.</p>
+<p>The reason is exactly M4.5. When the dominant risk is <em>growth</em>, bad news hurts equities and helps bonds (the central bank will cut) — correlation negative. When the dominant risk is <em>inflation</em>, bad news hurts <strong>both</strong>, because the response is higher rates. Change what the economy is afraid of and you change the sign of the correlation that a whole industry's risk models assumed was structural.</p>
+<p>Which is the closing point of M4, and it is really a point about M3:</p>
+<blockquote><p><strong>A correlation estimated in one regime is not a property of the assets. It is a property of what the economy was worried about at the time.</strong></p></blockquote>
+<p>Howard Marks' formulation, in the roadmap's recommended reading, is that you cannot predict cycles but you can know where you are in one — and that knowing whether growth or inflation is the dominant risk tells you more about how assets will co-move than any amount of historical covariance.</p>
+<p>M5 turns from the market to the people trading it: what the major firms actually do, how they make money, and how they are organised and paid.</p>
+<blockquote><p><strong>Pub test:</strong> A <strong>carry trade</strong> earns the yield difference between what you borrow and what you hold — classically borrowing a low-rate currency to invest in a high-rate one — and it profits as long as the exchange rate doesn’t move enough to erase the gap. Theory says it shouldn’t work (<strong>uncovered interest parity</strong> predicts the high-yielder depreciates by exactly the differential) but empirically it does, which is the <strong>forward premium puzzle</strong>; the resolution is that carry is paid for bearing <strong>crash risk</strong>, giving it the short-gamma shape of M2.3. In August 2024 the yen appreciated 12% in 33 days, costing a yen-funded trade ~11% — <strong>over two years of carry in five weeks</strong>. The same logic covers regime change generally, including the 2022 flip in stock-bond correlation from <strong>−0.35 to +0.18</strong>.</p></blockquote><div class="source"><b>↳ go deeper:</b> Howard Marks, <em>Mastering the Market Cycle</em> — the roadmap’s pick, and the right register for this lesson. On the forward premium puzzle, Burnside et al., “The Returns to Currency Speculation”, is the readable empirical treatment. FX and correlation figures above from FRED series \<code>DEXJPUS\</code>, \<code>SP500\</code> and \<code>DGS10\</code>.</div><a class="top" href="#top">↑ contents</a></section>
 </div>
 </body>
 </html>

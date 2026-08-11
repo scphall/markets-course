@@ -34,7 +34,7 @@ else.
 | M1 | Market microstructure | ✅ written (7/7) |
 | M2 | Quant finance fundamentals | ✅ written (7/7) |
 | M3 | Statistics of returns | ✅ written (7/7) |
-| M4 | Macro & rates | ▢ planned |
+| M4 | Macro & rates | ✅ written (6/6) |
 | M5 | The industry & the firms | ▢ planned |
 | M6 | Reading the news (habit) | ▢ ongoing |
 
@@ -167,10 +167,20 @@ articulate statistical vs. practical significance when finding a "signal."
 
 ---
 
-## M4 — Macro & rates · planned
+## M4 — Macro & rates · written
 
 **Goal:** know enough macro to follow conversations about what's moving markets
 and *why*. Don't drown in it, but don't skip it.
+
+Six lessons rather than seven — the "don't drown in it" is taken literally, and
+M4 trades derivation for institutional knowledge. All figures from FRED.
+
+- **M4.1 — Rates are the price of time:** yield, duration, convexity, and the 17% a 10-year bond lost in 2022. Pays off M0.5's unexplained "priced in yield".
+- **M4.2 — What a central bank actually does:** one overnight rate, the modern floor system (not the textbook scarcity story), why forward guidance moves more than the decision, QE/QT.
+- **M4.3 — From the policy rate to the stock price:** the discount-rate, earnings and risk-premium channels; equities have duration too; why good news is bad news.
+- **M4.4 — The yield curve and inversion:** expectations plus term premium; every 2s10s inversion since 1976 against every recession — a strong record, useless lead times, and one live counterexample.
+- **M4.5 — Inflation, real rates and breakevens:** Fisher, TIPS, and 2022 decomposed into a +255bp real move against *falling* breakevens.
+- **M4.6 — Carry, and what breaks it:** the carry trade, the forward premium puzzle, the 2024 yen unwind, and the 2022 stock-bond correlation flip as regime change.
 
 **Materials:** Matt Levine's *Money Stuff* (Bloomberg, free, start now); Howard
 Marks, *Mastering the Market Cycle*; a primer on monetary-policy mechanics;
