@@ -35,7 +35,7 @@ else.
 | M2 | Quant finance fundamentals | ✅ written (7/7) |
 | M3 | Statistics of returns | ✅ written (7/7) |
 | M4 | Macro & rates | ✅ written (6/6) |
-| M5 | The industry & the firms | ▢ planned |
+| M5 | The industry & the firms | ✅ written (5/5) |
 | M6 | Reading the news (habit) | ▢ ongoing |
 
 ---
@@ -192,10 +192,21 @@ carry trade in two sentences.
 
 ---
 
-## M5 — The industry & the firms · planned
+## M5 — The industry & the firms · written
 
 **Goal:** know what each major firm actually does, well enough to ask
 intelligent questions and tell the business models apart.
+
+Five lessons. Unlike M1–M4 these are claims about *private* firms, so the
+structures are durable and the numbers are reported estimates that drift — the
+lessons say so. The one audited window is Virtu, the only listed major market
+maker.
+
+- **M5.1 — The map:** sell side vs. buy side, and the four revenue models; read any firm by asking who pays it and for what.
+- **M5.2 — Market makers:** M1.7's edge equation as a business, on own capital. Virtu's SEC filings show revenue doubling in 2020 and correlating +0.63 with VIX — market making is long volatility.
+- **M5.3 — Pod shops:** many uncorrelated teams under hard stop-losses; the edge is diversification, growth is recruiting; pass-through fees and crowding risk.
+- **M5.4 — Single-strategy and quant funds:** capacity as the binding constraint, why Medallion is closed, and why openness tells you what kind of edge a firm thinks it has.
+- **M5.5 — How people get paid:** base/bonus/sign-on/deferred, deferral as the fix for the annual call option on the firm's capital, and the pod PM's profit share.
 
 **Materials:** *Odd Lots* (Bloomberg) and *Flirting with Models* (Corey
 Hoffstein) podcasts; selected *Invest Like the Best* episodes; the Jane Street

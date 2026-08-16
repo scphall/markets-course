@@ -59,7 +59,7 @@
 <a id="top"></a>
 <div class="wrap">
   <h1 class="site">markets // course</h1>
-  <div class="sub">mobile reader · 35 lessons taught · static (no-JS) build</div>
+  <div class="sub">mobile reader · 40 lessons taught · static (no-JS) build</div>
   <div class="toc"><div class="toc-mod"><div class="toc-h">M0 · How markets actually work</div><a class="toc-i done" href="#L_M0_1">✓ M0.1 — What a market is</a><a class="toc-i done" href="#L_M0_2">✓ M0.2 — The limit order book</a><a class="toc-i done" href="#L_M0_3">✓ M0.3 — Order types: market vs limit; click→settlement</a><a class="toc-i done" href="#L_M0_4">✓ M0.4 — The bid-ask spread</a><a class="toc-i done" href="#L_M0_5">✓ M0.5 — Asset classes</a><a class="toc-i done" href="#L_M0_6">✓ M0.6 — Venues & plumbing</a><div class="toc-i gate">▢ GATE M0 — Module test</div></div><div class="toc-mod"><div class="toc-h">M1 · Market microstructure</div><a class="toc-i done" href="#L_M1_1">✓ M1.1 — The microstructure lens</a><a class="toc-i done" href="#L_M1_2">✓ M1.2 — Adverse selection (Glosten–Milgrom)</a><a class="toc-i done" href="#L_M1_3">✓ M1.3 — Inventory models & quote skewing</a><a class="toc-i done" href="#L_M1_4">✓ M1.4 — The Kyle (1985) model</a><div class="toc-i gate">▢ CHECKPOINT M1 — Mid-module test</div><a class="toc-i done" href="#L_M1_5">✓ M1.5 — Price impact & the square-root law</a><a class="toc-i done" href="#L_M1_6">✓ M1.6 — Latency & the HFT layer</a><a class="toc-i done" href="#L_M1_7">✓ M1.7 — Flow toxicity & maker-taker economics</a><div class="toc-i gate">▢ GATE M1 — Module test</div></div><div class="toc-mod"><div class="toc-h">M2 · Quant finance fundamentals</div></div><div class="toc-mod"><div class="toc-h">M3 · Statistics of returns</div></div><div class="toc-mod"><div class="toc-h">M4 · Macro & rates</div></div><div class="toc-mod"><div class="toc-h">M5 · The industry & the firms</div></div><div class="toc-mod"><div class="toc-h">M6 · Reading the news (habit)</div></div></div>
   <section id="L_M0_1"><div class="kicker">M0 · M0.1</div><h1>What a market is</h1>
 <p>Strip away the screens and the jargon and a market is just <strong>a place where people who want to buy meet people who want to sell, and a price gets discovered in the process.</strong> Everything else — exchanges, order books, high-frequency trading — is machinery built on top of that one idea.</p>
@@ -2112,7 +2112,368 @@ for c in (0.0, 0.25, 0.50, 1.00):
 <blockquote><p><strong>A correlation estimated in one regime is not a property of the assets. It is a property of what the economy was worried about at the time.</strong></p></blockquote>
 <p>Howard Marks' formulation, in the roadmap's recommended reading, is that you cannot predict cycles but you can know where you are in one — and that knowing whether growth or inflation is the dominant risk tells you more about how assets will co-move than any amount of historical covariance.</p>
 <p>M5 turns from the market to the people trading it: what the major firms actually do, how they make money, and how they are organised and paid.</p>
-<blockquote><p><strong>Pub test:</strong> A <strong>carry trade</strong> earns the yield difference between what you borrow and what you hold — classically borrowing a low-rate currency to invest in a high-rate one — and it profits as long as the exchange rate doesn’t move enough to erase the gap. Theory says it shouldn’t work (<strong>uncovered interest parity</strong> predicts the high-yielder depreciates by exactly the differential) but empirically it does, which is the <strong>forward premium puzzle</strong>; the resolution is that carry is paid for bearing <strong>crash risk</strong>, giving it the short-gamma shape of M2.3. In August 2024 the yen appreciated 12% in 33 days, costing a yen-funded trade ~11% — <strong>over two years of carry in five weeks</strong>. The same logic covers regime change generally, including the 2022 flip in stock-bond correlation from <strong>−0.35 to +0.18</strong>.</p></blockquote><div class="source"><b>↳ go deeper:</b> Howard Marks, <em>Mastering the Market Cycle</em> — the roadmap’s pick, and the right register for this lesson. On the forward premium puzzle, Burnside et al., “The Returns to Currency Speculation”, is the readable empirical treatment. FX and correlation figures above from FRED series \<code>DEXJPUS\</code>, \<code>SP500\</code> and \<code>DGS10\</code>.</div><a class="top" href="#top">↑ contents</a></section>
+<blockquote><p><strong>Pub test:</strong> A <strong>carry trade</strong> earns the yield difference between what you borrow and what you hold — classically borrowing a low-rate currency to invest in a high-rate one — and it profits as long as the exchange rate doesn’t move enough to erase the gap. Theory says it shouldn’t work (<strong>uncovered interest parity</strong> predicts the high-yielder depreciates by exactly the differential) but empirically it does, which is the <strong>forward premium puzzle</strong>; the resolution is that carry is paid for bearing <strong>crash risk</strong>, giving it the short-gamma shape of M2.3. In August 2024 the yen appreciated 12% in 33 days, costing a yen-funded trade ~11% — <strong>over two years of carry in five weeks</strong>. The same logic covers regime change generally, including the 2022 flip in stock-bond correlation from <strong>−0.35 to +0.18</strong>.</p></blockquote><div class="source"><b>↳ go deeper:</b> Howard Marks, <em>Mastering the Market Cycle</em> — the roadmap’s pick, and the right register for this lesson. On the forward premium puzzle, Burnside et al., “The Returns to Currency Speculation”, is the readable empirical treatment. FX and correlation figures above from FRED series \<code>DEXJPUS\</code>, \<code>SP500\</code> and \<code>DGS10\</code>.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M5_1"><div class="kicker">M5 · M5.1</div><h1>The map — who is who</h1>
+<p>The course has spent five modules on markets. This one is about the people in them: what the major firms actually do, how they make money, and how they are paid.</p>
+<p>The single most useful organising question is not what a firm trades. It is:</p>
+<blockquote><p><strong>Where does the money come from?</strong></p></blockquote>
+<p>Answer that and almost everything else about a firm — its risk appetite, its size, its secrecy, how it pays people, whether it wants your money — follows.</p>
+<h2>A note on these facts before you rely on them</h2>
+<p>This module is different from M1–M4 in one important respect, and it is worth stating up front rather than in a footnote.</p>
+<p>Everything so far was <strong>verifiable</strong>: order-book mechanics, derivations you can check, market data you can download. This module is largely about <strong>private companies that do not publish figures.</strong> Headcounts, revenues, assets under management and pay are reported second-hand, are frequently stale, and are sometimes strategically leaked.</p>
+<p>So: the <strong>structures</strong> here are durable and worth learning. The <strong>numbers</strong> are approximate, dated to 2026, and will drift. Where a hard figure appears it is either from an audited public filing — Virtu in M5.2 is the one genuinely open window — or explicitly flagged as a reported estimate. Treat any specific number in this module as an order of magnitude, and check it before you quote it to anyone.</p>
+<h2>The four revenue models</h2>
+<pre class="diagram">   who pays them            for what                    so they optimise
+   ─────────────────────────────────────────────────────────────────────────
+   MARKET MAKERS
+   the market itself        the spread, earned on       VOLUME and
+   (no outside investors)   enormous volume             VOLATILITY
+
+   ASSET MANAGERS
+   investors                a % of assets held          ASSET GATHERING
+                            (management fee)            and not being fired
+
+   HEDGE FUNDS
+   investors                a % of assets PLUS a share  RETURNS
+                            of profits                  (and keeping capital)
+
+   BANKS (sell side)
+   clients                  commissions, spreads,       CLIENT FLOW
+                            fees for intermediation     and balance sheet</pre>
+<p>Those incentives are not cynical readings; they are the design. An asset manager charging 0.05% on an index fund genuinely should be maximising assets, because that is the service. A hedge fund charging 20% of profits genuinely should be maximising returns. Problems arise when the incentive and the marketing diverge — which is most of what M5.5 is about.</p>
+<h2>Sell side and buy side</h2>
+<p>The oldest division in the industry, and the vocabulary is used constantly:</p>
+<pre class="diagram">   SELL SIDE                        BUY SIDE
+   banks, brokers, dealers          funds, asset managers, pensions
+   ─────────────────────────────────────────────────────────────────
+   intermediate: make markets,      take positions with capital they
+   execute, research, underwrite    own or manage
+   paid by clients, per trade       paid on assets and performance
+   Goldman, JPM, Morgan Stanley     Millennium, Fidelity, CalPERS</pre>
+<p>The names are historical — the sell side "sells" securities and services to the buy side, which "buys" them. Market makers sit awkwardly across the line: structurally sell-side (they intermediate, they provide liquidity) but organised like the buy side (proprietary capital, no clients, performance-driven pay).</p>
+<h2>The three models this module distinguishes</h2>
+<p>The roadmap's self-assessment asks you to tell three apart. Here they are side by side; the next three lessons take one each.</p>
+<pre class="diagram">                  MARKET MAKER        POD SHOP            SINGLE-STRATEGY
+   ─────────────────────────────────────────────────────────────────────────
+   e.g.           Jane Street,        Millennium,         Renaissance,
+                  Citadel Securities  Citadel, Point72    AQR, Bridgewater
+
+   edge           immediacy — being   MANY uncorrelated   one deep edge,
+                  fastest and tightest small edges, run    applied at scale
+                  at huge volume      by separate teams
+
+   capital        own money           investors' money,   investors' money
+                                      allocated to pods
+
+   holding        seconds to hours    days to months      days to years
+   period
+
+   what kills it  a bad regime, a     correlated pods,    the edge decaying,
+                  technology failure  crowded unwind      or capacity
+
+   risk model     get flat, fast      hard stop-losses    portfolio-level
+                                      per pod
+
+   scales with    volume + volatility HEADCOUNT           the edge's capacity
+                                      (hire more pods)    (usually limited)</pre>
+<p>The row that most repays attention is the last one. <strong>A market maker grows by trading more volume; a pod shop grows by hiring more teams; a single-strategy fund often cannot grow at all</strong>, because its edge has a capacity limit — precisely the Q^1.5 cost scaling of M1.5 and M2.7. That one difference explains why some of the best-performing funds in history are closed to new money while some mediocre ones manage hundreds of billions.</p>
+<h2>Where the earlier modules land</h2>
+<p>Everything in M0–M4 was describing the environment these firms operate in:</p>
+<pre class="diagram">   M0.4  the spread              →  what a market maker earns          (M5.2)
+   M1.2  adverse selection       →  what it costs them                 (M5.2)
+   M1.7  the maker's edge        →  their P&amp;L, as an equation          (M5.2)
+   M1.5  impact and capacity     →  why fund size is capped            (M5.4)
+   M2.7  multiple testing        →  why most "edges" aren't            (M5.4)
+   M3.6  drawdown, not variance  →  why pods have stop-losses          (M5.3)
+   M4.6  regime change           →  what ends a strategy               (M5.3)</pre>
+<p>You already know how these businesses work. M5 is mostly putting names to them.</p>
+<blockquote><p><strong>Pub test:</strong> The industry divides by <strong>where the money comes from</strong>, which is the question that actually separates business models. <strong>Market makers</strong> earn a spread on flow and mostly trade their own capital, so they have no outside investors and no management fee. <strong>Asset managers</strong> earn a fee on assets under management, so their incentive is to gather assets. <strong>Hedge funds</strong> earn a fee plus a share of profits, so their incentive is returns — and within them, <strong>pod shops</strong> rent capital to many independent teams while <strong>single-strategy</strong> funds run one edge. <strong>Banks</strong> are the sell side, intermediating for clients. Read any firm by asking who pays it and for what, and the rest of its behaviour follows.</p></blockquote><div class="source"><b>↳ go deeper:</b> the roadmap’s picks are podcasts rather than books, deliberately — <em>Odd Lots</em> (Bloomberg) and <em>Flirting with Models</em> (Corey Hoffstein) are where practitioners explain their own business models in their own words, which no textbook does. Start with any <em>Odd Lots</em> episode featuring a market maker.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M5_2"><div class="kicker">M5 · M5.2</div><h1>Market makers</h1>
+<p>M0.1 promised that when we reached Jane Street and Citadel Securities, their business would already be familiar. It is. A market maker is M1.7's equation, industrialised:</p>
+<pre class="diagram">   MAKER'S EDGE PER UNIT TRADED
+
+     +  spread captured          M0.4
+     +  rebates                  M1.7
+     −  adverse selection        M1.2
+     −  inventory cost           M1.3
+     −  fees &amp; technology        M1.6
+   ────────────────────────────────────────
+     ×  an enormous number of units</pre>
+<p>There is nothing else to the business. The whole competitive game is making each term slightly better than the next firm, on billions of transactions.</p>
+<h2>The defining structural facts</h2>
+<p><strong>They trade their own capital.</strong> No outside investors, no management fee, no redemptions. This is the single most consequential fact about how these firms behave — it means no client reporting, no marketing, no explaining a bad quarter to anyone, and therefore <strong>almost no public disclosure</strong>. It also means the partners keep the profits, which is why compensation at the top is extraordinary (M5.5).</p>
+<p><strong>They are flat overnight, mostly.</strong> Inventory is a cost, not a position (M1.3). The business is capturing spread, not having views.</p>
+<p><strong>They are technology firms.</strong> The edge is latency (M1.6), models, and infrastructure. Headcounts are small relative to profits, heavily engineering-weighted, and hiring is famously competitive with big tech.</p>
+<p><strong>They are long volatility.</strong> This is the one to internalise, and unlike everything else in this module it can be checked against audited accounts.</p>
+<h2>The one open window: Virtu</h2>
+<p>Almost every major market maker is private. <strong>Virtu Financial is publicly listed</strong>, so it files audited accounts — the only place you can see a market maker's P&amp;L directly. From its SEC filings:</p>
+<pre class="diagram">   year   revenue    consolidated    net      average
+                     net income     margin      VIX
+   ─────────────────────────────────────────────────────
+   2015    $0.80bn      $0.20bn      24.8%      16.7
+   2016    $0.70bn      $0.16bn      22.5%      15.8
+   2017    $1.03bn      $0.02bn       1.8%      11.1
+   2018    $1.88bn      $0.62bn      33.0%      16.6
+   2019    $1.52bn     −$0.10bn      −6.8%      15.4
+   2020    $3.24bn      $1.12bn      34.6%      29.3
+   2021    $2.81bn      $0.83bn      29.4%      19.7
+   2022    $2.36bn      $0.47bn      19.8%      25.6
+   2023    $2.29bn      $0.26bn      11.5%      16.8
+   2024    $2.88bn      $0.53bn      18.6%      15.6
+   2025    $3.63bn      $0.91bn      25.1%      18.9</pre>
+<p><strong>2019 → 2020 is the headline.</strong> Revenue <strong>more than doubled</strong> (+113%) as average VIX went from 15.4 to 29.3. In the year markets fell apart, the market maker had its best year to that point.</p>
+<p>Across all thirteen available years, revenue correlates <strong>+0.63</strong> with average annual VIX. Positive and strong, but not a straight line — and the reasons it isn't are instructive.</p>
+<p><strong>Why volatility pays a maker.</strong> Spreads widen when volatility rises (M0.4), and volumes rise too, so the maker earns more per trade <em>and</em> does more trades. The risk is higher, which is exactly what the wider spread compensates. This is why a market maker's revenue looks like a <strong>long option</strong> position — and why it is the natural counterparty to everyone in M4.6 who is short one.</p>
+<p><strong>Three honest caveats</strong>, because the table above is not as clean as it looks:</p>
+<ul><li><strong>Acquisitions contaminate it.</strong> Virtu bought KCG in 2017 and ITG in 2019, so revenue growth is partly M&amp;A, and the terrible 2017 and 2019 margins are substantially integration costs rather than trading performance. The 2017 row — lowest VIX in the sample <em>and</em> rising revenue — is the acquisition, not a counterexample to the volatility story.</li><li><strong>Virtu is not a pure market maker.</strong> ITG brought a large agency-execution business, which earns commissions rather than spread and behaves differently.</li><li><strong>It is the listed one for a reason.</strong> Firms go public when it suits their owners; Virtu's economics need not represent Jane Street's or Citadel Securities'.</li></ul>
+<p>Even with all that, the direction is unambiguous and it is the only audited evidence available. <strong>Market making is a long-volatility business.</strong></p>
+<p>The margins are also worth noting for what they <em>deflate</em>. Twenty to thirty-five percent net margin in good years is an excellent business — and a loss-making year in 2019. The popular image of infallible money-printing does not survive contact with the filings.</p>
+<h2>Who's who</h2>
+<p>Approximate and reported, not audited — read these as "known for", which is the roadmap's actual ask:</p>
+<pre class="diagram">   firm                      known for
+   ───────────────────────────────────────────────────────────────────
+   Citadel Securities        the largest US retail wholesaler — the
+                             counterparty on a very large share of US
+                             retail orders (M0.3's PFOF). Separate
+                             company from Citadel the hedge fund, same
+                             founder.
+
+   Jane Street               ETFs above all, plus an unusual public
+                             identity — writes OCaml, publishes a tech
+                             blog, and discloses financials only because
+                             it issues bonds.
+
+   Optiver / IMC /           options and ETF market making, Amsterdam
+   Flow Traders              heritage. Optiver and IMC are major
+                             exchange-floor descendants.
+
+   Susquehanna (SIG)         options; famous for teaching new traders
+                             poker as decision-making under uncertainty.
+
+   Jump Trading /            latency-driven HFT (M1.6). Jump is
+   Hudson River Trading /    notably secretive; HRT is more openly
+   Tower Research / DRW      research-and-engineering flavoured.
+
+   Virtu Financial           the public one. Read its 10-K.
+   ───────────────────────────────────────────────────────────────────</pre>
+<p>The names shift; the business model does not.</p>
+<h2>Why the criticism lands where it does</h2>
+<p>Market makers are the most publicly criticised firms in the industry, and M1.6 and M1.7 already gave you the tools to sort the real arguments from the noise.</p>
+<p><strong>Weak criticisms:</strong> that they "front-run" retail (they mostly fill retail <em>inside</em> the quoted spread — M1.7's segmentation), or that HFT has widened spreads (spreads have collapsed since the 1990s).</p>
+<p><strong>Serious criticisms:</strong> that the resources burned on the latency arms race are socially wasted rents rather than competition on price (M1.6, Budish–Cramton–Shim); that PFOF and segmentation leave the lit book more toxic and therefore wider for everyone else (M1.7); and that the market's liquidity now depends on firms with no obligation to quote in a crisis — makers withdraw precisely when μ spikes (M1.2), which is when liquidity is most wanted.</p>
+<p>Being able to make those distinctions is roughly what the whole course has been for.</p>
+<blockquote><p><strong>Pub test:</strong> A market maker runs M1.7’s equation as a business — spread plus rebates, minus adverse selection, inventory and technology — at enormous volume and on <strong>its own capital</strong>, which is why these firms take no outside investors and disclose almost nothing. The structural fact is that they are <strong>long volatility</strong>, because volatility widens spreads and lifts volume. Virtu is the one publicly-listed example and its audited accounts show it — revenue <strong>$1.52bn in 2019 → $3.24bn in 2020</strong> as average VIX went 15.4 → 29.3, and revenue correlates <strong>+0.63</strong> with annual VIX across thirteen years. Consolidated margins run roughly <strong>20–35%</strong> in good years, but were <strong>−6.8%</strong> in 2019, so the printing-money story is overdone.</p></blockquote><div class="source"><b>↳ go deeper:</b> Virtu Financial’s 10-K filings, via SEC EDGAR — the XBRL company-concept API serves the numbers above as JSON, and reproducing them takes about ten lines. Jane Street’s tech blog is the roadmap’s pick for firm culture. For the criticisms, revisit M1.6 rather than the popular press.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M5_3"><div class="kicker">M5 · M5.3</div><h1>Pod shops — the multi-manager model</h1>
+<p>The fastest-growing structure in asset management over the last decade, and the one the roadmap specifically asks you to distinguish from market making.</p>
+<blockquote><p><strong>A pod shop is not a fund with a strategy. It is a platform that rents capital, infrastructure and risk oversight to many small teams, each running its own book.</strong></p></blockquote>
+<p>Millennium, Citadel, Point72, Balyasny, ExodusPoint and Schonfeld are the names usually meant. The model is also called <em>multi-manager</em> or <em>platform</em>.</p>
+<h2>The structure</h2>
+<pre class="diagram">                     ┌──────────────────────────┐
+                     │      THE PLATFORM        │
+                     │  capital · risk · data   │
+                     │  tech · prime brokerage  │
+                     └────────────┬─────────────┘
+             ┌──────────┬─────────┼─────────┬──────────┐
+           POD 1      POD 2     POD 3     POD 4  …   POD N
+        equity l/s   rates    commodities  stat arb
+         2–8 people, own P&amp;L, own book, own stop-loss
+
+     each pod is roughly a small hedge fund that has outsourced
+     everything except having ideas</pre>
+<p>A pod is typically a portfolio manager plus a handful of analysts and engineers. It gets an allocation of capital and a risk budget. What it does with them is largely its own business — which is why one firm can simultaneously run fundamental equity long/short, systematic futures, and municipal-bond relative value without any of them speaking to each other.</p>
+<h2>The edge is not the trades</h2>
+<p>Here is the conceptual move that makes the model work, and it comes straight from M3.</p>
+<p>No individual pod is exceptional. A pod might run a Sharpe of 1 — respectable, not remarkable. But if you have fifty pods whose returns are genuinely <strong>uncorrelated</strong>, the aggregate Sharpe scales with the square root of the count:</p>
+<pre class="diagram">   N uncorrelated books, each Sharpe s
+
+        portfolio Sharpe  ≈  s · √N
+
+        s = 1, N = 50   →   ≈ 7</pre>
+<p>That number is theoretical and nobody achieves it — correlations are never zero, and the fee load and financing costs take a large bite. But the <em>direction</em> is the entire business case: <strong>the platform's edge is diversification and risk control, not insight.</strong> The firm is buying uncorrelated return streams and assembling them.</p>
+<p>Which immediately tells you what the firm actually cares about:</p>
+<ul><li><strong>Are the pods genuinely uncorrelated?</strong> Risk teams monitor overlap obsessively, and a pod drifting into the same positions as another is a problem regardless of profitability.</li><li><strong>Is each pod's risk bounded?</strong> Hence the stop-loss.</li><li><strong>Can we hire more pods?</strong> Growth is a recruiting problem.</li></ul>
+<h2>The stop-loss, and what it does to people</h2>
+<p>The defining operational feature. A pod that loses roughly <strong>5–10%</strong> of its allocated capital is typically cut — capital reduced or withdrawn, and the team frequently dismissed. Thresholds vary by firm and are tightened or loosened with tenure and track record, but the structure is standard.</p>
+<p>This is M3.6's argument implemented as an employment contract: <strong>drawdown, not variance, is the binding constraint.</strong> The platform is not trying to maximise any pod's expected return; it is ensuring no pod can damage the whole.</p>
+<p>The consequences are severe and worth being clear-eyed about:</p>
+<pre class="diagram">   for the platform                    for the person
+   ─────────────────────────────────────────────────────────────
+   bounded downside per pod            you can be fired for a
+                                       drawdown that is entirely
+                                       consistent with your edge
+                                       being real (M2.1's standard
+                                       error — one bad year proves
+                                       almost nothing)
+
+   pods behave predictably             short-termism: PMs cut risk
+                                       near their limit, and avoid
+                                       strategies with long or
+                                       lumpy payoffs
+
+   easy to allocate and reallocate     high turnover. Multi-year
+                                       career stability is not part
+                                       of the offer.</pre>
+<p>That first row on the right is the honest critique of the model. A stop-loss cannot distinguish bad luck from no edge, because with fat tails and noisy Sharpe estimates <strong>nobody can</strong>, on a one-year sample. The platform accepts firing good PMs as the cost of never being badly hurt by a bad one.</p>
+<h2>Pass-through fees</h2>
+<p>The traditional hedge fund charged "2 and 20" — 2% of assets, 20% of profits. Pod shops largely charge <strong>pass-through</strong> instead: investors are billed the firm's <em>actual operating costs</em> — salaries, data, technology, legal, travel — plus a performance share.</p>
+<pre class="diagram">   traditional            2% management fee + 20% of profits
+   pass-through           the firm's real costs (often reported
+                          in the 3–10% of assets range) + a
+                          performance share</pre>
+<p>Investors accept it because net returns have been good and because the model's capacity for absorbing capital is large. But it is a genuinely different bargain: the manager's costs are no longer their problem. Paying a star PM more does not reduce the firm's profit — it increases the bill. That is a real misalignment, and it is the most common criticism of the structure from allocators.</p>
+<h2>What could go wrong at the system level</h2>
+<p>The worry is not that a pod blows up — the stop-loss handles that. It is <strong>correlation between firms</strong>.</p>
+<p>Pods across different platforms hire from the same pool, use the same data, run similar risk models, and face similar constraints. So they tend to hold similar positions. Add the leverage the model requires (individual pod edges are thin, so gross exposure is large relative to capital) and you have the M4.6 setup: a crowded position held by leveraged participants with <strong>mechanical</strong> stop-outs.</p>
+<p>If a shock forces one platform to cut risk, its selling moves prices against everyone holding the same book, triggering their stop-losses, which forces more selling. That is M0.7's margin spiral and M3.5's forced-selling channel, with the added feature that the deleveraging is <em>automated by risk policy</em> rather than chosen.</p>
+<p>Regulators have flagged this concentration repeatedly. It has not yet been properly tested by a crisis, which is precisely why it is worth understanding rather than assuming resolved.</p>
+<h2>Who's who</h2>
+<pre class="diagram">   firm            known for
+   ────────────────────────────────────────────────────────────
+   Millennium      the archetype. Izzy Englander; very large
+                   number of teams; famously tight risk limits.
+   Citadel         multi-strategy, run more centrally than most
+                   platforms. Ken Griffin. Distinct from Citadel
+                   Securities (M5.2).
+   Point72         Steve Cohen; successor to SAC Capital;
+                   notable for its academy for junior PMs.
+   Balyasny        equity long/short heritage, expanded to
+                   multi-strategy; publicly candid about
+                   rebuilding after a weak stretch.
+   ExodusPoint     macro-weighted; launched with one of the
+                   largest first-day raises on record.
+   Schonfeld       quantitative and systematic tilt.
+   ────────────────────────────────────────────────────────────</pre>
+<blockquote><p><strong>Pub test:</strong> A pod shop rents capital and infrastructure to dozens of small, independent teams, each running its own book under a <strong>hard stop-loss</strong> — typically losing its allocation after a drawdown of roughly 5–10%. The firm is not picking trades; it is running a <strong>portfolio of uncorrelated bets</strong>, so its edge is diversification and risk management rather than any single insight. That is why it can grow by <strong>hiring</strong>, unlike a single-strategy fund capped by capacity. The costs are a brutal culture with high turnover, <strong>pass-through fees</strong> that charge investors the firm’s actual expenses rather than a fixed percentage, and the systemic worry that pods across firms hold similar positions and would unwind together.</p></blockquote><div class="source"><b>↳ go deeper:</b> <em>Odd Lots</em> has repeatedly covered the multi-manager model and is the best accessible source on it. For the risk-management logic, re-read M3.6 — the stop-loss is that argument turned into policy. Allocator commentary on pass-through fees is worth searching out for the other side of the bargain.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M5_4"><div class="kicker">M5 · M5.4</div><h1>Single-strategy and quant funds</h1>
+<p>The third of the roadmap's three models. A pod shop assembles many mediocre edges into a good portfolio. A single-strategy fund does the opposite: <strong>one edge, understood deeply, applied at whatever scale it tolerates.</strong></p>
+<p>That last clause is the whole lesson.</p>
+<h2>Capacity is the organising constraint</h2>
+<p>M1.5 and M2.7 already gave you the arithmetic, and here it becomes an organisational fact:</p>
+<pre class="diagram">   gross alpha   ∝  Q          your edge scales with size
+   trading cost  ∝  Q^1.5      impact grows with participation
+
+   net profit peaks, then FALLS</pre>
+<p>For a single-strategy fund, that peak is a hard ceiling on the entire business. There is a size at which the strategy stops working, and no amount of capital, talent or technology moves it much — because the constraint is the <em>market's</em> ability to absorb the trading, not the fund's ability to think.</p>
+<p>This produces behaviour that looks bizarre from outside and is entirely rational:</p>
+<pre class="diagram">   ✓ closing funds to new investors while performing brilliantly
+   ✓ returning capital to investors
+   ✓ refusing to disclose anything, since the edge decays if copied
+   ✓ paying employees rather than gathering assets</pre>
+<p>An asset manager's instinct is to grow. A capacity-constrained fund's instinct is to <strong>stay small and keep the returns</strong>, because the marginal dollar makes every existing dollar worse.</p>
+<h2>Medallion, the extreme case</h2>
+<p>Renaissance Technologies' <strong>Medallion</strong> fund is the sharpest illustration, and the most famous track record in finance — reported gross returns averaging in the region of 60–70% a year over decades, before very high fees.</p>
+<p>Everything else about it follows from capacity:</p>
+<ul><li><strong>Closed to outside money</strong> since the 1990s. It runs employee capital.</li><li><strong>Profits distributed annually</strong> rather than compounded, holding the fund near its capacity limit by construction.</li><li><strong>Extreme secrecy</strong> — no publication, aggressive non-competes, staff drawn from mathematics, physics and code-breaking rather than finance.</li></ul>
+<p>The instructive part is what Renaissance did <em>next</em>. It launched separate institutional funds — RIEF and others — open to outside investors and running different, more capacious strategies. Those funds have performed respectably rather than miraculously. Same firm, same people, same technology; the difference is capacity. <strong>It is the clearest natural experiment in the industry that the edge, not the organisation, is the scarce thing.</strong></p>
+<h2>The scalable end</h2>
+<p>At the other extreme sit firms whose strategies genuinely absorb capital, and their character is completely different:</p>
+<pre class="diagram">                  CAPACITY-CONSTRAINED        SCALABLE
+   ──────────────────────────────────────────────────────────────
+   returns        very high                   market-like to good
+   size           small, often closed         very large
+   secrecy        total                       often publishes research
+   fees           very high                   competitive, falling
+   horizon        short — days or less        long — months to years
+   example        Medallion                   AQR, Bridgewater</pre>
+<p><strong>AQR</strong> is the clearest case of the scalable model: factor investing — value, momentum, carry, quality — implemented cheaply at enormous scale, with Cliff Asness and colleagues <strong>publishing their research openly</strong>. That openness is not altruism; it is coherent with the business. Factor premia are (arguably) compensation for risk rather than a secret, so explaining them does not destroy them, and being the credible academic voice attracts institutional capital.</p>
+<p>Compare that with a firm whose edge is a decaying signal: publishing would be suicide. <strong>How open a firm is tells you what kind of edge it thinks it has.</strong> That single heuristic reads the industry surprisingly well.</p>
+<p><strong>Bridgewater</strong> is the large macro example — Ray Dalio, the Pure Alpha fund, a heavily codified investment process and a famously distinctive internal culture. Macro strategies trade the most liquid instruments on earth (rates, FX, index futures), so capacity is enormous, which is why it could grow to be among the largest hedge funds.</p>
+<h2>Who's who</h2>
+<pre class="diagram">   firm                     known for
+   ──────────────────────────────────────────────────────────────
+   Renaissance              Medallion — the best track record in
+   Technologies             finance, closed to outsiders. Jim Simons,
+                            a mathematician who hired scientists
+                            rather than traders.
+   D. E. Shaw               among the earliest quant funds; a notable
+                            alumni tree, including Jeff Bezos.
+   Two Sigma                technology-first quant, large data and
+                            engineering organisation.
+   AQR                      factor investing at scale, and unusual
+                            openness — publishes serious research.
+   Bridgewater              the largest macro fund; Pure Alpha; a
+                            codified and much-discussed culture.
+   TGS / Quadrature /       extremely secretive, reportedly very high
+   XTX                      returns. XTX is notable as a large
+                            non-bank FX market maker.
+   ──────────────────────────────────────────────────────────────</pre>
+<h2>Why most quant funds are not Medallion</h2>
+<p>A closing corrective, and it is M2.7's argument applied to an industry.</p>
+<p>Medallion is quoted constantly, which creates the impression that quantitative investing routinely produces such returns. It does not. Medallion is the extreme tail of a distribution whose middle contains a great many funds delivering ordinary returns, and whose left tail contains funds that quietly closed.</p>
+<p>Everything M2.7 said applies at the level of firms: <strong>survivorship bias</strong> (you hear about the survivors), <strong>multiple testing</strong> (thousands of funds have been launched; the best track record among them would look extraordinary even if none had an edge), and the <strong>standard error</strong> of a Sharpe estimate, which makes a few good years nearly uninformative.</p>
+<p>Medallion's record is long and consistent enough to be genuinely beyond that critique — decades, not years. Almost nothing else is. Keeping both facts in mind at once is the mark of someone who has read past the folklore.</p>
+<blockquote><p><strong>Pub test:</strong> A single-strategy fund runs one deep edge rather than renting capital to many teams, which makes <strong>capacity</strong> its defining constraint — M1.5’s square-root law means cost scales like Q^1.5 while alpha scales like Q, so every edge has a size beyond which it stops paying. That is why the best-performing fund in history, Renaissance’s <strong>Medallion</strong>, is closed to outside money and returns profits to employees annually — it deliberately refuses to grow. It also explains the industry’s split personality — funds that could scale (<strong>AQR</strong>, <strong>Bridgewater</strong>) run cheaper, more capacious factor and macro strategies, while the highest-returning ones stay small and secretive.</p></blockquote><div class="source"><b>↳ go deeper:</b> Gregory Zuckerman, <em>The Man Who Solved the Market</em>, on Renaissance — the roadmap lists it under M6 and it belongs here too. AQR’s research library is free and unusually good; reading a paper by a firm that manages the strategy is a different experience from reading one by an academic. <em>Flirting with Models</em> interviews systematic managers about how their businesses actually work.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M5_5"><div class="kicker">M5 · M5.5</div><h1>How people get paid</h1>
+<p>The last of the roadmap's self-assessment targets, and the one where structure matters far more than the headline numbers — the numbers vary by firm, year, seat and cycle, and any specific figure dates almost immediately.</p>
+<h2>The four components</h2>
+<pre class="diagram">   BASE          modest by industry standards. Enough to live on;
+                 rarely the point. Often capped well below the bonus.
+
+   BONUS         the actual compensation. Annual, and either
+                 discretionary (banks, most funds) or formulaic
+                 (pod PMs — see below). Can be a large multiple
+                 of base.
+
+   SIGN-ON       paid on joining, to compensate for the DEFERRED
+                 pay you forfeit by leaving your last employer.
+                 Its existence is entirely a consequence of
+                 deferral, and it is how firms poach.
+
+   DEFERRED      a large fraction of the bonus, paid out over
+                 3–5 years, contingent on still being there —
+                 and sometimes on the firm's or your book's
+                 later performance.</pre>
+<p>The rough shape: junior seats are base-dominated; senior seats are bonus-dominated with a substantial deferred component. At market makers organised as partnerships, senior compensation is a share of firm profits and can dwarf anything on this list — there are no outside shareholders to pay (M5.2).</p>
+<h2>Why deferral exists — the option problem</h2>
+<p>This is the part worth understanding properly, because it is a direct application of M2 and M3 rather than an HR convention.</p>
+<p>Consider a trader paid a share of their annual profit, with no deferral and no clawback:</p>
+<pre class="diagram">   good year   →  large bonus
+   bad year    →  bonus of zero
+   catastrophe →  bonus of zero, and you are fired
+
+   your payoff is  max(profit, 0) × share</pre>
+<p>That is a <strong>call option on the firm's capital</strong>, granted free, and re-struck every January. And M2.3 told you exactly what a call is worth: it rises with <strong>volatility</strong>. The rational response to holding one is to take as much risk as you can get away with, because you keep the upside and the downside is bounded at zero.</p>
+<p>Worse, from M3: the optimal way to maximise a one-year option payoff is a strategy with <strong>steady small gains and a rare enormous loss</strong> — sell tail risk, run carry, be short gamma (M4.6). Such a book looks superb for several years and then destroys far more than it ever earned. The individual is paid throughout, and the firm eats the final year.</p>
+<p><strong>Deferral is the fix.</strong> If most of this year's bonus only vests over the next three to five years, and can be reduced or cancelled if the book later blows up, then you are no longer holding a one-year option — you are holding something closer to a stake in the multi-year outcome.</p>
+<pre class="diagram">   without deferral        payoff = a series of annual call options
+                           → incentive to maximise volatility and
+                             sell tails
+
+   with deferral           payoff depends on surviving the horizon
+                           → incentive to care about drawdown, which
+                             is M3.6's point exactly</pre>
+<p>It is also, incidentally, a retention device — leaving means forfeiting unvested pay, which is why sign-on bonuses exist and why senior people are described as "golden handcuffed". Firms are happy for both effects.</p>
+<p>Post-2008 regulation made deferral and clawback mandatory for material risk-takers at banks, precisely because the crisis was, in part, this incentive structure operating at scale.</p>
+<h2>The pod PM's deal</h2>
+<p>Pod shops are the exception to discretionary bonuses, and their arrangement is the clearest in the industry:</p>
+<pre class="diagram">   a PM receives a DIRECT SHARE of their own book's P&amp;L
+   — reported figures commonly fall in the 10–20% range,
+   negotiated individually and rising with track record —
+
+   less:  the pod's own costs (team salaries, data, technology),
+          which are typically charged against the book
+
+   subject to:  the stop-loss (M5.3). A drawdown of roughly
+                5–10% and the allocation, and often the job, is gone.</pre>
+<p>This is the purest incentive alignment in the industry and also the harshest. A good year can pay more than a decade elsewhere. A bad year ends the seat. It is why pod-shop turnover is high, why PMs are famously mercenary about moving, and why sign-on packages there are large — a firm poaching a PM must buy out both the deferred pay and the option value of an established allocation.</p>
+<p>Note the interaction with <strong>pass-through fees</strong> (M5.3): the PM's team costs are charged to investors rather than absorbed by the firm. Paying more to retain a PM does not reduce the platform's margin.</p>
+<h2>Reading a compensation structure</h2>
+<p>The useful skill is not knowing the numbers — it is inferring what a structure is <em>for</em>:</p>
+<pre class="diagram">   what you see                       what it tells you
+   ─────────────────────────────────────────────────────────────────
+   heavy deferral                     the firm fears tail risk and
+                                      staff departure
+   direct P&amp;L share + stop-loss       a pod shop; you own your
+                                      outcome, both ways
+   partnership profit share           proprietary capital, no
+                                      outside investors (M5.2)
+   large sign-on offers               they are poaching, and buying
+                                      out someone's deferred pay
+   bonus mostly discretionary         the firm wants latitude to
+                                      reward things P&amp;L doesn't
+                                      capture — or to pay less</pre>
+<p>And the general principle, which is the honest summary of all of M5:</p>
+<blockquote><p><strong>Compensation structure is a risk-management tool, not just a cost.</strong> How a firm pays people determines what risks they take, so you can read the firm's understanding of its own dangers off the shape of its pay.</p></blockquote>
+<h2>What M5 leaves you</h2>
+<p>You can now tell the three models apart and say why each is shaped as it is: a <strong>market maker</strong> running M1.7's equation on its own capital, long volatility and disclosing nothing; a <strong>pod shop</strong> renting capital to many uncorrelated teams under hard stop-losses, growing by hiring; a <strong>single-strategy fund</strong> with one edge and a capacity ceiling that often makes growth actively harmful. And you can read a pay structure as the risk model it is.</p>
+<p>That is the whole of the roadmap's M5 self-assessment.</p>
+<p><strong>M6 is not a module with lessons.</strong> It is the reading habit that keeps all of this current — <em>Money Stuff</em> daily, one serious weekly, and the books for colour. The facts in M5 will drift; the structures won't, and the habit is how you notice which is which.</p>
+<blockquote><p><strong>Pub test:</strong> Compensation has four parts — <strong>base</strong> (small, a living wage), <strong>bonus</strong> (the real number, discretionary or formulaic), <strong>sign-on</strong> (compensation for deferred pay you forfeit by moving), and <strong>deferred</strong> (a large share of the bonus paid over 3–5 years, forfeited if you leave). Deferral exists to solve the problem M3.6 named — a trader paid only on annual profit has a <strong>call option</strong> on the firm’s capital, since they keep the upside and cannot be paid negatively, which pays for taking tail risk. Deferral claws that back by making this year’s bonus depend on surviving the next three. Pod PMs instead take a <strong>direct profit share</strong>, typically reported around 10–20% of their book’s P&amp;L.</p></blockquote><div class="source"><b>↳ go deeper:</b> for the option-on-the-firm argument, the post-crisis literature on banker compensation is extensive — the UK’s Walker Review and the FSB’s Principles for Sound Compensation Practices are the primary documents, and both are more readable than they sound. For current market pay, industry surveys and compensation consultancies publish annually; treat all specific numbers as perishable.</div><a class="top" href="#top">↑ contents</a></section>
 </div>
 </body>
 </html>
