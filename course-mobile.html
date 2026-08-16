@@ -59,7 +59,7 @@
 <a id="top"></a>
 <div class="wrap">
   <h1 class="site">markets // course</h1>
-  <div class="sub">mobile reader · 40 lessons taught · static (no-JS) build</div>
+  <div class="sub">mobile reader · 43 lessons taught · static (no-JS) build</div>
   <div class="toc"><div class="toc-mod"><div class="toc-h">M0 · How markets actually work</div><a class="toc-i done" href="#L_M0_1">✓ M0.1 — What a market is</a><a class="toc-i done" href="#L_M0_2">✓ M0.2 — The limit order book</a><a class="toc-i done" href="#L_M0_3">✓ M0.3 — Order types: market vs limit; click→settlement</a><a class="toc-i done" href="#L_M0_4">✓ M0.4 — The bid-ask spread</a><a class="toc-i done" href="#L_M0_5">✓ M0.5 — Asset classes</a><a class="toc-i done" href="#L_M0_6">✓ M0.6 — Venues & plumbing</a><div class="toc-i gate">▢ GATE M0 — Module test</div></div><div class="toc-mod"><div class="toc-h">M1 · Market microstructure</div><a class="toc-i done" href="#L_M1_1">✓ M1.1 — The microstructure lens</a><a class="toc-i done" href="#L_M1_2">✓ M1.2 — Adverse selection (Glosten–Milgrom)</a><a class="toc-i done" href="#L_M1_3">✓ M1.3 — Inventory models & quote skewing</a><a class="toc-i done" href="#L_M1_4">✓ M1.4 — The Kyle (1985) model</a><div class="toc-i gate">▢ CHECKPOINT M1 — Mid-module test</div><a class="toc-i done" href="#L_M1_5">✓ M1.5 — Price impact & the square-root law</a><a class="toc-i done" href="#L_M1_6">✓ M1.6 — Latency & the HFT layer</a><a class="toc-i done" href="#L_M1_7">✓ M1.7 — Flow toxicity & maker-taker economics</a><div class="toc-i gate">▢ GATE M1 — Module test</div></div><div class="toc-mod"><div class="toc-h">M2 · Quant finance fundamentals</div></div><div class="toc-mod"><div class="toc-h">M3 · Statistics of returns</div></div><div class="toc-mod"><div class="toc-h">M4 · Macro & rates</div></div><div class="toc-mod"><div class="toc-h">M5 · The industry & the firms</div></div><div class="toc-mod"><div class="toc-h">M6 · Reading the news (habit)</div></div></div>
   <section id="L_M0_1"><div class="kicker">M0 · M0.1</div><h1>What a market is</h1>
 <p>Strip away the screens and the jargon and a market is just <strong>a place where people who want to buy meet people who want to sell, and a price gets discovered in the process.</strong> Everything else — exchanges, order books, high-frequency trading — is machinery built on top of that one idea.</p>
@@ -2473,7 +2473,260 @@ for c in (0.0, 0.25, 0.50, 1.00):
 <p>You can now tell the three models apart and say why each is shaped as it is: a <strong>market maker</strong> running M1.7's equation on its own capital, long volatility and disclosing nothing; a <strong>pod shop</strong> renting capital to many uncorrelated teams under hard stop-losses, growing by hiring; a <strong>single-strategy fund</strong> with one edge and a capacity ceiling that often makes growth actively harmful. And you can read a pay structure as the risk model it is.</p>
 <p>That is the whole of the roadmap's M5 self-assessment.</p>
 <p><strong>M6 is not a module with lessons.</strong> It is the reading habit that keeps all of this current — <em>Money Stuff</em> daily, one serious weekly, and the books for colour. The facts in M5 will drift; the structures won't, and the habit is how you notice which is which.</p>
-<blockquote><p><strong>Pub test:</strong> Compensation has four parts — <strong>base</strong> (small, a living wage), <strong>bonus</strong> (the real number, discretionary or formulaic), <strong>sign-on</strong> (compensation for deferred pay you forfeit by moving), and <strong>deferred</strong> (a large share of the bonus paid over 3–5 years, forfeited if you leave). Deferral exists to solve the problem M3.6 named — a trader paid only on annual profit has a <strong>call option</strong> on the firm’s capital, since they keep the upside and cannot be paid negatively, which pays for taking tail risk. Deferral claws that back by making this year’s bonus depend on surviving the next three. Pod PMs instead take a <strong>direct profit share</strong>, typically reported around 10–20% of their book’s P&amp;L.</p></blockquote><div class="source"><b>↳ go deeper:</b> for the option-on-the-firm argument, the post-crisis literature on banker compensation is extensive — the UK’s Walker Review and the FSB’s Principles for Sound Compensation Practices are the primary documents, and both are more readable than they sound. For current market pay, industry surveys and compensation consultancies publish annually; treat all specific numbers as perishable.</div><a class="top" href="#top">↑ contents</a></section>
+<blockquote><p><strong>Pub test:</strong> Compensation has four parts — <strong>base</strong> (small, a living wage), <strong>bonus</strong> (the real number, discretionary or formulaic), <strong>sign-on</strong> (compensation for deferred pay you forfeit by moving), and <strong>deferred</strong> (a large share of the bonus paid over 3–5 years, forfeited if you leave). Deferral exists to solve the problem M3.6 named — a trader paid only on annual profit has a <strong>call option</strong> on the firm’s capital, since they keep the upside and cannot be paid negatively, which pays for taking tail risk. Deferral claws that back by making this year’s bonus depend on surviving the next three. Pod PMs instead take a <strong>direct profit share</strong>, typically reported around 10–20% of their book’s P&amp;L.</p></blockquote><div class="source"><b>↳ go deeper:</b> for the option-on-the-firm argument, the post-crisis literature on banker compensation is extensive — the UK’s Walker Review and the FSB’s Principles for Sound Compensation Practices are the primary documents, and both are more readable than they sound. For current market pay, industry surveys and compensation consultancies publish annually; treat all specific numbers as perishable.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M6_1"><div class="kicker">M6 · M6.1</div><h1>The habit — reading the news fluently</h1>
+<p>Every module so far had an end. This one doesn't.</p>
+<p>M6 is the slow accretion of context that makes someone sound like they have been paying attention — and it is deliberately not a body of knowledge, because the facts go stale. M5 said so about its own numbers. What doesn't go stale is the <strong>machinery for reading them</strong>, and after forty lessons you have it.</p>
+<h2>The cadence</h2>
+<pre class="diagram">   DAILY      ~10 min    Matt Levine, Money Stuff (Bloomberg, free)
+                         The single best habit in the list. Funny,
+                         and quietly teaches market structure —
+                         much of M0 and M5 shows up in it weekly.
+
+   WEEKLY     ~30 min    The Financial Times OR The Economist.
+                         ONE of them. Both is how the habit dies.
+
+   ONGOING               Books for colour, over months — M6.2.</pre>
+<p>The roadmap's insistence on <em>one</em> weekly publication is the important part. A habit that costs forty minutes a week survives; one that costs four hours does not, and an abandoned habit teaches nothing. <strong>Consistency beats coverage.</strong> You are not trying to know everything that happened; you are trying to accumulate context at a rate you can sustain for years.</p>
+<h2>Reading a headline as a mechanism</h2>
+<p>Here is what the course has actually bought you. Financial journalism reports <em>events</em>; you now know the <em>mechanisms</em>, so you can translate.</p>
+<pre class="diagram">   headline                          what is actually happening        lesson
+   ─────────────────────────────────────────────────────────────────────────
+   "Fed holds rates, stocks fall"    the LEVEL was priced; the          M4.3
+                                      expected PATH was revised up      M4.2
+
+   "Stocks slide on strong jobs"     good news is bad news — while      M4.3
+                                      the central bank is the
+                                      dominant variable
+
+   "Yields jump on inflation data"   check real vs breakeven before     M4.5
+                                      calling it an inflation story
+
+   "Yen surges, global stocks fall"  carry unwind, forced              M4.6
+                                      deleveraging, everyone in
+                                      the same crowded trade
+
+   "Bond fund down 15%"              duration × Δy. Nothing exotic     M4.1
+                                      happened.
+
+   "Market maker posts record year"  volatility was high — the         M5.2
+                                      business is long vol
+
+   "Fund returns capital to
+    investors"                       capacity, not modesty              M5.4
+
+   "PM let go after 8% drawdown"     a pod stop-loss fired. Says       M5.3
+                                      little about whether the          M2.1
+                                      edge was real.
+
+   "Spreads widened, liquidity
+    dried up"                        makers repriced adverse           M0.4
+                                      selection and withdrew as         M1.2
+                                      informed flow rose
+
+   "Correlations broke down"         regime change. Correlation is     M3.5
+                                      a property of what the            M4.6
+                                      economy fears, not of the
+                                      assets.
+
+   "60/40 is dead"                   the stock-bond correlation        M4.6
+                                      flipped when inflation, not
+                                      growth, became the risk
+
+   "New fund beats market,
+    Sharpe 2.5"                      how many variants were tried?     M2.7
+                                      what are the costs at size?       M3.7
+
+   "Retail gets better prices
+    than institutions"               true, and incomplete —            M1.7
+                                      segmentation makes the lit
+                                      book worse for everyone else
+   ─────────────────────────────────────────────────────────────────────────</pre>
+<p>None of that requires new information. It requires knowing which of six modules the sentence belongs to — which is what the whole course was for, and why M6 comes last rather than first.</p>
+<h2>Four questions</h2>
+<p>For anything that doesn't map to a row above:</p>
+<p><strong>1. Which mechanism is this?</strong> Put it in a module. Rates and macro → M4. Something about spreads, venues or execution → M0 and M1. A performance claim → M2 and M3. A firm → M5. If it fits nowhere, that is genuinely interesting and worth pursuing.</p>
+<p><strong>2. Is this the level or the change?</strong> The most common error in reading market news. Markets price expectations, so a fact everyone already knew moves nothing. When something moves on apparently old news, the news was <strong>the revision</strong>, not the fact. (M4.2 — this is why forward guidance is a policy tool.)</p>
+<p><strong>3. Who is on the other side, and why?</strong> Every trade has one. If an article implies someone found free money, ask who is providing it and why they would. Usually the answer is that the "free money" is compensation for a risk the article hasn't mentioned — carry (M4.6), short volatility (M2.4), or illiquidity (M1.3).</p>
+<p><strong>4. What would falsify this?</strong> Especially for claims about <em>why</em> something moved. Financial journalism is required to supply a reason daily, and most daily moves have no single cause. "Stocks fell on China worries" is very often "stocks fell, and here is a plausible sentence."</p>
+<h2>What fluency actually is</h2>
+<p>Not knowing more. <strong>Having somewhere to put things.</strong></p>
+<p>A year of Money Stuff without the machinery leaves you with anecdotes. A year of it with M0–M5 in place leaves you with an increasingly dense map — each story attaching to a mechanism you understand, each attachment making the next story faster to place. The compounding is the point, and it is why the roadmap says to start in week one rather than at the end.</p>
+<p>Which also means: <strong>if you have been reading the course and not the news, start now.</strong> The habit is the part that persists after the derivations fade.</p>
+<blockquote><p><strong>Pub test:</strong> M6 is a <strong>habit</strong>, not a syllabus — roughly ten minutes daily on Matt Levine’s <em>Money Stuff</em> and thirty minutes weekly on one serious publication, sustained indefinitely. Its value is that after five modules you can now read a headline as a <strong>mechanism</strong> rather than a story, which is the difference between following markets and merely watching them. Four questions do most of the work — which mechanism is this, is it the <strong>level or the change</strong> (since the level is usually already priced), who is on the other side, and what would falsify it. Fluency is not knowing more facts; it is having somewhere to put each new one.</p></blockquote><div class="source"><b>↳ go deeper:</b> Matt Levine’s <em>Money Stuff</em> — free by email from Bloomberg, and the only daily on this list. Start today rather than after M6.2; the reading list can wait, the habit shouldn’t.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M6_2"><div class="kicker">M6 · M6.2</div><h1>The reading list</h1>
+<p>Forty lessons have each ended with a source line, which means the course has quietly accumulated a bibliography that nobody has ever seen in one place. Here it is, extracted from the lessons themselves.</p>
+<h2>The spine</h2>
+<p>Three texts do most of the work, counted by how many lessons cite them:</p>
+<pre class="diagram">   Larry Harris, Trading and Exchanges                      8 lessons
+     the foundation for M0 and much of M1. If you buy one
+     book from this course, this is it — it is about how
+     markets WORK, written by someone who cares about
+     institutions rather than equations.
+
+   John Hull, Options, Futures, and Other Derivatives       5 lessons
+     the derivatives standard, spanning M0.7 through M2.4.
+     Comprehensive and slightly dull; use it as a reference
+     rather than reading it through.
+
+   Maureen O'Hara, Market Microstructure Theory             5 lessons
+     the theory behind M1 — Glosten–Milgrom, inventory
+     models, Kyle. Denser than Harris and worth it once
+     the intuition is in place.</pre>
+<h2>By module</h2>
+<p>Everything else is depth on one part of the course:</p>
+<pre class="diagram">   M0   Harris ch.1–7
+        Hull ch.1–2, 7, 10–12                 derivatives, options
+
+   M1   O'Hara ch.1–4                         the models
+        Bouchaud et al., Trades, Quotes
+          and Prices                          the modern empirical bible
+        Aldridge, High-Frequency Trading      practitioner mechanics
+
+   M2   Chan, Quantitative Trading            start here — short, honest
+        Chan, Algorithmic Trading             pairs trading as practised
+        Joshi, The Concepts and Practice
+          of Mathematical Finance             option-pricing intuition
+        Sinclair, Volatility Trading          written by someone who has
+                                              actually hedged the position
+        Gatheral, The Volatility Surface      the surface, properly
+        López de Prado, Advances in
+          Financial Machine Learning          backtesting pathologies
+
+   M3   Mandelbrot, The (Mis)behavior
+          of Markets                          the roadmap's "required"
+        Cont (2001), stylized facts           one paper, the whole of M3.1
+        McNeil, Frey &amp; Embrechts,
+          Quantitative Risk Management        EVT, copulas, coherent risk
+                                              measures — the reference
+        Tsay, Analysis of Financial
+          Time Series                         GARCH and friends
+        Thorp, A Man for All Markets          Kelly, from its practitioner
+        Falkenstein, The Missing
+          Risk Premium                        statistically real,
+                                              economically absent
+
+   M4   Tuckman, Fixed Income Securities      duration and the curve
+        Marks, Mastering the Market Cycle     the cycle-level view
+
+   M5   Odd Lots, Flirting with Models        podcasts — practitioners
+          (podcasts)                          describing their own
+                                              business models
+        Zuckerman, The Man Who Solved
+          the Market                          Renaissance</pre>
+<p>You are not expected to read all of that. The list exists so that when a module turns out to matter for your work, you know where to go next.</p>
+<h2>Books for colour</h2>
+<p>The roadmap prescribes five, separately from the technical list, and they do something the textbooks cannot: they teach <strong>what it is like</strong>, and <strong>how things fail</strong>.</p>
+<pre class="diagram">   Michael Lewis, Liar's Poker
+     1980s Salomon Brothers. The culture of a trading floor
+     before any of the machinery in this course existed.
+     Funny, and the best single antidote to imagining
+     finance as a meritocracy of models.
+
+   Roger Lowenstein, When Genius Failed
+     LTCM. Nobel laureates, a strategy that was probably
+     right, and leverage that meant being right didn't
+     matter — M3.6 and M0.7 as a narrative. If you read
+     one, read this one.
+
+   Sebastian Mallaby, More Money Than God
+     a history of hedge funds. The best context for M5:
+     how each business model came to exist, and what
+     problem it was solving.
+
+   Scott Patterson, The Quants
+     the quant funds into 2007–08. Reads differently after
+     M2.7 and M3.5 — you can see the multiple testing and
+     the correlation breakdown coming.
+
+   Gregory Zuckerman, The Man Who Solved the Market
+     Renaissance and Jim Simons. Also cited in M5.4, and
+     the best available account of the one track record
+     that survives the survivorship critique.</pre>
+<h2>Order matters for the narrative ones</h2>
+<p>The course has twice recommended reading something <em>after</em> the relevant module rather than before, and the reason generalises:</p>
+<pre class="diagram">   Michael Lewis, Flash Boys        read AFTER M1.6
+     the races are real; the framing as systematic theft
+     from ordinary investors is not. You can only see
+     which is which with the microstructure in place.
+
+   Felix Salmon, "Recipe for
+   Disaster" (Wired, 2009)          read AFTER M3.5
+     the Gaussian copula story, told well and overstated.
+     M3.5 gives you the actual defect — zero tail
+     dependence — so you can enjoy the narrative without
+     absorbing its conclusion.</pre>
+<p><strong>Narrative journalism needs a villain, and mechanisms rarely supply one.</strong> That is not a criticism of the genre — it is why these books are worth reading for colour and not for models. Read them after the machinery, and they become much better: you spend the time noticing what is accurate, which is most of it, and what has been sharpened for the story.</p>
+<h2>What the roadmap says to avoid</h2>
+<p>Books titled <em>How to Trade [Anything]</em>, finance Twitter/X, and trading YouTube. M6.3 is about why, and about the questions that make the reason obvious.</p>
+<blockquote><p><strong>Pub test:</strong> The course cites <strong>24 books across its 40 lessons</strong>, and three carry most of the load — Harris’s <em>Trading and Exchanges</em> (8 lessons), Hull’s <em>Options, Futures, and Other Derivatives</em> (5) and O’Hara’s <em>Market Microstructure Theory</em> (5). Those are the spine; everything else is depth on one module. Separately, the roadmap prescribes five <strong>books for colour</strong> — <em>Liar’s Poker</em>, <em>When Genius Failed</em>, <em>More Money Than God</em>, <em>The Quants</em>, <em>The Man Who Solved the Market</em> — which teach culture and failure rather than mechanism. Order matters for the narrative ones — read <em>Flash Boys</em> <strong>after</strong> M1 and the Gaussian-copula journalism <strong>after</strong> M3, so you can see what each overstates.</p></blockquote><div class="source"><b>↳ go deeper:</b> this list is extracted from the source lines of all 40 lessons plus the roadmap’s own M6 selections. Every title above is cited somewhere in the course with a chapter or a reason, so if one looks interesting, the lesson that recommended it will tell you what for.</div><a class="top" href="#top">↑ contents</a></section><section id="L_M6_3"><div class="kicker">M6 · M6.3</div><h1>Signal and noise</h1>
+<p>The roadmap ends with a short list of things to avoid: books called <em>How to Trade [Anything]</em>, finance Twitter/X, and trading YouTube. This lesson is why — and the reasons are all things the course has already established, which makes it a fair final test of whether they landed.</p>
+<h2>Why the avoid-list is one problem, not three</h2>
+<p>Every item fails the same way: <strong>you are shown a selected sample.</strong></p>
+<pre class="diagram">   what you see                     what generated it
+   ─────────────────────────────────────────────────────────────
+   a screenshot of a great          thousands of accounts trading;
+   month                            the ones with bad months stop
+                                    posting. SURVIVORSHIP (M2.7)
+
+   a strategy with a beautiful      one of hundreds tried, and the
+   backtest                         best kept. MULTIPLE TESTING —
+                                    best-of-1000 on zero edge
+                                    scores Sharpe 1.4 (M2.7)
+
+   "up 340% since inception"        inception chosen after the
+                                    fact. And no costs (M2.6),
+                                    no capacity (M1.5), no
+                                    drawdown (M3.6)
+
+   a confident causal story         needs a villain and a daily
+   about yesterday's move           deadline (M6.1)</pre>
+<p>There is also a business-model tell worth stating plainly. <strong>If someone has a strategy that works at scale, selling a course about it is a strictly worse use of their time than trading it.</strong> Capacity (M1.5) means every additional participant makes the edge worse, so publishing a genuinely profitable short-horizon strategy is self-harm. The exceptions are instructive: AQR publishes because factor premia are risk compensation rather than secrets (M5.4), and academics publish because that is the job. Neither is selling you anything.</p>
+<p>This is not a claim that nobody on the internet knows anything — plenty do, and some of the best market-structure writing is on blogs. It is a claim about <strong>the base rate of a feed</strong>, and about what filtering costs you when you cannot see the denominator.</p>
+<h2>The checklist, turned outward</h2>
+<p>M2.7 built a checklist for interrogating your own backtest. The same questions work on anyone else's claim, and they are more useful pointed outward because you are less motivated to fudge them.</p>
+<pre class="diagram">   ✓  What is the effect size, in basis points, BEFORE any p-value?
+      A statistically significant edge of 5bps/day that costs 5bps
+      to trade is worth nothing. Significance is necessary and
+      nowhere near sufficient (M3.7).
+
+   ✓  What are the costs at the size actually intended?
+      Not a flat fee — M1.5's square-root law at that participation
+      rate. M2.6's pairs trade went from Sharpe 1.39 to 0.17 on
+      this line alone, with the signal unchanged.
+
+   ✓  How many variants were tried before this one?
+      Including the abandoned ones. If nobody counted, the number
+      is larger than they think (M2.7).
+
+   ✓  How much of it rests on a handful of days?
+      Drop the ten biggest and re-run. On the real S&amp;P, ten days
+      out of 2,513 move the Sharpe between 0.37 and 1.17 (M3.7).
+
+   ✓  What is the capacity?
+      Alpha scales with Q, cost with Q^1.5. Every edge has a size
+      at which it stops existing (M1.5, M5.4).
+
+   ✓  Who is on the other side, and why are they wrong?
+      If the answer is "they're dumb", be suspicious. Usually the
+      other side is being paid for a risk (M4.6, M2.4).
+
+   ✓  What regime does this assume?
+      A relationship fitted across one regime need not survive a
+      change of it — ask the 60/40 portfolio (M4.6).
+
+   ✓  Drawdown, not variance?
+      What is the worst path, not the average one (M3.6).</pre>
+<p>Applied honestly, that list disqualifies the overwhelming majority of claims you will encounter, including some made by serious people in good faith. <strong>That is the correct outcome</strong>, and being comfortable with it is most of what separates literacy from credulity.</p>
+<h2>Two failure modes to avoid in yourself</h2>
+<p>Having a checklist creates its own risks, and they are worth naming.</p>
+<p><strong>Selective scepticism.</strong> Applying the list to claims you dislike and waiving it for ones you find congenial. The test is whether you have ever used it to kill something you wanted to be true.</p>
+<p><strong>Corrosive scepticism.</strong> Concluding that since everything fails the checklist, nothing works and the whole enterprise is noise. That is also wrong — market makers really do earn the spread, factor premia have survived decades of out-of-sample scrutiny, and Medallion's record is long enough to be beyond the survivorship critique. <strong>Some things are real.</strong> The point of the list is to tell which, not to conclude that none are.</p>
+<p>The honest position after this course is narrower than either: <em>most</em> claims of edge are artefacts, a few are real, the difference is usually costs and capacity rather than cleverness, and you can now tell which questions separate them.</p>
+<h2>Where this leaves you</h2>
+<p>Six modules, and the arc is worth stating once at the end.</p>
+<p><strong>M0</strong> gave you the machinery — order books, spreads, the path from click to settlement. <strong>M1</strong> explained why the machinery behaves as it does, and derived the spread from adverse selection and inventory. <strong>M2</strong> built the toolkit for pricing and strategy, and showed that costs, not signals, usually decide. <strong>M3</strong> removed the Gaussian assumption underneath all of it. <strong>M4</strong> supplied the macro context that explains when things move. <strong>M5</strong> named the firms and showed that their structures follow from where their money comes from.</p>
+<p><strong>M6 is the one that doesn't finish.</strong> Ten minutes a day, one weekly, and the books over months — and the machinery above is what turns that from a stream of anecdotes into an accumulating map.</p>
+<p>That was the whole goal, stated at the very start of the roadmap: <strong>not to make you a practitioner, but to make you literate</strong> — which is the prerequisite for everything else, and the thing that lets you hold a conversation with someone who does this for a living and ask them a question they find interesting.</p>
+<blockquote><p><strong>Pub test:</strong> The roadmap’s avoid-list — “how to trade X” books, finance Twitter, trading YouTube — shares one defect, which is <strong>selection</strong>. You see the winners because losers stop posting, so a feed of screenshots is a survivorship-biased sample with no track record attached, and the business model is usually selling courses rather than trading. The defence is the checklist M2.7 and M3.7 already built, turned outward — ask for the <strong>effect size in basis points before the p-value</strong>, the <strong>costs at the intended size</strong>, how many <strong>variants were tried</strong>, how much rests on a <strong>handful of days</strong>, the <strong>capacity</strong>, and <strong>who is on the other side</strong>. Applied honestly it disqualifies most claims, which is the correct outcome.</p></blockquote><div class="source"><b>↳ go deeper:</b> nothing new here — every argument in this lesson is from M1.5, M2.6, M2.7, M3.6, M3.7, M4.6 or M5.4. That is deliberate. If any of the checklist items above needed explaining, that is the module to revisit.</div><a class="top" href="#top">↑ contents</a></section>
 </div>
 </body>
 </html>

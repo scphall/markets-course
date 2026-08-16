@@ -36,13 +36,15 @@ every lesson into static markup.
 
 ## Status
 
-**All six taught modules are written** — 40 lessons: **M0 — How markets
-actually work** (8), **M1 — Market microstructure** (7), **M2 —
-Quantitative finance fundamentals** (7), **M3 — Statistics of returns**
-(7), **M4 — Macro & rates** (6) and **M5 — The industry & the firms** (5).
+**The course is complete — 43 lessons across all seven modules:**
+**M0 — How markets actually work** (8), **M1 — Market microstructure** (7),
+**M2 — Quantitative finance fundamentals** (7), **M3 — Statistics of
+returns** (7), **M4 — Macro & rates** (6), **M5 — The industry & the
+firms** (5) and **M6 — Reading the news** (3).
 
-**M6** is a standing reading habit rather than a set of lessons; see
-[`ROADMAP.md`](ROADMAP.md).
+**M6 is a habit, not a body of knowledge.** Its three lessons set up a
+practice to continue indefinitely — a headline-to-mechanism decoder, the
+consolidated reading list, and how to interrogate a claim of edge.
 
 M3 works throughout from real S&P 500 daily data (FRED, 2016–2026)
 rather than illustration — every figure in it is reproducible from a

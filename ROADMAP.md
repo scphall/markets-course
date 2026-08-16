@@ -36,7 +36,7 @@ else.
 | M3 | Statistics of returns | ✅ written (7/7) |
 | M4 | Macro & rates | ✅ written (6/6) |
 | M5 | The industry & the firms | ✅ written (5/5) |
-| M6 | Reading the news (habit) | ▢ ongoing |
+| M6 | Reading the news (habit) | ✅ written (3/3) · ongoing |
 
 ---
 
@@ -222,10 +222,15 @@ known for.
 
 ---
 
-## M6 — Reading the news fluently · ongoing, from week 1
+## M6 — Reading the news fluently · written (3 lessons) · ongoing, from week 1
 
 This module never ends. It's the slow accretion of context that makes you sound
-like someone who's been paying attention.
+like someone who's been paying attention. Three lessons make the habit teachable
+and close the course; the practice itself continues indefinitely.
+
+- **M6.1 — The habit:** the cadence, and a table decoding common headlines back to the mechanism and the lesson that explains it, plus four questions for anything not in the table.
+- **M6.2 — The reading list:** the 24 books cited across the course consolidated in one place (Harris, Hull and O'Hara are the spine), the five books for colour, and why some narrative books must be read *after* the relevant module.
+- **M6.3 — Signal and noise:** why the avoid-list all fails the same way (selection), the checklist from M2.7/M3.7 turned outward onto other people's claims, and the two ways scepticism itself goes wrong.
 
 - **Daily (~10 min):** Matt Levine's *Money Stuff*.
 - **Weekly (~30 min):** the *Financial Times* or *The Economist* (one, not both).
